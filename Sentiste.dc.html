@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>¿Cómo te sentiste?</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes svBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@keyframes svIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes svPop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes svDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes svFadeA{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes svFadeB{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sv-in{animation:svIn .7s cubic-bezier(.2,.8,.2,1) both}
+.sv-b{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif;color:#111}
+.sv-chip{height:22px;padding:0 11px;border-radius:11px;border:1px solid #111;background:#fff;font:400 12px Manrope,sans-serif;color:#111;display:flex;align-items:center;gap:5px;cursor:pointer;transition:background .25s}
+.sv-chip[aria-pressed="true"]{background:#EAFE9F}
+.sv-chip i{width:8px;height:8px;border-radius:50%;display:inline-block;box-sizing:border-box}
+.sv-row{display:flex;align-items:center;height:29px;font-size:12px;cursor:pointer;border:0;background:transparent;width:100%;padding:0;font-family:Manrope,sans-serif;color:#111;text-align:left;border-radius:8px;transition:background .2s}
+.sv-row:hover{background:rgba(0,0,0,.035)}
+.sv-f{position:absolute;border:0;border-bottom:1px solid #111;background:transparent;font:400 15px Manrope,sans-serif;color:#111;outline:none;padding:0 0 6px;border-radius:0}
+.sv-f::placeholder{color:#8A8A86}
+</style>
+</helmet>
+<div style="position: relative; margin-top: 52px; width: 393px; height: 920px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+<svg width="140" height="20" viewBox="0 0 140 20" style="position: absolute; left: -38px; top: 30.5px" aria-hidden="true"><line x1="60" y1="10" x2="116" y2="10" stroke="#B5B5B1" stroke-width="1"></line><line x1="60" y1="10" x2="96.5" y2="10" stroke="#111" stroke-width="1"></line><circle cx="60" cy="10" r="3.6" fill="#111"></circle><circle cx="78" cy="10" r="3.6" fill="#111"></circle><circle cx="96.5" cy="10" r="4.6" fill="#EAFE9F" stroke="#111" stroke-width="1"></circle><circle cx="116" cy="10" r="4.6" fill="#FFFFFF" stroke="#B5B5B1" stroke-width="1"></circle></svg>
+<a href="Home.dc.html" data-tr="back" style="position: absolute; right: 22px; top: 30px; font-size: 13px; color: #111; text-decoration: underline; text-underline-offset: 4px; padding: 4px 0">Saltar</a>
+<h1 class="sv-in" style="position: absolute; left: 18px; top: 112px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 35px; letter-spacing: -0.08em">¿cómo te<br>sentiste?</h1>
+<p style="position: absolute; left: 20px; top: 194px; width: 330px; margin: 0; font-size: 12.5px; line-height: 16px; color: #8A8A86">Girá la rueda hasta tu palabra. Se suma, sin tu nombre, a la de otros vecinos</p>
+
+<div style="position: absolute; left: {{ glow.x }}; top: {{ glow.y }}; width: 170px; height: 170px; margin: -85px 0 0 -85px; border-radius: 50%; background: radial-gradient(circle, rgba(234,254,159,.95) 0%, rgba(234,254,159,.35) 42%, rgba(234,254,159,0) 70%); pointer-events: none"></div>
+<svg width="393" height="640" viewBox="0 0 393 640" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="{{ aria }}">
+<circle cx="200" cy="447" r="140" fill="none" stroke="#111" stroke-width="1"></circle>
+<g fill="none" stroke="#111" stroke-width="0.6" stroke-dasharray="1.5 3"><circle cx="200" cy="447" r="116"></circle><circle cx="200" cy="447" r="92"></circle></g>
+<g style="transform-origin: 200px 447px; transform: rotate({{ rot }}deg); transition: {{ rotTr }}">
+<sc-for list="{{ trails }}" as="t" hint-placeholder-count="40"><circle cx="{{ t.x }}" cy="{{ t.y }}" r="{{ t.r }}" fill="{{ t.f }}"></circle></sc-for>
+<sc-for list="{{ words }}" as="w" hint-placeholder-count="10">
+<circle cx="{{ w.x }}" cy="{{ w.y }}" r="{{ w.rr }}" fill="#FFFFFF" stroke="#111" stroke-width="1" stroke-dasharray="1.6 1.8" opacity="{{ w.ro }}"></circle>
+<circle cx="{{ w.x }}" cy="{{ w.y }}" r="{{ w.r }}" fill="{{ w.f }}" stroke="{{ w.sc }}" stroke-width="1.2"></circle>
+</sc-for>
+</g>
+<circle cx="200" cy="447" r="64" fill="#FFFFFF" stroke="#111" stroke-width="0.8"></circle>
+<circle cx="200" cy="447" r="55" fill="#111"></circle>
+<text x="200" y="458" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="400" font-size="40" letter-spacing="-1" fill="#FFFFFF">{{ cnt }}</text>
+<text x="200" y="476" text-anchor="middle" font-family="Manrope, sans-serif" font-size="7.5" fill="#EAFE9F">vecinos hoy</text>
+</svg>
+<div style="position: absolute; left: {{ pill.x }}; top: {{ pill.y }}; transform: translate(-50%, 0); height: 22px; padding: 0 16px; border-radius: 11px; background: #EAFE9F; border: 1px solid #111; display: flex; align-items: center; font-weight: 700; font-size: 12px; white-space: nowrap; pointer-events: none; transition: {{ pillTr }}">{{ word }}</div>
+<button type="button" class="sv-b" aria-label="Girá la rueda hasta tu palabra" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position: absolute; left: 45px; top: 292px; width: 310px; height: 310px; border-radius: 50%; touch-action: none; cursor: grab"></button>
+
+<p style="position: absolute; left: 20px; top: 627px; width: 340px; margin: 0; font-size: 12px; line-height: 16px"><b style="font-weight: 700">{{ cnt }} vecinos</b> también se sintieron “{{ word }}” hoy. {{ dia }}</p>
+<input class="sv-f" id="sv-palabra" placeholder="o escribí la tuya..." value="{{ txt }}" onInput="{{ inp }}" style="left: 20px; top: 690px; width: 300px">
+<button type="button" class="sv-b" onClick="{{ guardar }}" style="position: absolute; left: 0; top: 776px; width: 393px; font-size: 16px"><span style="border-bottom: 1px solid #111; padding-bottom: 3px">Guardar y seguir</span></button>
+<a href="ComoFue.dc.html" style="position: absolute; left: 0; top: 822px; width: 393px; text-align: center; font-size: 16px; color: #8A8A86; text-decoration: none"><span style="border-bottom: 1px solid #8A8A86; padding-bottom: 3px">Prefiero no decir</span></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { rot: 0, drag: false, txt: '' };
+  CX = 200; CY = 447;
+  // palabra, vecinos, tono (0 calma, 1 neutra, 2 inquieta)
+  W = [['tranquila', 60, 0], ['presente', 33, 0], ['en paz', 22, 0], ['normal', 18, 1], ['cansada', 14, 1], ['distraída', 11, 1], ['apurada', 9, 2], ['ansiosa', 8, 2], ['aburrida', 6, 2], ['liviana', 27, 0]];
+  base(i) { return 342 + i * 36; }
+  sel() { const r = ((-this.state.rot) % 360 + 360) % 360; return Math.round(r / 36) % 10; }
+  pt(r, a) { const t = a * Math.PI / 180; return [this.CX + r * Math.sin(t), this.CY - r * Math.cos(t)]; }
+  ang(e) { const b = e.currentTarget.getBoundingClientRect(); return Math.atan2(e.clientX - (b.left + b.width / 2), -(e.clientY - (b.top + b.height / 2))) * 180 / Math.PI; }
+  down = (e) => { this.a0 = this.ang(e); this.r0 = this.state.rot; this.moved = false; this.last = this.sel(); try { e.currentTarget.setPointerCapture(e.pointerId); } catch (er) {} this.setState({ drag: true }); };
+  move = (e) => {
+    if (this.a0 == null) return; let d = this.ang(e) - this.a0; if (d > 180) d -= 360; if (d < -180) d += 360;
+    if (Math.abs(d) > 2) this.moved = true; this.a0 = this.ang(e); this.r0 += d; this.setState({ rot: this.r0 });
+    const s = this.sel(); if (s !== this.last) { this.last = s; this.props.app && this.props.app.vib(4); }
+  };
+  up = (e) => {
+    if (this.a0 == null) return; this.a0 = null;
+    let rot = this.state.rot;
+    if (!this.moved) { // tocar una palabra la trae arriba
+      const b = e.currentTarget.getBoundingClientRect(), k = b.width / 310;
+      const x = (e.clientX - b.left) / k + 45, y = (e.clientY - b.top) / k + 292;
+      let a = Math.atan2(x - this.CX, -(y - this.CY)) * 180 / Math.PI - rot; let best = 0, bd = 999;
+      for (let i = 0; i < 10; i++) { let d = Math.abs(((a - this.base(i)) % 360 + 540) % 360 - 180); if (d < bd) { bd = d; best = i; } }
+      let target = -best * 36; while (target - rot > 180) target -= 360; while (rot - target > 180) target += 360; rot = target;
+      this.props.app && this.props.app.vib(5);
+    } else rot = Math.round(rot / 36) * 36;
+    this.setState({ rot: rot, drag: false });
+  };
+  inp = (e) => this.setState({ txt: e.target.value });
+  guardar = () => { const a = this.props.app; if (a) { a.S.mood = this.state.txt || this.W[this.sel()][0]; a.vib(10); a.go('comofue', 'push'); } };
+  renderVals() {
+    const st = this.state, s = this.sel(), f = (v) => v.toFixed(1), TONE = ['#FFFFFF', '#B5B5B1', '#111111'];
+    const words = [], trails = [];
+    this.W.forEach((w, i) => {
+      const a = this.base(i), p = this.pt(140, a), on = i === s;
+      words.push({ x: f(p[0]), y: f(p[1]), r: on ? 13 : (w[2] === 0 ? 7 : 9), rr: 18, ro: on ? 1 : 0, f: on ? '#FFFFFF' : TONE[w[2]], sc: w[2] === 1 && !on ? '#B5B5B1' : '#111' });
+      const nd = Math.max(1, Math.round(w[1] / 12));
+      for (let k = 0; k < nd; k++) { const q = this.pt(124 - k * 9, a + (on ? 0 : (k % 2 ? 3 : -3))); trails.push({ x: f(q[0]), y: f(q[1]), r: on ? 3.2 : 3.6, f: on ? '#111' : '#CFCFCB' }); }
+    });
+    const top = this.pt(140, 342);
+    const gp = this.pt(118, 342);
+    return {
+      rot: f(st.rot), rotTr: st.drag ? 'none' : 'transform .45s cubic-bezier(.2,.8,.2,1)',
+      words: words, trails: trails, cnt: this.W[s][1], word: this.W[s][0],
+      pill: { x: f(top[0]) + 'px', y: f(top[1] - 52) + 'px' }, pillTr: 'none',
+      glow: { x: f(gp[0] + 30) + 'px', y: f(gp[1] - 10) + 'px' },
+      dia: s === 0 ? 'Es la palabra del día.' : 'La palabra del día es “tranquila”.',
+      txt: st.txt, aria: 'Rueda de palabras. Elegida: ' + this.W[s][0] + ', ' + this.W[s][1] + ' vecinos.',
+      down: this.down, move: this.move, up: this.up, inp: this.inp, guardar: this.guardar
+    };
+  }
+}
+</script>
+</body>
+</html>

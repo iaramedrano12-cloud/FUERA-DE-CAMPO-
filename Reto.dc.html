@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reto — leé un libro de romance</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes rtSpin{to{transform:rotate(360deg)}}
+
+body{margin:0}
+a{color:#111}a:hover{color: #8A8A86}
+@keyframes fdcBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@keyframes fdcDrift{from{transform:translate(-0.8px,-0.5px)}to{transform:translate(0.8px,0.7px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 1080px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Retos</div>
+<div style="position: absolute; left: 21px; top: 228px; font-size: 13px; color: #8A8A86">reto lago - 40 min</div>
+<h1 style="position: absolute; left: 18px; top: 142px; width: 351px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 36px; letter-spacing: -0.08em">leé un libro<br>de romance</h1>
+
+<svg width="393" height="520" viewBox="0 0 393 520" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="{{ tm.aria }}">
+<defs><radialGradient id="rtG"><stop offset="0" stop-color="#EAFE9F" stop-opacity=".9"></stop><stop offset=".6" stop-color="#EAFE9F" stop-opacity=".3"></stop><stop offset="1" stop-color="#EAFE9F" stop-opacity="0"></stop></radialGradient></defs>
+<circle cx="112" cy="392" r="110" fill="url(#rtG)" opacity="{{ tm.glow }}" style="transition: opacity .5s"></circle>
+<circle cx="112" cy="392" r="92" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="3 3" style="transform-origin: 112px 392px; animation: rtSpin {{ tm.spin }} linear infinite"></circle>
+<circle cx="112" cy="392" r="72" fill="none" stroke="#E7E7E4" stroke-width="22"></circle>
+<circle cx="112" cy="392" r="72" fill="none" stroke="#EAFE9F" stroke-width="22" pathLength="100" stroke-dasharray="{{ tm.dash }}" transform="rotate(-90 112 392)" style="transition: stroke-dasharray .9s linear"></circle>
+<circle cx="112" cy="392" r="58" fill="#111"></circle>
+<text x="112" y="398" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="400" font-size="36" letter-spacing="-2" fill="#EAFE9F">{{ tm.n }}″</text>
+<text x="112" y="416" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="#FFFFFF">{{ tm.sub }}</text>
+</svg>
+<button type="button" aria-label="{{ tm.btn }}" onClick="{{ toggleT }}" style="position: absolute; left: 20px; top: 300px; width: 184px; height: 184px; border-radius: 50%; border: 0; background: transparent; cursor: pointer"></button>
+
+<div style="position: absolute; left: 236px; top: 306px; width: 140px">
+<div style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 42px; line-height: 44px; letter-spacing: -0.08em">48</div>
+<div style="font-size: 13px; line-height: 17px; color: #8A8A86">vecinos lo hicieron esta semana</div>
+<div style="margin-top: 22px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 42px; line-height: 44px; letter-spacing: -0.08em">31</div>
+<div style="font-size: 13px; line-height: 17px; color: #8A8A86">paginas leídas en promedio</div>
+</div>
+
+<div style="position: absolute; left: 21px; top: 548px; font-size: 13px; color: #8A8A86">como se hace</div>
+<div style="position: absolute; left: 20px; top: 582px; width: 349px; display: flex; flex-direction: column; gap: 18px; font-size: 14px; line-height: 18px">
+<div style="display: flex; gap: 14px; align-items: flex-start"><span style="flex: none; width: 28px; height: 28px; box-sizing: border-box; border-radius: 50%; border: 1px dashed #111; display: flex; align-items: center; justify-content: center; font-size: 12px">1</span><span style="padding-top: 5px">Se activa solo cuando cruzás las rejas.</span></div>
+<div style="display: flex; gap: 14px; align-items: flex-start"><span style="flex: none; width: 28px; height: 28px; box-sizing: border-box; border-radius: 50%; border: 1px dashed #111; display: flex; align-items: center; justify-content: center; font-size: 12px">2</span><span style="padding-top: 5px">Conseguí uno en la feria de libros usados o traé el tuyo. La pantalla queda en negro.</span></div>
+<div style="display: flex; gap: 14px; align-items: flex-start"><span style="flex: none; width: 28px; height: 28px; box-sizing: border-box; border-radius: 50%; border: 1px dashed #111; display: flex; align-items: center; justify-content: center; font-size: 12px">3</span><span style="padding-top: 5px">Al terminar, dejá la frase que más te gustó para el próximo vecino.</span></div>
+</div>
+
+<div style="position: absolute; left: 0; top: 768px; width: 393px; border-top: 1px solid #111"></div>
+
+<div style="position: absolute; left: 21px; top: 790px; font-size: 13px; color: #8A8A86">lo que te dejo un vecino</div>
+<div style="position: absolute; left: 20px; top: 816px; width: 300px">
+<p style="margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 29px; line-height: 27px; letter-spacing: -0.08em">"{{ qt }}"</p>
+</div>
+
+<a href="Guardado.dc.html" data-tr="up" style="position: absolute; left: 0; top: 958px; width: 393px; text-align: center; font-size: 16px; color: #111; text-decoration: none"><span style="border-bottom: 1px solid #111; padding-bottom: 3px">Guarda reto</span></a>
+<a href="Llegaste.dc.html" data-tr="fade" style="position: absolute; left: 0; top: 996px; width: 393px; text-align: center; font-size: 16px; color: #8A8A86; text-decoration: none"><span style="border-bottom: 1px solid #8A8A86; padding-bottom: 2px">Lo hago hoy</span></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":1080}}'>
+class Component extends DCLogic {
+  state = { q: 0, m: 30, run: false };
+  componentWillUnmount() { clearInterval(this.iv); }
+  toggleT = () => {
+    const app = this.props.app;
+    if (this.state.run) { clearInterval(this.iv); this.setState({ run: false }); app && app.vib(8); return; }
+    if (this.state.m >= 40) this.setState({ m: 0 });
+    app && app.vib([10, 30, 10]);
+    this.setState({ run: true });
+    this.iv = setInterval(() => { const m = this.state.m + 1; if (m >= 40) { clearInterval(this.iv); this.setState({ m: 40, run: false }); app && app.vib([30, 60, 30]); app && app.toast('¡reto cumplido!'); } else this.setState({ m: m }); }, 1000);
+  };
+  QI = [2, 10, 18, 26, 34, 42];
+  Q = [
+    ['se encontraron en un andén y ninguno se subió al tren', 'vecina · martes · leyó 22 páginas'],
+    ['la carta llegó once años tarde', 'vecino · miércoles · leyó 35 páginas'],
+    ['ella le prestó el paraguas y nunca se lo devolvió', 'vecina · jueves · leyó 18 páginas'],
+    ['bailaron sin música en la cocina', 'vecino · sábado · leyó 41 páginas'],
+    ['le dijo que sí antes de que terminara la pregunta', 'vecina · sábado · leyó 29 páginas'],
+    ['se reconocieron por la risa', 'vecino · domingo · leyó 33 páginas']
+  ];
+  pos(k) {
+    const a = k * 7.5 * Math.PI / 180, x = 92 * Math.sin(a), y = -92 * Math.cos(a);
+    const c = 0.9063, s = 0.4226;
+    return [130 + x * c + y * s, 340 + 0.55 * (-x * s + y * c)];
+  }
+  go = (i) => {
+    i = ((i % 6) + 6) % 6;
+    this.setState({ q: i });
+    try { if (navigator.vibrate) navigator.vibrate(4); } catch (err) {}
+  };
+  prev = () => this.go(this.state.q - 1);
+  next = () => this.go(this.state.q + 1);
+
+  renderVals() {
+    const q = this.state.q;
+    const dots = [];
+    for (let k = 0; k < 48; k++) {
+      if (this.QI.indexOf(k) >= 0) continue;
+      const p = this.pos(k);
+      dots.push({ x: p[0].toFixed(1) + 'px', y: p[1].toFixed(1) + 'px', dur: (2.6 + (k % 5) * 0.5) + 's', del: (-(k % 7) * 0.4) + 's' });
+    }
+    const posts = this.QI.map((k, i) => {
+      const p = this.pos(k), on = i === q;
+      return {
+        y: p[1],
+        l: (p[0] - 18).toFixed(1) + 'px', t: (p[1] - 53).toFixed(1) + 'px',
+        hs: on ? '18px' : '12px', ho: on ? '9px' : '12px',
+        bg: on ? '#EAFE9F' : '#FFFFFF', ro: on ? 1 : 0,
+        aria: 'Leer la frase ' + (i + 1),
+        pick: () => this.go(i)
+      };
+    });
+    posts.sort((a, b) => a.y - b.y);
+    const m = this.state.m, run = this.state.run;
+    return {
+      tm: { n: m, sub: 'de 40″', dash: (m / 40 * 100).toFixed(1) + ' 100', glow: run ? 1 : 0.5, spin: run ? '8s' : '40s',
+        btn: run ? 'Pausar el reto' : 'Empezar el reto', hint: run ? 'corriendo · tocá para pausar' : m >= 40 ? 'cumplido · tocá para repetir' : 'tocá el reloj para empezar',
+        aria: 'Reloj del reto: ' + m + ' de 40 minutos' }, toggleT: this.toggleT,
+      dots: dots,
+      posts: posts,
+      qn: (q + 1) + ' / 6',
+      qt: this.Q[q][0],
+      qm: this.Q[q][1],
+      prev: this.prev, next: this.next
+    };
+  }
+}
+</script>
+</body>
+</html>

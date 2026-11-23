@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Crear cuenta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+.cu-in{animation:cuIn .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes cuIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes cuSpin{to{transform:rotate(360deg)}}
+@keyframes cuShake0{0%,100%{transform:none}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+@keyframes cuShake1{0%,100%{transform:none}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.cu-f{position:absolute;left:66px;width:262px;height:30px;border:0;border-radius:0;background:transparent;font:500 16px Manrope,sans-serif;color:#111;outline:none;padding:0}
+.cu-f::placeholder{color:#CFCFCB}
+.cu-l{position:absolute;left:66px;display:flex;align-items:center;gap:6px;font-size:14px;color: #8A8A86}
+.cu-l i{width:9px;height:9px;border-radius:50%;border:1px solid #111;display:inline-block;transition:background .3s}
+.cu-line{position:absolute;left:66px;width:262px;height:1px;background:#111;transform-origin:left;transition:background .3s}
+.cu-line b{position:absolute;inset:0;background:#111;transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.cu-a{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif;color:#111}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 14px; top: 74px; width: 50px; height: 40px; display: flex; align-items: center; text-decoration: none; color: #111"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+
+<h1 class="cu-in" style="position: absolute; left: 62px; top: 150px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 37px; line-height: 36px; letter-spacing: -0.08em">creá tu<br>cuenta</h1>
+<p class="cu-in" style="position: absolute; left: 62px; top: 236px; margin: 0; font-size: 12px; color: #8A8A86; animation-delay: .08s">tres datos y listo</p>
+
+<svg width="393" height="300" viewBox="0 0 393 300" style="position: absolute; left: 0; top: 0; pointer-events: none" aria-hidden="true">
+<defs><radialGradient id="cuG"><stop offset="0" stop-color="#EAFE9F" stop-opacity=".95"></stop><stop offset=".55" stop-color="#EAFE9F" stop-opacity=".35"></stop><stop offset="1" stop-color="#EAFE9F" stop-opacity="0"></stop></radialGradient></defs>
+<circle cx="299" cy="199" r="70" fill="url(#cuG)" opacity="{{ glow }}" style="transition: opacity .6s"></circle>
+<sc-for list="{{ rings }}" as="r" hint-placeholder-count="3">
+<circle cx="299" cy="199" r="{{ r.r }}" fill="none" stroke="#C9C9C5" stroke-width="1" stroke-dasharray="2 3"></circle>
+<circle cx="299" cy="199" r="{{ r.r }}" fill="none" stroke="#EAFE9F" stroke-width="7" stroke-linecap="round" pathLength="100" stroke-dasharray="{{ r.d }}" opacity="{{ r.o }}" transform="rotate(-90 299 199)" style="transition: stroke-dasharray .7s cubic-bezier(.2,.8,.2,1), opacity .3s"></circle>
+<circle cx="299" cy="199" r="{{ r.r }}" fill="none" stroke="#111" stroke-width="1" pathLength="100" stroke-dasharray="{{ r.d }}" opacity="{{ r.o }}" transform="rotate(-90 299 199)" style="transition: stroke-dasharray .7s cubic-bezier(.2,.8,.2,1), opacity .3s"></circle>
+</sc-for>
+<circle cx="299" cy="199" r="62" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="2.5 3" style="transform-origin: 299px 199px; animation: cuSpin 30s linear infinite"></circle>
+<circle cx="299" cy="199" r="12" fill="{{ core }}" stroke="#111" stroke-width="1" style="transition: fill .4s"></circle>
+<circle cx="299" cy="199" r="5" fill="#111"></circle>
+</svg>
+
+<div style="animation: {{ shake }}">
+<sc-for list="{{ fields }}" as="f" hint-placeholder-count="3">
+<label class="cu-l" for="{{ f.id }}" style="top: {{ f.ly }}"><i style="background: {{ f.dot }}"></i>{{ f.label }}</label>
+<input class="cu-f" id="{{ f.id }}" name="{{ f.id }}" type="{{ f.type }}" autocomplete="{{ f.ac }}" placeholder="{{ f.ph }}" value="{{ f.v }}" data-k="{{ f.k }}" onInput="{{ inp }}" onFocusin="{{ foc }}" onFocusout="{{ blur }}" style="top: {{ f.y }}">
+<div class="cu-line" style="top: {{ f.lineY }}"><b style="transform: scaleX({{ f.line }})"></b></div>
+</sc-for>
+</div>
+
+<p style="position: absolute; left: 66px; top: 622px; margin: 0; font-size: 11px; line-height: 15px; color: #8A8A86">no te vamos a mandar notificaciones de más.<br>solo dos vibraciones cuando salgas del parque.</p>
+
+<button type="button" class="cu-a" onClick="{{ create }}" aria-disabled="{{ dis }}" style="position: absolute; left: 96.5px; top: 718px; width: 200px; height: 32px; padding: 0; font-size: 16px; color: {{ ctaC }}; transition: color .3s">
+<span style="border-bottom: 1px solid {{ ctaC }}; padding-bottom: 3px; transition: border-color .3s">Crear cuenta</span>
+<span style="position: absolute; left: 40px; top: 13px; width: 7px; height: 7px; border-radius: 50%; background: #EAFE9F; border: 1px solid #111; transform: scale({{ ctaDot }}); transition: transform .4s cubic-bezier(.3,1.6,.5,1)"></span>
+</button>
+<div style="position: absolute; left: 0; top: 760px; width: 393px; text-align: center; font-size: 13px; color: #8A8A86">¿ya tenés cuenta? <a href="Ubicacion.dc.html" style="color: #8A8A86">entrá</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { n: '', m: '', p: '', f: '', bad: 0 };
+  F = [
+    { k: 'n', id: 'cu-nombre', label: '¿cómo te llamamos?', type: 'text', ac: 'given-name', ph: '', y: 336, ly: 312 },
+    { k: 'm', id: 'cu-mail', label: 'tu email', type: 'email', ac: 'email', ph: '', y: 437, ly: 419 },
+    { k: 'p', id: 'cu-pass', label: 'una contraseña', type: 'password', ac: 'new-password', ph: '', y: 530, ly: 512 }
+  ];
+  componentDidMount() { const S = this.props.app.S; this.setState({ n: S.name || '', m: S.mail || '' }); }
+  ok = (k, v) => k === 'n' ? v.trim().length > 0 : k === 'm' ? /.+@.+\..+/.test(v) : v.length >= 4;
+  inp = (e) => { const k = e.target.getAttribute('data-k'), was = this.ok(k, this.state[k]); this.setState({ [k]: e.target.value }); if (!was && this.ok(k, e.target.value)) this.props.app.vib(6); };
+  foc = (e) => this.setState({ f: e.target.getAttribute('data-k') });
+  blur = () => this.setState({ f: '' });
+  create = () => {
+    const st = this.state, all = ['n', 'm', 'p'].every((k) => this.ok(k, st[k]));
+    if (!all) { this.setState({ bad: this.state.bad + 1 }); this.props.app.toast('completá los tres datos'); this.props.app.vib([10, 40, 10]); return; }
+    const S = this.props.app.S; S.name = st.n.trim(); S.mail = st.m.trim(); this.props.app.save('name'); this.props.app.save('mail');
+    this.props.app.vib([10, 30, 10]); this.props.app.go('ubicacion', 'push');
+  };
+  renderVals() {
+    const st = this.state, done = this.F.map((f) => this.ok(f.k, st[f.k])), n = done.filter(Boolean).length;
+    return {
+      rings: [26, 38, 50].map((r, i) => ({ r: r, d: (done[i] ? 100 : 0.01) + ' 100', o: done[i] ? 1 : 0 })),
+      core: n === 3 ? '#EAFE9F' : '#FFFFFF', glow: n === 3 ? 1 : n / 6,
+      fields: this.F.map((f, i) => ({
+        k: f.k, id: f.id, label: f.label, type: f.type, ac: f.ac, ph: f.ph, v: st[f.k],
+        y: f.y + 'px', ly: f.ly + 'px', lineY: (f.y + 32) + 'px',
+        dot: '#EAFE9F', line: st.f === f.k || done[i] ? 1 : 0
+      })),
+      dis: n === 3 ? 'false' : 'true', ctaC: '#111111', ctaDot: n === 3 ? 1 : 0,
+      shake: st.bad ? 'cuShake' + (st.bad % 2) + ' .4s' : 'none',
+      inp: this.inp, foc: this.foc, blur: this.blur, create: this.create
+    };
+  }
+}
+</script>
+</body>
+</html>

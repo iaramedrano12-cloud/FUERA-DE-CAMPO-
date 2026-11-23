@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fuera de campo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes fcBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes fcSoft{0%,100%{transform:scale(.94)}50%{transform:scale(1.06)}}
+@keyframes fcSpin{to{transform:rotate(360deg)}}
+@keyframes fcIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.fc-a{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #222222; color: #FFFFFF; font-family: Manrope, sans-serif">
+
+<div style="position: absolute; left: 77px; top: 309px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(234,254,159,.45) 0%, rgba(234,254,159,.12) 45%, rgba(234,254,159,0) 70%); animation: fcSoft 10s ease-in-out infinite"></div>
+
+<svg width="393" height="852" viewBox="0 0 393 852" style="position: absolute; left: 0; top: 0" role="img" aria-label="{{ aria }}">
+<circle cx="196.5" cy="429" r="120" fill="none" stroke="#3A3A38" stroke-width="1.2"></circle>
+<path d="{{ arc }}" fill="none" stroke="#EAFE9F" stroke-width="2.4" stroke-linecap="round"></path>
+<circle cx="196.5" cy="309" r="4.5" fill="#EAFE9F"></circle>
+<circle cx="{{ end.x }}" cy="{{ end.y }}" r="4.5" fill="#EAFE9F" opacity="{{ liveO }}"></circle>
+<circle cx="{{ end.x }}" cy="{{ end.y }}" r="10" fill="none" stroke="#FFFFFF" stroke-dasharray="2.4 2" style="transform-box: fill-box; transform-origin: center; animation: fcBreathe 3.2s ease-in-out infinite"></circle>
+<text x="196.5" y="291" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9" fill="#8A8A86">{{ t0 }}</text>
+<g style="transform-origin: 196.5px 429px; animation: fcSoft 10s ease-in-out infinite">
+<circle cx="196.5" cy="429" r="36" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-dasharray="3 3" style="transform-origin: 196.5px 429px; animation: fcSpin 30s linear infinite"></circle>
+<circle cx="196.5" cy="429" r="28" fill="#EAFE9F"></circle>
+<circle cx="196.5" cy="429" r="10" fill="#222222"></circle>
+</g>
+</svg>
+
+<div style="position: absolute; left: 0; top: 590px; width: 393px; text-align: center; font-size: 14px; color: #8A8A86; opacity: {{ waitO }}; transition: opacity .6s">es hora de guardar el celular</div>
+<div style="position: absolute; left: 0; top: 576px; width: 393px; text-align: center; font-family: Poppins, sans-serif; font-weight: 400; font-size: 30px; letter-spacing: -0.06em; opacity: {{ liveO }}; transform: translateY({{ liveY }}); transition: opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1)">{{ mins }} fuera de campo</div>
+
+<div style="opacity: {{ liveO }}; transition: opacity .8s .3s; pointer-events: {{ livePe }}">
+<button type="button" class="fc-a" onClick="{{ salir }}" style="position: absolute; left: 136px; top: 712px; width: 120px; height: 34px; color: #FFFFFF; font-size: 16px"><span style="border-bottom: 1px solid #FFFFFF; padding-bottom: 2px">seguir</span></button>
+<button type="button" class="fc-a" onClick="{{ salir }}" style="position: absolute; left: 136px; top: 746px; width: 120px; height: 32px; color: #8A8A86; font-size: 15px"><span style="border-bottom: 1px solid #5A5A5A; padding-bottom: 2px">ver resumen</span></button>
+</div>
+<button type="button" class="fc-a" aria-label="Guardar el celular" onClick="{{ guardar }}" style="position: absolute; left: 76px; top: 309px; width: 241px; height: 241px; border-radius: 50%; pointer-events: {{ waitPe }}"></button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { live: false, now: Date.now() };
+  componentDidMount() {
+    const S = this.props.app.S; S.start = Date.now(); S.end = null;
+    this.props.app.vib([40, 80, 40]);
+    this.t = setTimeout(() => this.guardar(), 2800);
+  }
+  componentWillUnmount() { clearTimeout(this.t); clearInterval(this.iv); }
+  guardar = () => {
+    if (this.state.live) return; clearTimeout(this.t);
+    this.setState({ live: true, now: Date.now() });
+    this.iv = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  };
+  salir = () => { const a = this.props.app; a.S.end = Date.now(); a.vib([200, 120, 200]); a.go('volviste', 'fade', {}, true); };
+  renderVals() {
+    const S = this.props.app.S, st = this.state;
+    const m = st.live ? Math.floor((st.now - S.start) / 1000 * S.speed / 60) : 0;
+    const a = Math.min(344, 0.5 + m / 110 * 344), t = a * Math.PI / 180;
+    const ex = 196.5 + 120 * Math.sin(t), ey = 429 - 120 * Math.cos(t);
+    const d = new Date(S.start || Date.now());
+    return {
+      arc: st.live && m > 0 ? 'M196.5 309A120 120 0 ' + (a > 180 ? 1 : 0) + ' 1 ' + ex.toFixed(1) + ' ' + ey.toFixed(1) : '',
+      end: { x: (st.live ? ex : 196.5).toFixed(1), y: (st.live ? ey : 309).toFixed(1) },
+      t0: String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'),
+      mins: m >= 60 ? Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0') : m + ' min',
+      waitO: st.live ? 0 : 1, liveO: st.live ? 1 : 0, liveY: st.live ? '0px' : '10px', livePe: st.live ? 'auto' : 'none', waitPe: st.live ? 'none' : 'auto',
+      aria: st.live ? 'Llevás ' + m + ' minutos fuera de campo' : 'Es hora de guardar el celular',
+      guardar: this.guardar, salir: this.salir
+    };
+  }
+}
+</script>
+</body>
+</html>

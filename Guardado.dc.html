@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reto guardado</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes rgPop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes rgCheck{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes rgSpin{to{transform:rotate(360deg)}}
+@keyframes rgIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes rgRay{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.rg-a{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif;color:#111}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 923px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Retos</div>
+
+<svg width="393" height="460" viewBox="0 0 393 460" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+<circle cx="197" cy="324" r="96" fill="none" stroke="#EAFE9F" stroke-width="3" style="transform-origin: 197px 324px; animation: rgRay 1.2s ease-out .55s both"></circle>
+<circle cx="197" cy="324" r="100" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="3 3" style="transform-origin: 197px 324px; animation: rgSpin 40s linear infinite"></circle>
+<g style="transform-origin: 197px 324px; animation: rgPop .7s cubic-bezier(.2,.8,.2,1) .1s both">
+<circle cx="197" cy="324" r="86" fill="#EAFE9F"></circle>
+<circle cx="197" cy="324" r="48" fill="#111"></circle>
+<path d="M178 325l13 13 25-27" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" style="animation: rgCheck .5s ease .6s both"></path>
+</g>
+</svg>
+
+<div style="position: absolute; left: 18px; top: 486px; font-family: Poppins, sans-serif; font-size: 40px; line-height: 40px; animation: rgIn .6s ease .5s both">*</div>
+<div style="position: absolute; left: 62px; top: 468px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 72px; line-height: 64px; letter-spacing: -0.08em; animation: rgIn .7s cubic-bezier(.2,.8,.2,1) .45s both">reto<br>guardado</div>
+<div style="position: absolute; left: 66px; top: 640px; width: 240px; font-size: 12.5px; line-height: 17px; animation: rgIn .7s ease .65s both">{{ texto }}</div>
+
+<button type="button" class="rg-a" onClick="{{ listo }}" style="position: absolute; left: 140px; top: 748px; width: 114px; height: 34px; font-size: 16px; animation: rgIn .7s ease .8s both"><span style="border-bottom: 1px solid #111; padding-bottom: 3px">Listo</span></button>
+<a href="Retos.dc.html" data-tr="back" style="position: absolute; left: 0; top: 792px; width: 393px; text-align: center; font-size: 16px; color: #8A8A86; text-decoration: none; animation: rgIn .7s ease .9s both"><span style="border-bottom: 1px solid #8A8A86; padding-bottom: 2px">Ver otros retos</span></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = {};
+  componentDidMount() { const a = this.props.app; if (a) a.vib([20, 40, 20]); }
+  listo = () => { const a = this.props.app; if (a.S.entry) a.go('fuera', 'reveal'); else a.home(); };
+  renderVals() {
+    const a = this.props.app || { S: {} };
+    return { texto: a.S.entry ? 'Lo tenés listo para hacer hoy, adentro del parque.' : 'Te lo recordamos cuando cruces las rejas del parque.', listo: this.listo };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El parque ahora</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes hoDrift{from{transform:translate(-1.5px,-1px)}to{transform:translate(1.5px,2px)}}
+@keyframes hoBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes hoSoft{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes hoSpin{to{transform:rotate(360deg)}}
+@keyframes hoIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes hoPop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.ho-fade{transition:opacity .55s ease}
+.ho-card{position:absolute;top:632px;width:168px;height:97px;box-sizing:border-box;border:1px solid #111;border-radius:17px;padding:16px 16px 0 16px;text-decoration:none;color:#111;display:block;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s ease,background .2s}
+.ho-card:active{background:#F6F6F3}
+.ho-btn{border:0;background:transparent;padding:0;cursor:pointer}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="Perfil.dc.html" aria-label="Tu perfil" style="position: absolute; left: 14px; top: 56px; width: 46px; height: 46px; text-decoration: none; color: #111; font-family: Poppins, sans-serif; font-size: 48px; line-height: 64px; text-align: center">*</a>
+<button type="button" class="ho-btn" onClick="{{ enterPark }}" aria-label="Afuera del parque. Tocá para simular que cruzás las rejas" style="position: absolute; left: 228px; top: 68px; height: 30px; padding: 0 6px; display: flex; align-items: center; gap: 7px; font: 400 13px Manrope, sans-serif; color: #111">
+<svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Afuera del parque</button>
+
+<h1 style="position: absolute; left: 18px; top: 140px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 41px; line-height: 48px; letter-spacing: -0.08em; animation: hoIn .7s cubic-bezier(.2,.8,.2,1) both">{{ title }}</h1>
+<div style="position: absolute; left: 20px; top: 203px; display: flex; gap: 6px; font-size: 12.5px">
+<span style="height: 23px; padding: 0 11px; border: 1px solid #111; border-radius: 12px; display: flex; align-items: center">{{ chip1 }}</span>
+<span class="ho-fade" style="height: 23px; padding: 0 11px; border: 1px solid #111; border-radius: 12px; display: flex; align-items: center; opacity: {{ det }}; transform: translateX({{ chipX }}); transition: opacity .5s ease .1s, transform .6s cubic-bezier(.2,.8,.2,1)">feria abierta</span>
+</div>
+<div class="ho-fade" style="position: absolute; left: 22px; top: 235px; font-size: 12.5px; color: #8A8A86; opacity: {{ det }}; transition-delay: .15s">{{ coords }}</div>
+
+<!-- el reloj: cerrado es una invitación; abierto, el día del parque -->
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 600px; pointer-events: none; transform-origin: 0 0; transform: {{ clockT }}; transition: transform .85s cubic-bezier(.7,0,.2,1)">
+<div style="position: absolute; left: 46.5px; top: 235px; width: 300px; height: 300px; border-radius: 50%; overflow: hidden">
+<div style="position: absolute; left: 65px; top: 65px; width: 170px; height: 170px; border-radius: 50%; background: radial-gradient(circle, #EAFE9F 0%, #EAFE9F 26%, rgba(234, 254, 159, 0) 70%); transform: {{ glow }}; transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)"></div>
+</div>
+
+<svg width="393" height="600" viewBox="0 0 393 600" style="position: absolute; left: 0; top: 0; overflow: visible" aria-hidden="true">
+<g fill="none" stroke="#111" stroke-width="0.6" stroke-dasharray="1.5 3" class="ho-fade" opacity="{{ det }}">
+<circle cx="196.5" cy="385" r="82"></circle><circle cx="196.5" cy="385" r="102"></circle><circle cx="196.5" cy="385" r="122"></circle><circle cx="196.5" cy="385" r="142"></circle>
+</g>
+<circle cx="196.5" cy="385" r="150" fill="none" stroke="#111" stroke-width="{{ outerW }}"></circle>
+<g stroke="#111" stroke-width="0.8" class="ho-fade" opacity="{{ det }}">
+<sc-for list="{{ spokes }}" as="k" hint-placeholder-count="10"><line x1="{{ k.x1 }}" y1="{{ k.y1 }}" x2="{{ k.x2 }}" y2="{{ k.y2 }}" style="stroke-dasharray: 80; stroke-dashoffset: {{ k.off }}; transition: stroke-dashoffset .6s ease {{ k.d }}"></line></sc-for>
+</g>
+<line x1="{{ spoke.x1 }}" y1="{{ spoke.y1 }}" x2="{{ spoke.x2 }}" y2="{{ spoke.y2 }}" stroke="#111" stroke-width="1.6" class="ho-fade" opacity="{{ det }}"></line>
+<circle cx="196.5" cy="385" r="66" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="3 3" class="ho-fade" opacity="{{ closed }}" style="transform-origin: 196.5px 385px; animation: hoSpin 30s linear infinite"></circle>
+</svg>
+
+<div style="position: absolute; left: 46.5px; top: 235px; width: 300px; height: 300px; pointer-events: none">
+<sc-for list="{{ dots }}" as="p" hint-placeholder-count="0">
+<span style="position: absolute; left: 150px; top: 150px; width: 0; height: 0; transform: {{ p.t }}; opacity: {{ p.o }}; transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) {{ p.d }}, opacity 0.4s ease {{ p.d }}"><span style="display: block; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%; background: #111111; animation: hoDrift {{ p.dur }} ease-in-out {{ p.del }} infinite alternate"></span></span>
+</sc-for>
+</div>
+
+<svg width="393" height="600" viewBox="0 0 393 600" style="position: absolute; left: 0; top: 0; overflow: visible" role="img" aria-label="Reloj del día: cada círculo es una hora y su tamaño son los vecinos con el celular guardado. Girá la aguja para ver las horas que ya pasaron.">
+<sc-for list="{{ hours }}" as="h" hint-placeholder-count="10">
+<g style="transform-box: fill-box; transform-origin: center; transform: scale({{ h.s }}); transition: transform .5s cubic-bezier(.3,1.5,.5,1) {{ h.d }}">
+<circle cx="{{ h.x }}" cy="{{ h.y }}" r="{{ h.r }}" fill="{{ h.f }}" stroke="#111" stroke-width="{{ h.w }}" style="transition: fill .3s"></circle>
+</g>
+</sc-for>
+<circle cx="{{ ring.cx }}" cy="{{ ring.cy }}" r="{{ ring.r }}" fill="none" stroke="#111" stroke-width="0.9" stroke-dasharray="3 2.4" opacity="{{ det }}" style="transform-box: fill-box; transform-origin: center; animation: hoBreathe 3.2s ease-in-out infinite; transition: opacity .4s"></circle>
+
+<g style="transform-origin: 196.5px 385px; animation: hoSoft 4.5s ease-in-out infinite">
+<circle cx="196.5" cy="385" r="48" fill="#111"></circle>
+</g>
+<circle cx="196.5" cy="385" r="56" fill="none" stroke="#111" stroke-width="0.6"></circle>
+<text x="196.5" y="389" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" fill="#B5B5B1" class="ho-fade" opacity="{{ closed }}">descubrí</text>
+<g class="ho-fade" opacity="{{ det }}">
+<text x="196.5" y="397" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="400" font-size="40" letter-spacing="-3" fill="#FFFFFF">{{ num }}</text>
+<text x="196.5" y="412" text-anchor="middle" font-family="Manrope, sans-serif" font-size="8.5" fill="#EAFE9F">{{ centerLabel }}</text>
+</g>
+
+<g font-family="Manrope, sans-serif" font-size="12" fill="#111" text-anchor="middle" dominant-baseline="middle" class="ho-fade" opacity="{{ det }}">
+<text transform="translate(44.1 327.2) rotate(290.8)">8 h</text>
+<text transform="translate(88.4 263.0) rotate(318.5)">9 h</text>
+<text transform="translate(157.5 226.7) rotate(346.2)">10 h</text>
+<text transform="translate(235.5 226.7) rotate(13.8)">11 h</text>
+<text transform="translate(304.6 263.0) rotate(41.5)">12 h</text>
+<text transform="translate(348.9 327.2) rotate(69.2)">13 h</text>
+<text transform="translate(358.3 404.6) rotate(276.9)">14 h</text>
+<text transform="translate(330.6 477.6) rotate(304.6)">15 h</text>
+<text transform="translate(272.2 529.3) rotate(332.3)">16 h</text>
+<text transform="translate(120.8 529.3) rotate(387.7)" fill="#B5B5B1">18 h</text>
+<text transform="translate(62.4 477.6) rotate(415.4)" fill="#B5B5B1">19 h</text>
+<text transform="translate(34.7 404.6) rotate(443.1)" fill="#B5B5B1">20 h</text>
+<text x="196.5" y="556" font-weight="700" fill="#111">17 h</text>
+<line x1="196.5" y1="566" x2="196.5" y2="582" stroke="#111" stroke-width="1"></line>
+</g>
+</svg>
+
+<button type="button" class="ho-btn" aria-label="{{ clockLabel }}" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position: absolute; left: 26.5px; top: 215px; width: 340px; height: 340px; border-radius: 50%; cursor: pointer; touch-action: none"></button>
+</div>
+
+<!-- cerrado: una frase -->
+<div class="ho-fade" style="position: absolute; left: 0; top: 618px; width: 393px; text-align: center; opacity: {{ closed }}; pointer-events: none">
+<div style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 18.5px; letter-spacing: -0.06em">{{ vecinos }} vecinos guardaron el celular</div>
+<div style="margin-top: 8px; font-size: 12.5px; color: #8A8A86">Tocá el reloj si querés ver más</div>
+</div>
+
+<!-- abierto: dos tarjetas -->
+<a href="Retos.dc.html" class="ho-card" style="left: 19.5px; opacity: {{ det }}; transform: translateY({{ cardY }}); pointer-events: {{ detPe }}; transition-delay: .25s">
+<div style="font-size: 12.5px; color: #8A8A86">Reto popular:</div>
+<div style="margin-top: 10px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 19px; line-height: 17px; letter-spacing: -0.07em">contá los patos<br>del lago</div>
+</a>
+<a href="Desconexiones.dc.html" class="ho-card" style="left: 202.5px; opacity: {{ det }}; transform: translateY({{ cardY }}); pointer-events: {{ detPe }}; transition-delay: .32s">
+<div style="font-size: 12.5px; color: #8A8A86">Última desconexión</div>
+<div style="margin-top: 7px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 19px; line-height: 22px; letter-spacing: -0.07em">47 min</div>
+<div style="margin-top: 1px; font-size: 10.5px; line-height: 14px; color: #8A8A86">el martes, cerca del lago</div>
+</a>
+
+<a href="Menu.dc.html" data-tr="menu" aria-label="Abrir el menú" style="position: absolute; left: 155px; top: 751px; width: 68px; height: 68px; display: block">
+<svg width="68" height="68" viewBox="0 0 68 68" aria-hidden="true" style="overflow: visible">
+<circle cx="34.3" cy="34" r="33" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="3 3" style="transform-origin: 34.3px 34px; animation: hoSpin 18s linear infinite"></circle>
+<circle cx="34.3" cy="34" r="26.9" fill="#EAFE9F"></circle>
+<circle cx="34.2" cy="34.2" r="14.9" fill="#111"></circle>
+<path d="M34.2 28.7v11M28.7 34.2h11" stroke="#fff" stroke-width="1.3"></path>
+</svg>
+</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { open: false, sel: 9, num: 34 };
+  NOW = 9;
+  STEP = 360 / 13;
+  V = [4, 7, 11, 14, 12, 9, 13, 19, 26, 34, 29, 17, 8];
+  P = [
+    [144.1, 365.1, 131.0, 360.2, 3.9], [159.4, 343.1, 146.1, 328.1, 4.6], [183.1, 330.6, 176.4, 303.4, 5.5],
+    [209.9, 330.6, 218.0, 297.6, 6.2], [233.6, 343.1, 253.5, 320.6, 5.7], [248.9, 365.1, 271.3, 356.6, 5.0],
+    [252.1, 391.8, 283.9, 395.6, 5.9], [242.6, 416.8, 278.8, 441.8, 7.3], [222.5, 434.6, 249.5, 485.9, 8.9],
+    [196.5, 441.0, 196.5, 515.0, 10.6]
+  ];
+  U = Array.from({ length: 36 }, (_, k) => { const x = Math.sin(k * 12.9898 + 4.1) * 43758.5453; return x - Math.floor(x); });
+  W = Array.from({ length: 36 }, (_, k) => { const x = Math.sin(k * 78.233 + 1.3) * 24634.6345; return x - Math.floor(x); });
+
+  componentDidMount() { if (this.props.app) this.props.app.S.entry = null; this.tick = setInterval(() => this.forceUpdate(), 30000); }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); clearTimeout(this.back); clearInterval(this.tick); }
+  enterPark = () => { this.props.app.vib([30, 60, 30]); this.props.app.go('llegaste', 'fade'); };
+  select = (i) => {
+    i = Math.max(0, Math.min(this.NOW, i));
+    if (i === this.state.sel) return;
+    const from = this.state.num, to = this.V[i], t0 = performance.now();
+    this.setState({ sel: i });
+    this.props.app.vib(5);
+    cancelAnimationFrame(this.raf);
+    const step = (t) => { const k = Math.min(1, (t - t0) / 260); this.setState({ num: Math.round(from + (to - from) * k) }); if (k < 1) this.raf = requestAnimationFrame(step); };
+    this.raf = requestAnimationFrame(step);
+  };
+  pick = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+    if (Math.hypot(dx, dy) / (r.width / 2) < 0.33) return 'c';
+    const a = Math.atan2(dx, -dy) * 180 / Math.PI;
+    let i = Math.round((a - (180 - this.NOW * this.STEP)) / this.STEP) % 13;
+    if (i < 0) i += 13;
+    if (i > this.NOW) i = (i - this.NOW < 13 - i) ? this.NOW : 0;
+    this.select(i); return i;
+  };
+  down = (e) => {
+    if (!this.state.open) { this.props.app.vib(8); this.setState({ open: true }); return; }
+    this.dragging = true; this.moved = false; clearTimeout(this.back);
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+    this.first = this.pick(e);
+  };
+  move = (e) => { if (this.dragging) { this.moved = true; this.pick(e); } };
+  up = () => {
+    if (!this.dragging) return;
+    this.dragging = false; clearTimeout(this.back);
+    if (this.first === 'c' && !this.moved) { if (this.state.sel === this.NOW) this.setState({ open: false }); else this.select(this.NOW); return; }
+    this.back = setTimeout(() => this.select(this.NOW), 6000);
+  };
+  renderVals() {
+    const o = this.state.open, s = this.state.sel, h = 8 + s, p = this.P[s], v = this.V[s];
+    const A = (180 - this.NOW * this.STEP + s * this.STEP) * Math.PI / 180;
+    const gk = o ? (0.75 + 0.85 * v / 34).toFixed(2) : '1.35';
+    const dots = [];
+    for (let k = 0; k < 36; k++) {
+      const on = o && k < v, th = A + (this.U[k] - 0.5) * 0.7, r = on ? 66 + this.W[k] * 74 : 24;
+      dots.push({ t: 'translate(' + (r * Math.sin(th)).toFixed(1) + 'px, ' + (-r * Math.cos(th)).toFixed(1) + 'px)', o: on ? 1 : 0, d: (o ? 300 + k * 12 : k * 4) + 'ms', dur: (2.6 + (k % 5) * 0.5) + 's', del: (-(k % 7) * 0.4) + 's' });
+    }
+    const now = new Date(), DN = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+    const hm = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    return {
+      det: o ? 1 : 0, closed: o ? 0 : 1, detPe: o ? 'auto' : 'none',
+      clockT: o ? 'translate(25px, 97.5px) scale(0.865)' : 'translate(-8px, 43px) scale(1)', outerW: o ? 0.95 : 0.85,
+      chipX: o ? '0px' : '-14px', cardY: o ? '0px' : '26px',
+      chip1: now.getHours() >= 17 && now.getHours() < 20 ? 'atardecer en el lago' : now.getHours() < 12 ? 'mañana fresca en el lago' : 'tarde tranquila en el lago',
+      coords: "34° 36´ S  -  58° 26´ O  -  " + DN[now.getDay()] + ' ' + String(now.getDate()).padStart(2, '0') + '.' + String(now.getMonth() + 1).padStart(2, '0') + '  -  ' + hm,
+      num: String(this.state.num), vecinos: 34,
+      centerLabel: s === this.NOW ? 'vecinos · ahora' : 'vecinos · a las ' + h + ' h',
+      title: o ? 'el parque hoy' : 'el parque ahora',
+      clockLabel: o ? 'Girá la aguja para ver las horas que ya pasaron; tocá el centro para cerrar' : 'Descubrí el parque ahora',
+      spoke: { x1: p[0], y1: p[1], x2: p[2], y2: p[3] },
+      spokes: this.P.map((q, i) => ({ x1: q[0], y1: q[1], x2: q[2], y2: q[3], off: o ? 0 : 80, d: (o ? 200 + i * 40 : 0) + 'ms' })),
+      hours: this.P.map((q, i) => ({ x: q[2], y: q[3], r: q[4], f: i === s ? '#111111' : '#FFFFFF', w: i === s ? 1.4 : 1.2, s: o ? 1 : 0, d: (o ? 250 + i * 45 : 0) + 'ms' })),
+      ring: { cx: p[2], cy: p[3], r: p[4] + 7 },
+      glow: o ? 'translate(' + (100 * Math.sin(A)).toFixed(1) + 'px, ' + (-100 * Math.cos(A)).toFixed(1) + 'px) scale(' + gk + ')' : 'translate(0px, 0px) scale(' + gk + ')',
+      dots: dots, enterPark: this.enterPark,
+      down: this.down, move: this.move, up: this.up
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Todos los vecinos — tocable</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#111}a:hover{color: #8A8A86}
+@keyframes fdcWalk{0%{offset-distance:0%;opacity:0}5%{opacity:1}95%{opacity:1}100%{offset-distance:100%;opacity:0}}
+@supports not (offset-path: path("M0 0L1 1")){[data-walk]{display:none}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}[data-walk]{display:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Mapa</div>
+<a href="Mapa.dc.html" aria-current="false" style="position: absolute; left: 20px; top: 120px; width: 76px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">calma</a>
+<a href="Sombra.dc.html" aria-current="false" style="position: absolute; left: 108px; top: 120px; width: 82px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">sombra</a>
+<span aria-current="page" style="position: absolute; left: 200px; top: 120px; width: 92px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #EAFE9F; color: #111; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">recorridos</span>
+<a href="Animo.dc.html" aria-current="false" style="position: absolute; left: 300px; top: 120px; width: 75px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">animo</a>
+<div style="position: absolute; left: 0; top: 161px; width: 393px; height: 1px; background: #111; opacity: .35"></div>
+
+<div style="position: absolute; left: 20px; top: 192px; display: flex; gap: 8px; font-size: 14px">
+<a href="Recorrido.dc.html" style="height: 23px; padding: 0 10px; border-radius: 12px; background: #111; color: #fff; border: 1px solid #111; display: flex; align-items: center; text-decoration: none">mi recorrido</a>
+<span style="height: 23px; padding: 0 10px; border-radius: 12px; background: #EAFE9F; border: 1px solid #111; display: flex; align-items: center">todos los vecinos</span>
+</div>
+
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 600px; pointer-events: none; transform: translateY(40px)">
+<svg width="393" height="470" viewBox="0 0 393 470" style="position: absolute; left: 0; top: 0" role="img" aria-label="Los caminos de los 120 vecinos de hoy sobre el parque visto como una isla, como líneas grises superpuestas. Cuatro postes marcan las puertas y cuántos entraron por cada una: 48 por Díaz Vélez, 31 por Ángel Gallardo, 24 por Patricias Argentinas y 17 por Leopoldo Marechal. Cada puntito es un vecino caminando.">
+<defs>
+<filter id="tb" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter>
+<pattern id="tw" width="7" height="3.6" patternUnits="userSpaceOnUse"><path d="M0 1.8q1.75 -1.2 3.5 0t3.5 0" fill="none" stroke="#111" stroke-width="0.5"></path></pattern>
+</defs>
+<ellipse cx="200" cy="356" rx="182" ry="50" fill="#111" opacity="0.12" filter="url(#tb)"></ellipse>
+<g transform="translate(196.5 342) scale(1 0.55) rotate(-25) scale(1.05)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#E6E6E3" stroke="#111" stroke-width="1.4"></path>
+</g>
+<g transform="translate(196.5 330) scale(1 0.55) rotate(-25) scale(1.05)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#FFFFFF" stroke="#111" stroke-width="1.4"></path>
+<path d="M-62 -6C-58 -44 -14 -56 28 -46C68 -36 80 -6 62 20C44 46 -6 50 -34 38C-58 28 -64 12 -62 -6Z" fill="#FFFFFF" stroke="#111" stroke-width="1.2"></path>
+</g>
+<g transform="translate(196.5 330) scale(1 0.55) rotate(-25)">
+<path d="{{ cor.d }}" fill="none" stroke="#EAFE9F" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" opacity="{{ cor.o }}"></path>
+</g>
+
+<path d="M255 406L242 386Q230 366 269 353Q308 339 310 317Q311 295 322 292L333 289M52 355L81 349Q110 344 126 327Q142 309 174 300Q206 291 241 293Q276 295 286 311Q295 328 267 343Q239 359 203 360Q166 362 137 353Q108 344 80 350L52 355M333 289L304 297Q276 305 248 297Q219 288 184 298Q148 307 128 326Q108 344 80 350L52 355M255 406L247 393Q238 379 181 381Q124 383 100 362Q76 342 96 316Q117 291 171 281Q226 270 267 281Q308 291 321 315Q335 338 286 357Q236 377 246 391L255 406M333 289L308 296Q284 303 288 320Q292 337 258 348Q224 358 240 382L255 406M141 252L151 263Q160 274 121 297Q83 319 86 344Q90 369 139 377Q188 384 246 373Q304 362 315 335Q326 308 303 287Q279 266 217 268Q156 269 149 261L141 252M255 406L244 389Q233 372 193 368Q152 363 126 351Q99 339 118 319Q136 299 180 288Q223 277 255 287Q286 298 294 317Q302 335 267 353Q233 372 244 389L255 406M255 406L244 388Q232 370 186 371Q140 372 115 356Q89 340 108 318Q127 295 174 288Q221 281 264 286Q306 291 308 314Q310 336 271 352Q231 369 243 387L255 406M141 252L151 264Q161 275 134 293Q108 311 97 330Q86 349 69 352L52 355M52 355L75 351Q97 346 127 359Q156 372 197 364Q237 357 264 342Q290 328 285 311Q279 294 243 286Q207 278 166 291Q126 305 122 324Q118 342 85 349L52 355M255 406L244 388Q232 370 189 368Q145 366 123 352Q101 337 127 320Q153 303 189 295Q225 287 263 292Q301 298 317 294L333 289M333 289L323 292Q314 294 281 286Q247 278 210 283Q172 289 157 270L141 252M52 355L83 349Q114 343 118 323Q122 302 167 293Q212 283 249 289Q286 295 289 314Q292 333 263 353Q234 373 245 390L255 406M52 355L89 348Q126 341 137 324Q148 307 183 299Q218 291 251 297Q284 303 308 296L333 289M255 406L241 384Q227 363 252 350Q276 337 282 322Q288 306 264 299Q240 291 209 293Q178 296 160 274L141 252M255 406L245 390Q234 373 190 370Q147 367 114 354Q81 341 108 319Q134 298 180 285Q225 272 261 283Q297 295 301 315Q306 336 270 355Q235 375 245 390L255 406M255 406L244 389Q234 373 268 357Q302 341 314 319Q327 297 296 281Q266 266 213 270Q161 275 151 264L141 252M333 289L313 295Q294 300 300 319Q307 338 271 353Q234 369 190 372Q146 375 123 360Q100 346 76 350L52 355M52 355L81 349Q110 344 122 323Q133 302 176 296Q219 289 248 297Q277 305 305 297L333 289M141 252L153 266Q164 279 212 275Q261 270 295 283Q329 296 318 319Q306 341 272 360Q238 379 247 393L255 406M333 289L314 294Q296 300 262 291Q229 283 190 291Q151 299 127 317Q103 334 121 350Q140 365 181 369Q222 372 262 356Q302 340 303 319Q304 297 319 293L333 289M52 355L83 349Q114 343 129 359Q144 375 188 372Q231 368 243 387L255 406M255 406L248 394Q240 382 283 360Q327 338 326 311Q325 285 277 275Q228 265 169 276Q111 288 89 316Q67 343 95 363Q123 383 180 380Q236 376 246 391L255 406M141 252L150 262Q158 272 118 291Q77 311 87 331Q96 352 121 366Q145 380 190 377Q235 375 245 391L255 406M255 406L244 389Q233 371 187 371Q141 371 124 354Q106 338 126 321Q147 303 185 289Q224 275 260 285Q295 295 290 315Q286 334 257 349Q228 364 242 385L255 406M52 355L89 348Q126 341 143 352Q159 364 196 365Q232 366 263 351Q294 336 294 318Q294 300 313 295L333 289M52 355L74 351Q95 347 118 362Q141 377 188 376Q234 374 245 390L255 406M52 355L68 352Q84 349 106 325Q128 301 179 283Q229 266 267 282Q304 297 319 293L333 289M255 406L240 383Q225 360 251 346Q276 332 276 315Q277 299 244 293Q212 286 178 298Q145 309 136 325Q126 341 89 348L52 355M52 355L84 349Q117 343 139 351Q162 360 194 360Q225 360 240 383L255 406M52 355L80 350Q108 344 128 357Q149 370 189 370Q229 370 265 356Q301 342 301 323Q302 304 280 289Q258 273 211 276Q164 279 153 266L141 252M141 252L159 273Q176 294 216 290Q255 285 279 298Q303 312 285 330Q267 349 231 355Q194 362 162 358Q131 354 126 338Q122 322 149 307Q175 293 158 272L141 252M52 355L89 348Q125 341 143 352Q160 363 196 363Q231 364 253 349Q274 334 285 317Q295 300 314 294L333 289M333 289L318 293Q304 297 304 318Q304 338 268 353Q231 369 243 387L255 406" fill="none" stroke="#111" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"></path>
+
+<g transform="translate(196.5 330) scale(1 0.55) rotate(-25)">
+<path d="M-5 150C0 125 8 110 10 95C-20 70 -100 50 -110 -10C-115 -60 -60 -95 0 -95C50 -95 95 -75 100 -40C102 -20 130 -12 155 -10" fill="none" stroke="#EAFE9F" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity="{{ me.o }}"></path>
+<path d="M-5 150C0 125 8 110 10 95C-20 70 -100 50 -110 -10C-115 -60 -60 -95 0 -95C50 -95 95 -75 100 -40C102 -20 130 -12 155 -10" fill="none" stroke="#111" stroke-width="{{ me.w }}" stroke-linecap="round" stroke-linejoin="round"></path>
+</g>
+
+<path d="{{ sel.d }}" fill="none" stroke="#EAFE9F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="{{ sel.dash }}" opacity="{{ sel.o }}"></path>
+<path d="{{ sel.d }}" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="{{ sel.dash }}" opacity="{{ sel.o }}"></path>
+
+<text x="190" y="334" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5" fill="#111">lago</text>
+
+<ellipse cx="141.3" cy="252.9" rx="6" ry="2.2" fill="#111" opacity="0.3"></ellipse>
+<line x1="141.3" y1="251.9" x2="141.3" y2="232" stroke="#111" stroke-width="1.2"></line>
+<circle cx="141.3" cy="224" r="9" fill="#111"></circle>
+<ellipse cx="332.8" cy="290" rx="7" ry="2.6" fill="#111" opacity="0.3"></ellipse>
+<line x1="332.8" y1="289" x2="332.8" y2="260" stroke="#111" stroke-width="1.2"></line>
+<circle cx="332.8" cy="251.5" r="9.5" fill="#111"></circle>
+<ellipse cx="52.1" cy="355.9" rx="8" ry="3" fill="#111" opacity="0.3"></ellipse>
+<line x1="52.1" y1="354.9" x2="52.1" y2="318" stroke="#111" stroke-width="1.2"></line>
+<circle cx="52.1" cy="309" r="10" fill="#111"></circle>
+<ellipse cx="255.4" cy="406.9" rx="9" ry="3.4" fill="#111" opacity="0.3"></ellipse>
+<line x1="255.4" y1="405.9" x2="255.4" y2="350" stroke="#111" stroke-width="1.4"></line>
+<circle cx="255.4" cy="340" r="11.5" fill="#111"></circle>
+<g font-family="Manrope, sans-serif" font-weight="700" font-size="9.5" fill="#FFFFFF" text-anchor="middle">
+<text x="141.3" y="227.4">17</text><text x="332.8" y="254.9">24</text><text x="52.1" y="312.4">31</text><text x="255.4" y="343.6">48</text>
+</g>
+<g font-family="Manrope, sans-serif" font-size="10" fill="#111">
+<text x="141.3" y="209" text-anchor="middle">L. Marechal</text>
+<text x="332.8" y="236" text-anchor="middle">Patricias Arg.</text>
+<text x="52.1" y="293" text-anchor="middle">Á. Gallardo</text>
+<text x="271" y="343.5">Díaz Vélez</text>
+</g>
+</svg>
+
+<div style="position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none">
+<sc-for list="{{ walkers }}" as="w" hint-placeholder-count="0">
+<span data-walk="1" style="position: absolute; left: 0; top: 0; width: {{ w.s }}; height: {{ w.s }}; box-sizing: border-box; border-radius: 50%; background: {{ w.bg }}; border: {{ w.bd }}; offset-path: {{ w.p }}; offset-rotate: 0deg; animation: fdcWalk {{ w.dur }} linear {{ w.del }} infinite"></span>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 22px; top: 462px; width: 349px; height: 46px; box-sizing: border-box; border: 1px solid #111; border-radius: 23px; display: flex; align-items: center; justify-content: space-between; padding: 0 2px">
+<button type="button" aria-label="Vecino anterior" onClick="{{ prev }}" style="width: 44px; height: 44px; border: 0; background: none; font-size: 18px; color: #111; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M19 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.5"></path></svg></button>
+<button type="button" aria-label="Volver a ver todos los caminos" onClick="{{ todos }}" style="flex: 1; height: 44px; border: 0; background: none; font-family: Manrope, sans-serif; font-size: {{ stepFs }}; letter-spacing: -0.01em; color: #111; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ stepTxt }}</button>
+<button type="button" aria-label="Vecino siguiente" onClick="{{ next }}" style="width: 44px; height: 44px; border: 0; background: none; font-size: 18px; color: #111; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><path d="M1 7h17M12 1l6 6-6 6" fill="none" stroke="#111" stroke-width="1.5"></path></svg></button>
+</div>
+
+</div>
+<div style="position: absolute; left: 0; top: {{ sheetTop }}; width: 393px; height: 760px; background: #FFFFFF; border-radius: 30px 30px 0 0; box-shadow: 0 -1px 0 rgba(0,0,0,.18), 0 -14px 34px rgba(0,0,0,.07); transition: top .6s cubic-bezier(.2,.8,.2,1); z-index: 3; pointer-events: auto">
+<button type="button" aria-label="{{ sheetLabel }}" onClick="{{ sheetT }}" onPointerDown="{{ sheetD }}" onPointerUp="{{ sheetU }}" style="position: absolute; left: 0; top: 0; width: 393px; height: 46px; border: 0; background: transparent; cursor: grab; touch-action: none; z-index: 2"><span style="display: block; width: 30px; height: 2px; margin: 0 auto; background: #6B6B67; border-radius: 1px"></span></button>
+<div style="position: absolute; left: 20px; top: 33px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 70px; line-height: 70px; letter-spacing: -0.08em">120</div>
+<div style="position: absolute; left: 125px; top: 65px; width: 240px; font-size: 13.5px; line-height: 18px">caminos de hoy sin el celular. Cada puntito es un vecino caminando</div>
+<div style="position: absolute; left: 30px; top: 135px; font-size: 12px; color: #8A8A86">los caminos más usados - tocá uno para verlo en el mapa</div>
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+<button type="button" onClick="{{ r.pick }}" style="position: absolute; left: 23px; top: {{ r.y }}; width: 348px; height: 32px; border: 0; border-radius: 16px; background: {{ r.bg }}; display: flex; align-items: center; padding: 0 14px; font-family: Manrope, sans-serif; font-size: 12.5px; color: #111; cursor: pointer; transition: background .3s"><span style="flex: 1; text-align: left">{{ r.name }}</span><span style="width: 54px; height: 6px; background: #DADAD6; border-radius: 3px; overflow: hidden; margin-right: 26px"><span style="display: block; height: 6px; width: {{ r.w }}; background: #111"></span></span><b style="width: 30px; text-align: right">{{ r.p }}%</b></button>
+</sc-for>
+<div style="position: absolute; left: 30px; top: 358px; font-size: 13.5px; color: #8A8A86">por dónde entraron</div>
+<sc-for list="{{ doors }}" as="d" hint-placeholder-count="4"><button type="button" data-i="{{ d.i }}" onClick="{{ pickDoor }}" style="position: absolute; left: {{ d.x }}; top: {{ d.y }}; width: {{ d.w }}; height: 88px; box-sizing: border-box; border: 1px solid #111; border-radius: 12px; background: {{ d.bg }}; display: flex; align-items: center; gap: 10px; padding-left: 22px; font-family: Manrope, sans-serif; color: #111; cursor: pointer; transition: background .3s"><span style="font-family: Poppins, sans-serif; font-size: 36px; letter-spacing: -0.05em">{{ d.n }}</span><span style="font-size: 11.5px; line-height: 13px; color: #8A8A86; text-align: left">{{ d.l }}<br>{{ d.l2 }}</span></button></sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { door: -1, sh: false, vec: -1, cor: -1, prog: 1 };
+  GS = { 'Díaz Vélez': 'Díaz Vélez', 'Ángel Gallardo': 'Á. Gallardo', 'Patricias Argentinas': 'Patricias Arg.', 'Leopoldo Marechal': 'L. Marechal' };
+  FEAT = [
+    { n: 5, m: 67, g: 'Díaz Vélez', d: 'M255 406L242 386Q230 366 269 353Q308 339 310 317Q311 295 322 292L333 289', L: 172 },
+    { n: 75, m: 90, g: 'Ángel Gallardo', d: 'M52 355L81 349Q110 344 126 327Q142 309 174 300Q206 291 241 293Q276 295 286 311Q295 328 267 343Q239 359 203 360Q166 362 137 353Q108 344 80 350L52 355', L: 515 },
+    { n: 64, m: 54, g: 'Patricias Argentinas', d: 'M333 289L304 297Q276 305 248 297Q219 288 184 298Q148 307 128 326Q108 344 80 350L52 355', L: 298 },
+    { n: 36, m: 74, g: 'Díaz Vélez', d: 'M255 406L247 393Q238 379 181 381Q124 383 100 362Q76 342 96 316Q117 291 171 281Q226 270 267 281Q308 291 321 315Q335 338 286 357Q236 377 246 391L255 406', L: 608 },
+    { n: 88, m: 47, g: 'Patricias Argentinas', d: 'M333 289L308 296Q284 303 288 320Q292 337 258 348Q224 358 240 382L255 406', L: 181 },
+    { n: 102, m: 46, g: 'Leopoldo Marechal', d: 'M141 252L151 263Q160 274 121 297Q83 319 86 344Q90 369 139 377Q188 384 246 373Q304 362 315 335Q326 308 303 287Q279 266 217 268Q156 269 149 261L141 252', L: 606 },
+    { n: 84, m: 89, g: 'Díaz Vélez', d: 'M255 406L244 389Q233 372 193 368Q152 363 126 351Q99 339 118 319Q136 299 180 288Q223 277 255 287Q286 298 294 317Q302 335 267 353Q233 372 244 389L255 406', L: 504 },
+    { n: 52, m: 76, g: 'Díaz Vélez', d: 'M255 406L244 388Q232 370 186 371Q140 372 115 356Q89 340 108 318Q127 295 174 288Q221 281 264 286Q306 291 308 314Q310 336 271 352Q231 369 243 387L255 406', L: 555 },
+    { n: 21, m: 32, g: 'Leopoldo Marechal', d: 'M141 252L151 264Q161 275 134 293Q108 311 97 330Q86 349 69 352L52 355', L: 160 },
+    { n: 14, m: 63, g: 'Ángel Gallardo', d: 'M52 355L75 351Q97 346 127 359Q156 372 197 364Q237 357 264 342Q290 328 285 311Q279 294 243 286Q207 278 166 291Q126 305 122 324Q118 342 85 349L52 355', L: 526 },
+    { n: 30, m: 50, g: 'Díaz Vélez', d: 'M255 406L244 388Q232 370 189 368Q145 366 123 352Q101 337 127 320Q153 303 189 295Q225 287 263 292Q301 298 317 294L333 289', L: 404 },
+    { n: 120, m: 49, g: 'Patricias Argentinas', d: 'M333 289L323 292Q314 294 281 286Q247 278 210 283Q172 289 157 270L141 252', L: 205 }
+  ];
+  WALK = [
+    ['M52 355L83 349Q114 343 118 323Q122 302 167 293Q212 283 249 289Q286 295 289 314Q292 333 263 353Q234 373 245 390L255 406', 386],
+    ['M52 355L89 348Q126 341 137 324Q148 307 183 299Q218 291 251 297Q284 303 308 296L333 289', 298],
+    ['M255 406L241 384Q227 363 252 350Q276 337 282 322Q288 306 264 299Q240 291 209 293Q178 296 160 274L141 252', 284],
+    ['M255 406L245 390Q234 373 190 370Q147 367 114 354Q81 341 108 319Q134 298 180 285Q225 272 261 283Q297 295 301 315Q306 336 270 355Q235 375 245 390L255 406', 543],
+    ['M255 406L244 389Q234 373 268 357Q302 341 314 319Q327 297 296 281Q266 266 213 270Q161 275 151 264L141 252', 338],
+    ['M333 289L313 295Q294 300 300 319Q307 338 271 353Q234 369 190 372Q146 375 123 360Q100 346 76 350L52 355', 328],
+    ['M52 355L81 349Q110 344 122 323Q133 302 176 296Q219 289 248 297Q277 305 305 297L333 289', 302],
+    ['M141 252L153 266Q164 279 212 275Q261 270 295 283Q329 296 318 319Q306 341 272 360Q238 379 247 393L255 406', 337],
+    ['M333 289L314 294Q296 300 262 291Q229 283 190 291Q151 299 127 317Q103 334 121 350Q140 365 181 369Q222 372 262 356Q302 340 303 319Q304 297 319 293L333 289', 506],
+    ['M52 355L83 349Q114 343 129 359Q144 375 188 372Q231 368 243 387L255 406', 225],
+    ['M255 406L248 394Q240 382 283 360Q327 338 326 311Q325 285 277 275Q228 265 169 276Q111 288 89 316Q67 343 95 363Q123 383 180 380Q236 376 246 391L255 406', 630],
+    ['M141 252L150 262Q158 272 118 291Q77 311 87 331Q96 352 121 366Q145 380 190 377Q235 375 245 391L255 406', 314]
+  ];
+  COR = [
+    ['la orilla del lago', '100%', '41%', 'M-76 -6C-72 -54 -16 -70 36 -58C84 -46 98 -6 78 28C56 60 -8 64 -44 48C-72 36 -80 14 -76 -6Z'],
+    ['Díaz Vélez → el lago', '66%', '27%', 'M-5 150C0 125 8 110 10 95C12 82 8 70 2 58'],
+    ['el lago → la feria', '44%', '18%', 'M72 2C84 -10 94 -26 100 -40C108 -54 120 -62 132 -68'],
+    ['el bulevar de las tipas', '22%', '9%', 'M-138 34C-108 64 -68 92 -18 102C32 110 82 98 122 72'],
+    ['el borde, de punta a punta', '12%', '5%', 'M-143 -8C-141 -86 -76 -145 8 -141C90 -137 147 -80 143 2C139 82 82 143 -2 141C-84 139 -145 74 -143 -8Z']
+  ];
+
+  setVec = (k) => {
+    cancelAnimationFrame(this.raf);
+    if (k < 0) { this.setState({ vec: -1, cor: -1, prog: 1 }); return; }
+    this.setState({ vec: k, cor: -1, prog: 0 });
+    try { if (navigator.vibrate) navigator.vibrate(6); } catch (err) {}
+    const t0 = performance.now();
+    const step = (t) => {
+      const q = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - q, 3);
+      this.setState({ prog: e });
+      if (q < 1) this.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  };
+  next = () => this.setVec(this.state.vec + 1 > 11 ? -1 : this.state.vec + 1);
+  prev = () => this.setVec(this.state.vec < 0 ? 11 : this.state.vec - 1);
+  todos = () => this.setVec(-1);
+  setCor = (i) => {
+    cancelAnimationFrame(this.raf);
+    this.setState({ vec: -1, prog: 1, cor: this.state.cor === i ? -1 : i });
+  };
+
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+
+  sheetT = () => { if (this.sw) { this.sw = false; return; } this.setState({ sh: !this.state.sh }); try { navigator.vibrate && navigator.vibrate(6); } catch (e) {} };
+  sheetD = (e) => { this.sy = e.clientY; };
+  sheetU = (e) => { if (this.sy == null) return; const dy = e.clientY - this.sy; this.sy = null; if (Math.abs(dy) > 25) { this.sw = true; this.setState({ sh: dy < 0 }); } };
+  DOORS = [['48', 'díaz vélez', ''], ['31', 'ángel', 'gallardo'], ['24', 'patricias', 'argentinas'], ['17', 'leopoldo', 'marechal']];
+  pickDoor = (e) => { const i = +e.currentTarget.getAttribute('data-i'); this.setState({ door: this.state.door === i ? -1 : i }); try { navigator.vibrate && navigator.vibrate(5); } catch (er) {} };
+  renderVals() {
+    const st = this.state, v = st.vec, f = this.FEAT[v < 0 ? 0 : v];
+    const walkers = [];
+    for (let k = 0; k < 24; k++) {
+      const d = k < 12 ? this.FEAT[k].d : this.WALK[k - 12][0];
+      const L = k < 12 ? this.FEAT[k].L : this.WALK[k - 12][1];
+      const dur = Math.round(L / 13 + 6), on = k === v;
+      walkers.push({
+        p: "path('" + d + "')",
+        dur: dur + 's',
+        del: '-' + ((k * 7.3) % dur).toFixed(1) + 's',
+        s: on ? '11px' : '5px',
+        bg: on ? '#EAFE9F' : '#111111',
+        bd: on ? '1.4px solid #111111' : '0 solid #111111'
+      });
+    }
+    const rows = this.COR.map((c, i) => ({
+      name: c[0], p: parseInt(c[2]), w: c[1], y: (162 + i * 36) + 'px',
+      bg: st.cor === i ? '#EAFE9F' : '#F3F3F1',
+      pick: () => this.setCor(i)
+    }));
+    const quiet = v < 0 && st.cor < 0;
+    const __sh = { sheetTop: this.state.sh ? "163px" : "590px", sheetLabel: this.state.sh ? 'Bajar la hoja' : 'Subir la hoja', sheetT: this.sheetT, sheetD: this.sheetD, sheetU: this.sheetU };
+    return { ...__sh, doors: this.DOORS.map((d, i) => ({ i: i, n: d[0], l: d[1], l2: d[2], x: (i % 2 ? 205 : 20) + 'px', y: (i < 2 ? 394 : 497) + 'px', w: (i % 2 ? 163 : 167) + 'px', bg: this.state.door === i ? '#EAFE9F' : '#FFFFFF' })), pickDoor: this.pickDoor,
+      cor: { d: this.COR[st.cor < 0 ? 0 : st.cor][3], o: st.cor < 0 ? 0 : 1 },
+      me: { o: quiet ? 1 : 0, w: quiet ? 2.4 : 1.2 },
+      sel: { d: f.d, dash: (f.L * st.prog).toFixed(1) + ' 3000', o: v < 0 ? 0 : 1 },
+      walkers: walkers,
+      rows: rows,
+      stepFs: v < 0 ? '19px' : '13.5px', stepTxt: v < 0 ? 'recorre todos los caminos' : 'vecino ' + f.n + ' de 120 · ' + f.m + '′ · ' + this.GS[f.g],
+      prev: this.prev, next: this.next, todos: this.todos
+    };
+  }
+}
+</script>
+</body>
+</html>

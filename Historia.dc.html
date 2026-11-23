@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Historia del parque — anillos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+@keyframes fdcTxtA{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fdcTxtB{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fdcBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<div style="position: absolute; left: 22px; top: 44px; font-family: Poppins, sans-serif; font-size: 40px; line-height: 40px">*</div>
+<h1 style="position: absolute; left: 22px; top: 92px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 34px; line-height: 36px; letter-spacing: -0.08em">el parque, por anillos</h1>
+
+<div style="position: absolute; left: {{ glow.l }}; top: {{ glow.t }}; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; background: radial-gradient(circle, rgba(234, 254, 159, 0.9) 0%, rgba(234, 254, 159, 0.35) 40%, rgba(234, 254, 159, 0) 70%); transition: left .5s cubic-bezier(.2,.8,.2,1), top .5s cubic-bezier(.2,.8,.2,1); pointer-events: none"></div>
+
+<svg width="393" height="560" viewBox="0 0 393 560" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="El parque como el corte de un tronco: cada anillo es un momento de su historia, del centro en 1908 hasta hoy afuera. Los anillos punteados son cosas que ya no están.">
+<path d="{{ selPath }}" fill="none" stroke="#EAFE9F" stroke-width="9" stroke-linejoin="round" style="transition: d .4s"></path>
+<sc-for list="{{ rings }}" as="r" hint-placeholder-count="13">
+<path d="{{ r.d }}" fill="none" stroke="{{ r.c }}" stroke-width="{{ r.w }}" stroke-dasharray="{{ r.dash }}"></path>
+</sc-for>
+<circle cx="196.5" cy="330" r="6" fill="#111"></circle>
+<circle cx="{{ pin.x }}" cy="{{ pin.y }}" r="5" fill="#EAFE9F" stroke="#111" stroke-width="1.2"></circle>
+<circle cx="{{ pin.x }}" cy="{{ pin.y }}" r="11" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="2.5 2" style="transform-box: fill-box; transform-origin: center; animation: fdcBreathe 3.2s ease-in-out infinite"></circle>
+</svg>
+
+<button type="button" aria-label="Tocá o arrastrá sobre los anillos para recorrer la historia del parque" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position: absolute; left: 21.5px; top: 155px; width: 350px; height: 350px; border-radius: 50%; border: 0; padding: 0; background: transparent; cursor: pointer; touch-action: none"></button>
+
+<div style="position: absolute; left: 22px; top: 560px; width: 349px; animation: {{ anim }} .45s ease both">
+<div style="display: flex; align-items: baseline; gap: 12px">
+<span style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 64px; line-height: 64px; letter-spacing: -0.08em">{{ ev.y }}</span>
+<span style="font-size: 11px; padding: 3px 9px; border-radius: 20px; border: 1px dashed #111; opacity: {{ ev.gone }}">ya no está</span>
+</div>
+<div style="margin-top: 10px; font-size: 16px; line-height: 22px; max-width: 300px">{{ ev.t }}</div>
+</div>
+
+<div style="position: absolute; left: 22px; top: 742px; display: flex; gap: 5px">
+<sc-for list="{{ ticks }}" as="k" hint-placeholder-count="13"><span style="width: {{ k.w }}; height: 5px; border-radius: 3px; background: {{ k.c }}; border: {{ k.b }}; box-sizing: border-box; transition: width .3s"></span></sc-for>
+</div>
+
+<button type="button" aria-label="Abrir el menú" style="position: absolute; left: 174.5px; top: 764px; width: 44px; height: 44px; border-radius: 50%; border: 1px dashed #111; background: #EAFE9F; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<span style="width: 26px; height: 26px; border-radius: 50%; background: #111; color: #FFFFFF; font-size: 18px; line-height: 26px; text-align: center">+</span>
+</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { sel: 12, n: 0 };
+  CX = 196.5; CY = 330;
+  E = [
+    [1908, 'La ciudad compra los terrenos de la familia Piñero.', 0],
+    [1909, 'Se aprueba el proyecto de Carlos Thays.', 0],
+    [1910, 'Iba a inaugurarse para el Centenario. No llegó.', 0],
+    [1920, 'Se termina, por etapas.', 0],
+    [1931, 'Un anfiteatro de madera. Se incendió en 1956.', 1],
+    [1937, 'Llega el Museo de Ciencias Naturales.', 0],
+    [1944, 'Abre el observatorio.', 0],
+    [1980, 'Aparece el lago.', 0],
+    [1989, 'Roban la estatua de la fuente del Irupé.', 1],
+    [2009, 'Vuelve el anfiteatro, para 2.000 personas.', 0],
+    [2012, 'Lo declaran jardín histórico.', 0],
+    [2013, 'Llegan las rejas.', 0],
+    [2026, '34 vecinos guardaron el celular.', 0]
+  ];
+  rad = (y) => 18 + 140 * Math.pow((y - 1908) / 118, 0.75);
+  path = (i) => {
+    const r0 = this.rad(this.E[i][0]), ph = i * 1.7, ps = i * 2.9;
+    let d = '';
+    for (let k = 0; k <= 72; k++) {
+      const t = k / 72 * Math.PI * 2;
+      const r = r0 * (1 + 0.06 * Math.sin(3 * t + 0.5) + 0.03 * Math.sin(5 * t + 1.2) + 0.008 * Math.sin(7 * t + ph)) + 2 * Math.sin(t - 0.6);
+      d += (k ? 'L' : 'M') + (this.CX + r * Math.sin(t)).toFixed(1) + ' ' + (this.CY - r * Math.cos(t)).toFixed(1);
+    }
+    return d + 'Z';
+  };
+  pt = (i, t) => {
+    const r0 = this.rad(this.E[i][0]), ph = i * 1.7, ps = i * 2.9;
+    const r = r0 * (1 + 0.06 * Math.sin(3 * t + 0.5) + 0.03 * Math.sin(5 * t + 1.2) + 0.008 * Math.sin(7 * t + ph)) + 2 * Math.sin(t - 0.6);
+    return [this.CX + r * Math.sin(t), this.CY - r * Math.cos(t)];
+  };
+  pick = (e) => {
+    const el = e.currentTarget || e.target, b = el.getBoundingClientRect();
+    const sx = b.width / 350, dx = (e.clientX - b.left) / sx - 175, dy = (e.clientY - b.top) / sx - 175;
+    const d = Math.hypot(dx, dy);
+    let best = 0, bd = 1e9;
+    this.E.forEach((ev, i) => { const q = Math.abs(this.rad(ev[0]) - d); if (q < bd) { bd = q; best = i; } });
+    if (best !== this.state.sel) {
+      try { if (navigator.vibrate) navigator.vibrate(5); } catch (err) {}
+      this.setState({ sel: best, n: this.state.n + 1 });
+    }
+  };
+  down = (e) => { this.drag = true; try { (e.currentTarget || e.target).setPointerCapture(e.pointerId); } catch (err) {} this.pick(e); };
+  move = (e) => { if (this.drag) this.pick(e); };
+  up = () => { this.drag = false; };
+  renderVals() {
+    const s = this.state.sel, ev = this.E[s], p = this.pt(s, 0.8);
+    return {
+      rings: this.E.map((x, i) => ({ d: this.path(i), c: x[2] ? '#9A9A96' : '#111', w: i === s ? 1.6 : (i === 12 ? 1.2 : 0.8), dash: x[2] ? '3 3' : 'none' })),
+      selPath: this.path(s),
+      pin: { x: p[0].toFixed(1), y: p[1].toFixed(1) },
+      glow: { l: p[0].toFixed(1) + 'px', t: p[1].toFixed(1) + 'px' },
+      ev: { y: s === 12 ? 'hoy' : String(ev[0]), t: ev[1], gone: ev[2] ? 1 : 0 },
+      anim: this.state.n % 2 ? 'fdcTxtA' : 'fdcTxtB',
+      ticks: this.E.map((x, i) => ({ w: i === s ? '22px' : '5px', c: i === s ? '#EAFE9F' : (x[2] ? 'transparent' : '#111'), b: i === s ? '1px solid #111' : (x[2] ? '1px dashed #111' : '0') })),
+      down: this.down, move: this.move, up: this.up
+    };
+  }
+}
+</script>
+</body>
+</html>

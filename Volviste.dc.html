@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Volviste</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes vvIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes vvGlow{0%,100%{transform:scale(.95)}50%{transform:scale(1.05)}}
+.vv-a{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #222222; color: #FFFFFF; font-family: Manrope, sans-serif">
+<div style="position: absolute; right: 22px; top: 74px; display: flex; align-items: center; gap: 8px; font-size: 13px"><span style="width: 11px; height: 11px; border-radius: 50%; background: #EAFE9F"></span>Fuera del parque</div>
+
+<div style="position: absolute; left: 26px; top: 175px; width: 341px; height: 341px; border-radius: 50%; background: radial-gradient(circle, rgba(234,254,159,.5) 0%, rgba(234,254,159,.14) 45%, rgba(234,254,159,0) 70%); animation: vvGlow 8s ease-in-out infinite"></div>
+<svg width="393" height="560" viewBox="0 0 393 560" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+<path d="{{ arc }}" fill="none" stroke="#EAFE9F" stroke-width="4" stroke-linecap="round"></path>
+<circle cx="{{ s0.x }}" cy="{{ s0.y }}" r="4.5" fill="#EAFE9F"></circle>
+<circle cx="{{ s1.x }}" cy="{{ s1.y }}" r="3.5" fill="#222" stroke="#FFFFFF"></circle>
+<text x="{{ l0.x }}" y="{{ l0.y }}" text-anchor="end" font-family="Manrope, sans-serif" font-size="9" fill="#FFFFFF">{{ salio }} saliste</text>
+<text x="{{ l1.x }}" y="{{ l1.y }}" font-family="Manrope, sans-serif" font-size="9" fill="#8A8A86">{{ entro }} entraste</text>
+</svg>
+<div style="position: absolute; left: 96px; top: 312px; width: 201px; display: flex; flex-direction: column; align-items: center">
+<span style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 42px; line-height: 44px; letter-spacing: -0.04em">{{ dur }}</span>
+<span style="font-size: 8.5px; color: #EAFE9F">afuera</span>
+</div>
+
+<div style="position: absolute; left: 0; top: 506px; width: 393px; text-align: center; font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; letter-spacing: -0.07em; animation: vvIn .8s ease 1.1s both">volviste</div>
+<div style="position: absolute; left: 0; top: 562px; width: 393px; text-align: center; font-size: 12px; line-height: 16px; animation: vvIn .8s ease 1.3s both">Te desconectaste {{ dur2 }}<br>mientras tanto el parque siguió</div>
+<a href="Mientras.dc.html" style="position: absolute; left: 136px; top: 682px; width: 120px; height: 32px; display: flex; align-items: center; justify-content: center; color: #EAFE9F; font-size: 16px; text-decoration: none; animation: vvIn .8s ease 1.5s both"><span style="border-bottom: 1px solid #EAFE9F; padding-bottom: 2px">Ver qué pasó</span></a>
+<div style="position: absolute; left: 0; top: 724px; width: 393px; text-align: center; font-size: 13px; color: #8A8A86; animation: vvIn .8s ease 1.6s both">12 avisos te esperan · ninguno urgente</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { k: 0 };
+  componentDidMount() {
+    const t0 = performance.now();
+    const step = (t) => { const k = Math.min(1, (t - t0) / 1400); this.setState({ k: 1 - Math.pow(1 - k, 3) }); if (k < 1) this.raf = requestAnimationFrame(step); };
+    this.raf = requestAnimationFrame(step);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+  renderVals() {
+    const S = this.props.app.S, k = this.state.k;
+    const m = S.start ? Math.max(1, Math.round(((S.end || Date.now()) - S.start) / 1000 * S.speed / 60)) : 108;
+    const now = new Date(), t0 = new Date(now - m * 60000);
+    const hm = (d) => String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    const CX = 196.5, CY = 345, R = 118, P = (a) => { const t = a * Math.PI / 180; return [CX + R * Math.sin(t), CY - R * Math.cos(t)]; };
+    const a1 = 8 + 344 * k, e = P(-8), b = P(8), p = P(a1 - 360 + 352 - 344 > 0 ? 0 : a1);
+    const end = P(8 + (344) * k);
+    const fm = (x) => x >= 60 ? Math.floor(x / 60) + ' h ' + String(x % 60).padStart(2, '0') : x + ' min';
+    const shown = Math.round(m * k);
+    return {
+      arc: 'M' + b[0].toFixed(1) + ' ' + b[1].toFixed(1) + 'A118 118 0 ' + (344 * k > 180 ? 1 : 0) + ' 1 ' + end[0].toFixed(1) + ' ' + end[1].toFixed(1),
+      s0: { x: e[0].toFixed(1), y: e[1].toFixed(1) }, s1: { x: b[0].toFixed(1), y: b[1].toFixed(1) },
+      l0: { x: (e[0] - 6).toFixed(1), y: (e[1] - 12).toFixed(1) }, l1: { x: (b[0] + 8).toFixed(1), y: (b[1] - 12).toFixed(1) },
+      salio: hm(now), entro: hm(t0), dur: fm(shown).replace(' min', '′'), dur2: fm(m)
+    };
+  }
+}
+</script>
+</body>
+</html>

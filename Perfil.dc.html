@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Perfil — tu huella</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#111}
+@keyframes fdcTxtA{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fdcTxtB{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fdcBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 923px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Perfil</div>
+<h1 style="position: absolute; left: 18px; top: 118px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 44px; line-height: 50px; letter-spacing: -0.08em">{{ nombre }}</h1>
+<p style="position: absolute; left: 20px; top: 172px; margin: 0; font-size: 14px; color: #8A8A86">estas en el parque desde agosto</p>
+
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 600px; pointer-events: none; transform: translate(-7px, 44px) scale(1.04); transform-origin: 196.5px 340px">
+<div style="position: absolute; left: {{ glow.l }}; top: {{ glow.t }}; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: radial-gradient(circle, rgba(234, 254, 159, 0.95) 0%, rgba(234, 254, 159, 0.35) 40%, rgba(234, 254, 159, 0) 70%); opacity: {{ glow.o }}; transition: left .5s cubic-bezier(.2,.8,.2,1), top .5s cubic-bezier(.2,.8,.2,1), opacity .4s; pointer-events: none"></div>
+
+<svg width="393" height="520" viewBox="0 0 393 520" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="Tu huella: cada anillo es una visita al parque, de la primera en el centro a la última afuera. Cuanto más grueso, más tiempo estuviste sin mirar el celular.">
+<path d="{{ selPath }}" fill="none" stroke="#EAFE9F" stroke-width="{{ selW }}" stroke-linecap="round"></path>
+<sc-for list="{{ rings }}" as="r" hint-placeholder-count="12">
+<path d="{{ r.d }}" fill="none" stroke="#111" stroke-width="{{ r.w }}" stroke-linecap="round" opacity="{{ r.o }}"></path>
+</sc-for>
+<circle cx="{{ pin.x }}" cy="{{ pin.y }}" r="4.5" fill="#EAFE9F" stroke="#111" stroke-width="1.2"></circle>
+<circle cx="{{ pin.x }}" cy="{{ pin.y }}" r="10" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="2.5 2" style="transform-box: fill-box; transform-origin: center; animation: fdcBreathe 3.2s ease-in-out infinite"></circle>
+<circle cx="196.5" cy="340" r="24" fill="#EAFE9F" stroke="#111" stroke-width="1"></circle>
+<circle cx="196.5" cy="340" r="8.5" fill="#111"></circle>
+</svg>
+
+<button type="button" aria-label="Tocá un anillo para ver esa visita; tocá el centro para volver al total" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position: absolute; left: 46.5px; top: 190px; width: 300px; height: 300px; border-radius: 50%; border: 0; padding: 0; background: transparent; cursor: pointer; touch-action: none"></button>
+
+</div>
+<div style="position: absolute; left: 14px; top: 562px; width: 349px; text-align: center; animation: {{ anim }} .45s ease both">
+<div style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 48px; line-height: 50px; letter-spacing: -0.08em">{{ big }}</div>
+<div style="margin-top: 4px; font-size: 14px; font-weight: 600; color: #8A8A86">{{ small }}</div>
+</div>
+
+<div style="position: absolute; left: 0; top: 662px; width: 393px; height: 104px; border-top: 1px solid #8A8A86; border-bottom: 1px solid #8A8A86"></div>
+<a href="Desconexiones.dc.html" style="position: absolute; left: 22px; top: 684px; width: 54px; text-align: center; text-decoration: none; color: #111"><div style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 42px; letter-spacing: -0.08em">24</div><div style="font-size: 13px; color: #8A8A86">visitas</div></a>
+<a href="Historial.dc.html" style="position: absolute; left: 112px; top: 684px; width: 48px; text-align: center; text-decoration: none; color: #111"><div style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 42px; letter-spacing: -0.08em">10</div><div style="font-size: 13px; color: #8A8A86">retos</div></a>
+<a href="Mapa.dc.html" style="position: absolute; left: 196px; top: 684px; width: 180px; text-align: center; text-decoration: none; color: #111"><div style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 42px; letter-spacing: -0.08em">bulevares</div><div style="font-size: 13px; color: #8A8A86">tu lugar mas visitado</div></a>
+
+<div style="position: absolute; left: 18px; top: 784px; width: 357px; display: flex; align-items: center; justify-content: space-between">
+<span style="font-size: 14px; color: #8A8A86">pueden interrumpirte:</span>
+<span style="display: flex; gap: 4px">
+<span style="width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; border: 1px solid #111; display: flex; align-items: center; justify-content: center; font-size: 13px">juli</span>
+<span style="width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; border: 1px solid #111; display: flex; align-items: center; justify-content: center; font-size: 12px">mama</span>
+<span style="width: 40px; height: 40px; box-sizing: border-box; border-radius: 50%; border: 1px solid #111; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 300">+</span>
+</span>
+</div>
+
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { sel: -1, n: 0 };
+  CX = 196.5; CY = 340;
+  // cada visita: fecha, lugar, minutos sin mirar el celular
+  VIS = [
+    ['sáb 15.03', 'en el pasto', 25], ['dom 30.03', 'en el lago', 50], ['sáb 19.04', 'en la feria', 35],
+    ['dom 11.05', 'en el lago', 80], ['sáb 07.06', 'en la arboleda', 40], ['dom 13.07', 'en el lago', 95],
+    ['sáb 16.08', 'en el anfiteatro', 60], ['dom 07.09', 'en el lago', 120], ['sáb 04.10', 'en la feria', 45],
+    ['dom 19.10', 'en el lago', 130], ['mar 03.11', 'en el lago', 47], ['jue 05.11', 'en el lago', 108]
+  ];
+  rad = (i) => 40 + i * 9.5;
+  ang = (i) => 0.4 + i * 0.55;
+  path = (i, w) => {
+    const r = this.rad(i), a0 = this.ang(i), sweep = Math.min(6.2, 1.2 + this.VIS[i][2] / 130 * 5);
+    let d = '';
+    for (let k = 0; k <= 48; k++) { const t = a0 + sweep * k / 48; d += (k ? 'L' : 'M') + (this.CX + r * Math.sin(t)).toFixed(1) + ' ' + (this.CY - r * Math.cos(t)).toFixed(1); }
+    return d;
+  };
+  end = (i) => { const r = this.rad(i), t = this.ang(i) + Math.min(6.2, 1.2 + this.VIS[i][2] / 130 * 5); return [this.CX + r * Math.sin(t), this.CY - r * Math.cos(t)]; };
+  pick = (e) => {
+    const el = e.currentTarget || e.target, b = el.getBoundingClientRect(), sx = b.width / 300;
+    const d = Math.hypot((e.clientX - b.left) / sx - 150, (e.clientY - b.top) / sx - 150);
+    let s = -1;
+    if (d > 32) s = Math.max(0, Math.min(11, Math.round((d - 40) / 9.5)));
+    if (s !== this.state.sel) { try { if (navigator.vibrate) navigator.vibrate(5); } catch (err) {} this.setState({ sel: s, n: this.state.n + 1 }); }
+  };
+  down = (e) => { this.drag = true; try { (e.currentTarget || e.target).setPointerCapture(e.pointerId); } catch (err) {} this.pick(e); };
+  move = (e) => { if (this.drag) this.pick(e); };
+  up = () => { this.drag = false; };
+  fmt = (m) => (m >= 60 ? Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0') : m + ' min');
+  renderVals() {
+    const s = this.state.sel, last = this.VIS.length - 1, show = s < 0 ? last : s, p = this.end(show);
+    const v = this.VIS[show];
+    const __n = ((this.props.app && this.props.app.S.name) || 'azul').toLowerCase();
+    return { nombre: __n,
+      rings: this.VIS.map((x, i) => ({ d: this.path(i), w: (0.8 + x[2] / 130 * 4).toFixed(1), o: s < 0 || i === s ? 1 : 0.3 })),
+      selPath: s < 0 ? '' : this.path(show), selW: (6 + v[2] / 130 * 6).toFixed(1),
+      pin: s < 0 ? { x: -40, y: -40 } : { x: p[0].toFixed(1), y: p[1].toFixed(1) },
+      glow: s < 0 ? { l: '196.5px', t: '340px', o: 1 } : { l: p[0].toFixed(1) + 'px', t: p[1].toFixed(1) + 'px', o: 1 },
+      big: s < 0 ? '13 h 55' : this.fmt(v[2]),
+      small: s < 0 ? 'fuera de campo en total' : v[0] + ' · ' + v[1],
+      anim: this.state.n % 2 ? 'fdcTxtA' : 'fdcTxtB',
+      down: this.down, move: this.move, up: this.up
+    };
+  }
+}
+</script>
+</body>
+</html>

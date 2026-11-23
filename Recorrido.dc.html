@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mi recorrido — tocable</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#111}a:hover{color: #8A8A86}
+@keyframes fdcDrift{from{transform:translate(-1.2px,-0.8px)}to{transform:translate(1.2px,1.4px)}}
+@keyframes fdcBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Mapa</div>
+<a href="Mapa.dc.html" aria-current="false" style="position: absolute; left: 20px; top: 120px; width: 76px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">calma</a>
+<a href="Sombra.dc.html" aria-current="false" style="position: absolute; left: 108px; top: 120px; width: 82px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">sombra</a>
+<span aria-current="page" style="position: absolute; left: 200px; top: 120px; width: 92px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #EAFE9F; color: #111; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">recorridos</span>
+<a href="Animo.dc.html" aria-current="false" style="position: absolute; left: 300px; top: 120px; width: 75px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">animo</a>
+<div style="position: absolute; left: 0; top: 161px; width: 393px; height: 1px; background: #111; opacity: .35"></div>
+
+<div style="position: absolute; left: 20px; top: 192px; display: flex; gap: 8px; font-size: 14px">
+<span style="height: 23px; padding: 0 10px; border-radius: 12px; background: #EAFE9F; border: 1px solid #111; display: flex; align-items: center">mi recorrido</span>
+<a href="Vecinos.dc.html" style="height: 23px; padding: 0 10px; border-radius: 12px; background: #111; color: #fff; border: 1px solid #111; display: flex; align-items: center; text-decoration: none">todos los vecinos</a>
+</div>
+
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 600px; pointer-events: none; transform: translateY(40px)">
+<svg width="393" height="470" viewBox="0 0 393 470" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+<defs>
+<filter id="rb" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter>
+<pattern id="rw" width="7" height="3.6" patternUnits="userSpaceOnUse"><path d="M0 1.8q1.75 -1.2 3.5 0t3.5 0" fill="none" stroke="#111" stroke-width="0.5"></path></pattern>
+</defs>
+<ellipse cx="200" cy="356" rx="182" ry="50" fill="#111" opacity="0.12" filter="url(#rb)"></ellipse>
+<g transform="translate(196.5 342) scale(1 0.55) rotate(-25) scale(1.05)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#E6E6E3" stroke="#111" stroke-width="1.4"></path>
+</g>
+<g transform="translate(196.5 330) scale(1 0.55) rotate(-25) scale(1.05)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#FFFFFF" stroke="#111" stroke-width="1.4"></path>
+<g fill="none" stroke="#B5B5B1" stroke-width="1.1" stroke-dasharray="3 3">
+<path d="M-136 -8C-134 -82 -72 -138 8 -134C86 -130 140 -76 136 2C132 78 78 136 -2 134C-80 132 -138 70 -136 -8Z"></path>
+<path d="M-110 -6C-108 -66 -58 -112 6 -108C70 -104 112 -60 110 2C108 62 62 110 -2 108C-64 106 -112 56 -110 -6Z"></path>
+<path d="M-86 -6C-84 -52 -44 -86 6 -84C54 -82 88 -46 86 2C84 48 48 84 -2 84C-50 82 -88 42 -86 -6Z"></path>
+</g>
+<path d="M-62 -6C-58 -44 -14 -56 28 -46C68 -36 80 -6 62 20C44 46 -6 50 -34 38C-58 28 -64 12 -62 -6Z" fill="#FFFFFF" stroke="#111" stroke-width="1.2"></path>
+</g>
+</svg>
+
+<div style="position: absolute; left: 0; top: 0; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; background: radial-gradient(circle, #EAFE9F 0%, #EAFE9F 28%, rgba(234, 254, 159, 0) 70%); transform: {{ glow }}; transition: transform 0.2s ease-out; pointer-events: none"></div>
+
+<svg width="393" height="852" viewBox="0 0 393 852" style="position: absolute; left: 0; top: 0" role="img" aria-label="Mi visita sobre el parque visto como una isla: entrada a las 16:05, tres paradas marcadas con postes cuya altura es el tiempo que me quedé y salida a las 17:53. Abajo, la línea de tiempo con las paradas y el sonido. Al arrastrar la línea de tiempo, un círculo verde recorre el camino y muestra los vecinos cerca.">
+<g transform="translate(196.5 330) scale(1 0.55) rotate(-25)">
+<path d="M-5 150C0 125 8 110 10 95C-20 70 -100 50 -110 -10C-115 -60 -60 -95 0 -95C50 -95 95 -75 100 -40C102 -20 130 -12 155 -10" fill="none" stroke="#EAFE9F" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="{{ dash }}"></path>
+<path d="M-5 150C0 125 8 110 10 95C-20 70 -100 50 -110 -10C-115 -60 -60 -95 0 -95C50 -95 95 -75 100 -40C102 -20 130 -12 155 -10" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+</g>
+<text x="190" y="334" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5" fill="#111">lago</text>
+
+<circle cx="255.4" cy="405.9" r="4" fill="#FFFFFF" stroke="#111" stroke-width="1.2"></circle>
+<circle cx="332.8" cy="289" r="4" fill="#111"></circle>
+
+<ellipse cx="156.4" cy="283.6" rx="5" ry="2" fill="#EAFE9F" opacity="1"></ellipse>
+<line x1="156.4" y1="282.6" x2="156.4" y2="268" stroke="#111" stroke-width="1"></line>
+<circle cx="156.4" cy="266" r="3.2" fill="#111"></circle>
+
+<ellipse cx="270.2" cy="288" rx="8" ry="3" fill="#EAFE9F" opacity="1"></ellipse>
+<line x1="270.2" y1="286.8" x2="270.2" y2="257" stroke="#111" stroke-width="1.2"></line>
+<circle cx="270.2" cy="249" r="10" fill="#111"></circle>
+<text x="270.2" y="252.8" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="10" fill="#FFFFFF">3</text>
+
+<ellipse cx="245.7" cy="376" rx="9" ry="3.4" fill="#EAFE9F" opacity="1"></ellipse>
+<line x1="245.7" y1="375" x2="245.7" y2="330" stroke="#111" stroke-width="1.2"></line>
+<circle cx="245.7" cy="320" r="12" fill="#111"></circle>
+<text x="245.7" y="324" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">1</text>
+
+<ellipse cx="92.6" cy="352" rx="11" ry="4" fill="#EAFE9F" opacity="1"></ellipse>
+<line x1="92.6" y1="350.6" x2="92.6" y2="278" stroke="#111" stroke-width="1.4"></line>
+<circle cx="92.6" cy="278" r="16" fill="#111"></circle>
+<text x="92.6" y="282.5" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF">2</text>
+
+<g font-family="Manrope, sans-serif" fill="#111">
+<text x="92.6" y="252" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="-0.2">50′ · la más larga</text>
+<text x="263" y="324" font-size="12" font-weight="700" letter-spacing="-0.2">30′ · 16:07</text>
+<text x="285" y="251" font-size="12" font-weight="700" letter-spacing="-0.2">20′ · 17:32</text>
+<text x="164" y="263" font-size="10">un momento</text>
+<text x="262" y="424" font-size="10">entrada · 16:05</text>
+<text x="324" y="278" font-size="10">salida · 17:53</text>
+</g>
+
+<circle cx="{{ me.x }}" cy="{{ me.y }}" r="13" fill="none" stroke="#111" stroke-width="0.9" stroke-dasharray="2.6 2.2" style="transform-box: fill-box; transform-origin: center; animation: fdcBreathe 3s ease-in-out infinite"></circle>
+<circle cx="{{ me.x }}" cy="{{ me.y }}" r="7.5" fill="#EAFE9F" stroke="#111" stroke-width="1.4"></circle>
+<circle cx="{{ me.x }}" cy="{{ me.y }}" r="2.2" fill="#111"></circle>
+
+<rect x="42.4" y="580" width="87.2" height="14" rx="7" fill="{{ b1.f }}" stroke="#111" stroke-width="1"></rect>
+<rect x="138.3" y="580" width="145.4" height="14" rx="7" fill="{{ b2.f }}" stroke="#111" stroke-width="1"></rect>
+<rect x="289.5" y="580" width="58.2" height="14" rx="7" fill="{{ b3.f }}" stroke="#111" stroke-width="1"></rect>
+<g font-family="Manrope, sans-serif" font-size="9" font-weight="700">
+<text x="50" y="590.5" fill="{{ b1.c }}">1 · 30′</text><text x="146" y="590.5" fill="{{ b2.c }}">2 · 50′</text><text x="297" y="590.5" fill="{{ b3.c }}">3 · 20′</text>
+</g>
+<path d="M30.0 640.0C31.1 636.6 34.1 621.0 36.5 619.6C38.9 618.2 41.7 629.2 44.4 631.5C47.0 633.8 49.6 633.5 52.2 633.2C54.8 632.9 57.4 629.8 60.0 629.8C62.7 629.8 65.3 632.4 67.9 633.2C70.5 634.1 73.1 635.2 75.8 634.9C78.4 634.6 81.0 631.8 83.6 631.5C86.2 631.2 88.8 632.6 91.4 633.2C94.1 633.8 96.7 634.9 99.3 634.9C101.9 634.9 104.5 633.8 107.1 633.2C109.8 632.6 112.4 631.5 115.0 631.5C117.6 631.5 120.2 635.8 122.8 633.2C125.5 630.7 128.1 615.9 130.7 616.2C133.3 616.5 135.9 631.5 138.6 634.9C141.2 638.3 143.8 636.6 146.4 636.6C149.0 636.6 151.6 634.9 154.2 634.9C156.9 634.9 159.5 636.3 162.1 636.6C164.7 636.9 167.3 636.9 169.9 636.6C172.6 636.3 175.2 634.9 177.8 634.9C180.4 634.9 183.0 636.3 185.7 636.6C188.3 636.9 190.9 636.9 193.5 636.6C196.1 636.3 198.7 634.9 201.3 634.9C204.0 634.9 206.6 636.6 209.2 636.6C211.8 636.6 214.4 634.9 217.0 634.9C219.7 634.9 222.3 636.3 224.9 636.6C227.5 636.9 230.1 636.9 232.8 636.6C235.4 636.3 238.0 634.9 240.6 634.9C243.2 634.9 245.8 636.6 248.4 636.6C251.1 636.6 253.7 634.9 256.3 634.9C258.9 634.9 261.5 636.3 264.1 636.6C266.8 636.9 269.4 636.9 272.0 636.6C274.6 636.3 277.2 638.0 279.9 634.9C282.5 631.8 285.1 618.8 287.7 617.9C290.3 617.0 292.9 628.4 295.6 629.8C298.2 631.2 300.8 626.7 303.4 626.4C306.0 626.1 308.6 628.4 311.2 628.1C313.9 627.8 316.5 624.4 319.1 624.7C321.7 625.0 324.3 629.2 326.9 629.8C329.6 630.4 332.2 628.7 334.8 628.1C337.4 627.5 340.0 624.4 342.6 626.4C345.3 628.4 349.3 637.7 350.6 640.0Z" fill="#D9D9D6" stroke="#111" stroke-width="0.9" stroke-linejoin="round"></path>
+<line x1="22" y1="640.5" x2="371" y2="640.5" stroke="#111" stroke-width="0.8"></line>
+<g font-family="Manrope, sans-serif" font-size="9" fill="#8A8A86">
+<text x="22" y="574">paradas</text><text x="22" y="610">sonido</text>
+<text x="22" y="655">16:00</text><text x="109.2" y="655" text-anchor="middle">16:30</text><text x="196.5" y="655" text-anchor="middle">17:00</text><text x="283.7" y="655" text-anchor="middle">17:30</text><text x="371" y="655" text-anchor="end">18:00</text>
+</g>
+<line x1="{{ ph }}" y1="572" x2="{{ ph }}" y2="644" stroke="#111" stroke-width="1.3"></line>
+<circle cx="{{ ph }}" cy="569" r="4.5" fill="#EAFE9F" stroke="#111" stroke-width="1.2"></circle>
+</svg>
+
+<div style="position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none">
+<sc-for list="{{ dots }}" as="p" hint-placeholder-count="0">
+<span style="position: absolute; left: 0; top: 0; width: 0; height: 0; transform: {{ p.t }}; opacity: {{ p.o }}; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) {{ p.d }}, opacity 0.4s ease"><span style="display: block; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%; background: #111111; animation: fdcDrift {{ p.dur }} ease-in-out {{ p.del }} infinite alternate"></span></span>
+</sc-for>
+</div>
+
+</div>
+<sc-for list="{{ stopBtns }}" as="b" hint-placeholder-count="3"><button type="button" aria-label="{{ b.l }}" data-t="{{ b.t }}" onClick="{{ goT }}" style="position: absolute; left: {{ b.x }}; top: {{ b.y }}; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; z-index: 2"></button></sc-for>
+<div style="position: absolute; left: 24px; top: 516px; width: 345px; height: 30px; box-sizing: border-box; border: 1px solid #111; border-radius: 15px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px"><span style="width: 10px; height: 10px; border-radius: 50%; background: #EAFE9F; border: 1px solid #111"></span><b style="font-weight: 600">17:10</b> · parada 2 · 33 dB · 3 vecinos cerca</div>
+<div style="position: absolute; left: 0; top: {{ sheetTop }}; width: 393px; height: 760px; background: #FFFFFF; border-radius: 30px 30px 0 0; box-shadow: 0 -1px 0 rgba(0,0,0,.18), 0 -14px 34px rgba(0,0,0,.07); transition: top .6s cubic-bezier(.2,.8,.2,1); z-index: 3; pointer-events: auto">
+<button type="button" aria-label="{{ sheetLabel }}" onClick="{{ sheetT }}" onPointerDown="{{ sheetD }}" onPointerUp="{{ sheetU }}" style="position: absolute; left: 0; top: 0; width: 393px; height: 46px; border: 0; background: transparent; cursor: grab; touch-action: none; z-index: 2"><span style="display: block; width: 30px; height: 2px; margin: 0 auto; background: #6B6B67; border-radius: 1px"></span></button>
+<div style="position: absolute; left: 22px; top: 49px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 72px; line-height: 72px; letter-spacing: -0.07em">1h 48m</div>
+<div style="position: absolute; right: 20px; top: 93px; text-align: right"><div style="font-size: 13px">fuera de campo</div><div style="font-size: 10.5px; color: #8A8A86">3 paradas · 1 momento</div></div>
+<div style="position: absolute; left: 25px; top: 152px; font-size: 10px; color: #8A8A86">paradas</div>
+<sc-for list="{{ pills }}" as="q" hint-placeholder-count="3"><div data-t="{{ q.t2 }}" onClick="{{ goT }}" style="cursor: pointer; position: absolute; left: {{ q.x }}; top: 174px; width: {{ q.w }}; height: 15px; box-sizing: border-box; border-radius: 8px; border: 1px solid #111; background: {{ q.bg }}; color: {{ q.c }}; font-size: 8.5px; font-weight: 700; display: flex; align-items: center; padding-left: 8px; transition: background .3s, color .3s">{{ q.t }}</div></sc-for>
+<div style="position: absolute; left: 25px; top: 197px; font-size: 10px; color: #8A8A86">sonido</div>
+<svg width="393" height="120" viewBox="0 0 393 120" style="position: absolute; left: 0; top: 179px; overflow: visible" aria-hidden="true">
+<path d="{{ snd }}" fill="#DADAD6" stroke="#111" stroke-width=".8"></path>
+<line x1="25" y1="70" x2="373" y2="70" stroke="#111" stroke-width=".8"></line>
+<g font-family="Manrope, sans-serif" font-size="9.5" fill="#8A8A86" text-anchor="middle"><text x="36" y="86">16:00</text><text x="112" y="86">16:30</text><text x="199" y="86">17:00</text><text x="286" y="86">17:30</text><text x="362" y="86">18:00</text></g>
+<line x1="{{ ph }}" y1="-12" x2="{{ ph }}" y2="74" stroke="#111" stroke-width="1.3"></line>
+<circle cx="{{ ph }}" cy="-12" r="4.5" fill="#EAFE9F" stroke="#111"></circle>
+</svg>
+<button type="button" aria-label="Arrastrá la línea para recorrer tu visita" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position: absolute; left: 20px; top: 155px; width: 358px; height: 110px; border: 0; background: transparent; cursor: ew-resize; touch-action: none"></button>
+<sc-for list="{{ moms }}" as="r" hint-placeholder-count="6">
+<button type="button" data-t="{{ r.t }}" onClick="{{ goT }}" style="position: absolute; left: 22px; top: {{ r.y }}; width: 354px; height: 24px; border: 0; border-radius: 12px; background: {{ r.bg }}; display: flex; align-items: center; padding: 0 12px; font-family: Manrope, sans-serif; font-size: 11.5px; color: #111; cursor: pointer; transition: background .3s"><b style="width: 51px; text-align: left">{{ r.h }}</b><span style="flex: 1; text-align: left">{{ r.s }}</span><span style="color: #8A8A86">{{ r.m }}</span></button>
+</sc-for>
+<div style="position: absolute; left: 23px; top: 482px; font-size: 13.5px; color: #8A8A86">tu visita en números</div>
+<sc-for list="{{ nums }}" as="n" hint-placeholder-count="3"><div style="position: absolute; left: {{ n.x }}; top: 515px; width: 104px; height: 83px; box-sizing: border-box; border: 1px solid #111; border-radius: 12px; text-align: center"><div style="margin-top: 13px; font-family: Poppins, sans-serif; font-size: 35px; line-height: 38px; letter-spacing: -0.05em">{{ n.n }}</div><div style="font-size: 10.5px; line-height: 11px; color: #8A8A86; padding: 0 4px">{{ n.l }}</div></div></sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { sh: false, t: 70 };
+  SEG = [
+    [[-5, 150], [0, 125], [8, 110], [10, 95]],
+    [[10, 95], [-20, 70], [-100, 50], [-110, -10]],
+    [[-110, -10], [-115, -60], [-60, -95], [0, -95]],
+    [[0, -95], [50, -95], [95, -75], [100, -40]],
+    [[100, -40], [102, -20], [130, -12], [155, -10]]
+  ];
+  H = [12, 5, 4, 6, 4, 3, 5, 4, 3, 4, 5, 4, 14, 3, 2, 3, 2, 2, 3, 2, 2, 3, 2, 3, 2, 2, 3, 2, 3, 2, 2, 3, 13, 6, 8, 7, 9, 6, 7, 8];
+  W = Array.from({ length: 12 }, (_, k) => { const x = Math.sin(k * 78.233 + 1.3) * 24634.6345; return x - Math.floor(x); });
+  LEN = null;
+
+  bez(s, u) {
+    const a = 1 - u;
+    const k0 = a * a * a, k1 = 3 * a * a * u, k2 = 3 * a * u * u, k3 = u * u * u;
+    return [k0 * s[0][0] + k1 * s[1][0] + k2 * s[2][0] + k3 * s[3][0], k0 * s[0][1] + k1 * s[1][1] + k2 * s[2][1] + k3 * s[3][1]];
+  }
+  segLen(s, u) {
+    let len = 0, p = s[0];
+    for (let i = 1; i <= 24; i++) {
+      const q = this.bez(s, u * i / 24);
+      len += Math.hypot(q[0] - p[0], q[1] - p[1]);
+      p = q;
+    }
+    return len;
+  }
+  loc(t) {
+    if (t <= 7) return { s: 0, u: Math.max(0, (t - 5) / 2), lab: 'entrando por Díaz Vélez', near: 8, stop: 0 };
+    if (t <= 37) return { s: 0, u: 1, lab: 'parada 1', near: 5, stop: 1 };
+    if (t <= 40) return { s: 1, u: (t - 37) / 3, lab: 'caminando', near: 6, stop: 0 };
+    if (t <= 90) return { s: 1, u: 1, lab: 'parada 2', near: 3, stop: 2 };
+    if (t <= 91) return { s: 2, u: t - 90, lab: 'caminando', near: 6, stop: 0 };
+    if (t <= 92) return { s: 3, u: t - 91, lab: 'un momento', near: 6, stop: 0 };
+    if (t <= 112) return { s: 3, u: 1, lab: 'parada 3', near: 12, stop: 3 };
+    return { s: 4, u: Math.min(1, t - 112), lab: 'saliendo', near: 7, stop: 0 };
+  }
+
+  componentDidMount() {}
+  componentWillUnmount() { this.playing = false; cancelAnimationFrame(this.raf); }
+
+  pick = (e) => {
+    const el = e.currentTarget || e.target;
+    const r = el.getBoundingClientRect();
+    const t = Math.max(5, Math.min(113, (e.clientX - r.left) / r.width * 120));
+    this.setState({ t: t });
+  };
+  down = (e) => {
+    this.playing = false;
+    cancelAnimationFrame(this.raf);
+    this.dragging = true;
+    try { (e.currentTarget || e.target).setPointerCapture(e.pointerId); } catch (err) {}
+    this.pick(e);
+  };
+  move = (e) => { if (this.dragging) this.pick(e); };
+  up = () => { this.dragging = false; };
+
+  sheetT = () => { if (this.sw) { this.sw = false; return; } this.setState({ sh: !this.state.sh }); try { navigator.vibrate && navigator.vibrate(6); } catch (e) {} };
+  sheetD = (e) => { this.sy = e.clientY; };
+  sheetU = (e) => { if (this.sy == null) return; const dy = e.clientY - this.sy; this.sy = null; if (Math.abs(dy) > 25) { this.sw = true; this.setState({ sh: dy < 0 }); } };
+  MOMS = [['16:05', 'entraste por Díaz Vélez', '', 5], ['16:10', 'caminaste por los bulevares', '30 min', 20], ['16:40', 'te quedaste en la orilla del lago', '50 min', 60], ['17:05', 'un momento con el celular', '2 min', 91], ['17:30', 'pasaste por la feria', '20 min', 100], ['17:55', 'saliste · te sentiste "tranquila"', '', 113]];
+  goT = (e) => { this.playing = false; cancelAnimationFrame(this.raf); this.setState({ t: +e.currentTarget.getAttribute('data-t') }); try { navigator.vibrate && navigator.vibrate(5); } catch (er) {} };
+  renderVals() {
+    if (!this.LEN) this.LEN = this.SEG.map((s) => this.segLen(s, 1));
+    const t = this.state.t, L = this.loc(t);
+    const p = this.bez(this.SEG[L.s], L.u);
+    const c = 0.9063, s = 0.4226;
+    const X = 196.5 + p[0] * c + p[1] * s;
+    const Y = 330 + 0.55 * (-p[0] * s + p[1] * c);
+    let len = this.segLen(this.SEG[L.s], L.u);
+    for (let i = 0; i < L.s; i++) len += this.LEN[i];
+    const m = Math.round(t), mm = m % 60;
+    const idx = Math.max(0, Math.min(39, Math.round((t - 5) / 108 * 39)));
+    const dots = [];
+    for (let k = 0; k < 12; k++) {
+      const on = k < L.near;
+      const rho = on ? 14 + this.W[k] * 20 : 0;
+      dots.push({
+        t: 'translate(' + (X + Math.cos(k * 2.4) * rho).toFixed(1) + 'px, ' + (Y + Math.sin(k * 2.4) * rho * 0.55).toFixed(1) + 'px)',
+        o: on ? 1 : 0,
+        d: (k * 12) + 'ms',
+        dur: (2.6 + (k % 5) * 0.5) + 's',
+        del: (-(k % 7) * 0.4) + 's'
+      });
+    }
+    const bar = (n) => ({ f: L.stop === n ? '#EAFE9F' : '#111111', c: L.stop === n ? '#111111' : '#FFFFFF' });
+    const row = t < 40 ? 0 : t < 112 ? 1 : 2;
+    const __sh = { sheetTop: this.state.sh ? '163px' : '590px', sheetLabel: this.state.sh ? 'Bajar la hoja' : 'Subir la hoja', sheetT: this.sheetT, sheetD: this.sheetD, sheetU: this.sheetU };
+    return { ...__sh, pills: [['1 · 30′', 40, 82, 1], ['2 · 50′', 136, 145, 2], ['3 · 20′', 287, 58, 3]].map((q) => ({ t: q[0], t2: [0, 20, 60, 100][q[3]], x: q[1] + 'px', w: q[2] + 'px', bg: L.stop === q[3] ? '#EAFE9F' : (L.stop ? '#111111' : (q[3] === 2 ? '#EAFE9F' : '#111111')), c: (L.stop === q[3] || (!L.stop && q[3] === 2)) ? '#111111' : '#FFFFFF' })),
+      snd: (() => { let d = 'M25 70'; this.H.forEach((h, i) => { d += 'L' + (25 + i / 39 * 348).toFixed(1) + ' ' + (70 - h * 1.9).toFixed(1); }); return d + 'L373 70Z'; })(),
+      moms: this.MOMS.map((r, i) => { const nx = this.MOMS[i + 1] ? this.MOMS[i + 1][3] : 999; const on = t >= r[3] - 3 && t < nx - 3; return { h: r[0], s: r[1], m: r[2], t: r[3], y: (306 + i * 28.5) + 'px', bg: on ? '#EAFE9F' : '#F3F3F1' }; }),
+      nums: [['3', 'paradas', 26], ['2,1k', 'caminados', 148], ['12', 'vecinos con un camino parecido', 271]].map((n) => ({ n: n[0], l: n[1], x: n[2] + 'px' })), goT: this.goT, stopBtns: [[245.7, 360, 20, "Parada 1"], [92.6, 318, 60, "Parada 2"], [270.2, 289, 100, "Parada 3"]].map((b) => ({ x: (b[0] - 20) + 'px', y: (b[1] - 20) + 'px', t: b[2], l: b[3] })),
+      dash: len.toFixed(1) + ' 2000',
+      me: { x: X.toFixed(1), y: Y.toFixed(1) },
+      glow: 'translate(' + X.toFixed(1) + 'px, ' + Y.toFixed(1) + 'px) scale(1, 0.6)',
+      ph: (25 + t / 120 * 348).toFixed(1),
+      clock: (16 + Math.floor(m / 60)) + ':' + (mm < 10 ? '0' + mm : mm),
+      lab: L.lab,
+      db: String(Math.round(28 + this.H[idx] * 1.5)),
+      near: String(L.near),
+      dots: [],
+      b1: bar(1), b2: bar(2), b3: bar(3),
+      r0: row === 0 ? '#EAFE9F' : '#F3F3F1', r1: row === 1 ? '#EAFE9F' : '#F3F3F1', r2: row === 2 ? '#EAFE9F' : '#F3F3F1',
+      down: this.down, move: this.move, up: this.up
+    };
+  }
+}
+</script>
+</body>
+</html>

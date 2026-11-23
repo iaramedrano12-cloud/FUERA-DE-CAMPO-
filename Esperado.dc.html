@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Lo que esperó afuera</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes svBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@keyframes svIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes svPop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes svDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes svFadeA{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes svFadeB{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sv-in{animation:svIn .7s cubic-bezier(.2,.8,.2,1) both}
+.sv-b{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif;color:#111}
+.sv-chip{height:24px;padding:0 6px;border-radius:12px;border:1px solid transparent;background:#fff;font:400 14px Manrope,sans-serif;color:#111;display:flex;align-items:center;gap:5px;cursor:pointer;transition:background .25s}
+.sv-chip[aria-pressed="true"]{background:#EAFE9F;border-color:#111}
+.sv-chip i{width:10px;height:10px;border-radius:50%;display:inline-block;box-sizing:border-box}
+.sv-row{display:flex;align-items:center;height:29px;font-size:12px;cursor:pointer;border:0;background:transparent;width:100%;padding:0;font-family:Manrope,sans-serif;color:#111;text-align:left;border-radius:8px;transition:background .2s}
+.sv-row:hover{background:rgba(0,0,0,.035)}
+.sv-f{position:absolute;border:0;border-bottom:1px solid #111;background:transparent;font:400 15px Manrope,sans-serif;color:#111;outline:none;padding:0 0 6px;border-radius:0}
+.sv-f::placeholder{color:#8A8A86}
+</style>
+</helmet>
+<div style="position: relative; margin-top: 52px; width: 393px; height: {{ H }}; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+<svg width="140" height="20" viewBox="0 0 140 20" style="position: absolute; left: -38px; top: 30.5px" aria-hidden="true"><line x1="60" y1="10" x2="116" y2="10" stroke="#B5B5B1" stroke-width="1"></line><line x1="60" y1="10" x2="78" y2="10" stroke="#111" stroke-width="1"></line><circle cx="60" cy="10" r="3.6" fill="#111"></circle><circle cx="78" cy="10" r="4.6" fill="#EAFE9F" stroke="#111" stroke-width="1"></circle><circle cx="96.5" cy="10" r="4.6" fill="#FFFFFF" stroke="#B5B5B1" stroke-width="1"></circle><circle cx="116" cy="10" r="4.6" fill="#FFFFFF" stroke="#B5B5B1" stroke-width="1"></circle></svg>
+<a href="Home.dc.html" data-tr="back" style="position: absolute; right: 22px; top: 30px; font-size: 13px; color: #111; text-decoration: underline; text-underline-offset: 4px; padding: 4px 0">Saltar</a>
+<h1 class="sv-in" style="position: absolute; left: 18px; top: 112px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 35px; letter-spacing: -0.08em">lo que esperó<br>afuera</h1>
+<p style="position: absolute; left: 20px; top: 196px; margin: 0; font-size: 12.5px; color: #8A8A86">Llegaron 12 notificaciones mientras estabas afuera.</p>
+<div style="position: absolute; left: 20px; top: 222px; display: flex; align-items: center; gap: 8px; font-size: 12px"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="#111" stroke-dasharray="1.5 1.5"></circle><circle cx="8" cy="8" r="3" fill="#111"></circle></svg>tocá un punto para leer la notificación</div>
+
+<svg width="393" height="620" viewBox="0 0 393 620" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="Reloj de tu visita con las notificaciones que llegaron mientras estabas afuera: cada punto es una.">
+<path d="{{ grey }}" fill="none" stroke="#DADAD6" stroke-width="8" stroke-linecap="round"></path>
+<path d="{{ grey }}" fill="none" stroke="#EAFE9F" stroke-width="16" stroke-linecap="round" transform="translate(190 421) scale(.935) translate(-190 -421)" opacity="{{ limeO }}" style="transition: opacity .5s"></path>
+<path d="{{ blackL }}" fill="none" stroke="#111" stroke-width="1"></path>
+<path d="{{ blackR }}" fill="none" stroke="#111" stroke-width="1"></path>
+<g fill="none" stroke="#111" stroke-width="0.6" stroke-dasharray="1.5 3"><circle cx="190" cy="421" r="132"></circle><circle cx="190" cy="421" r="112"></circle><circle cx="190" cy="421" r="92"></circle><circle cx="190" cy="421" r="72"></circle></g>
+<text x="146" y="265" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5">17:55</text>
+<text x="234" y="265" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5">16:05</text>
+<g font-family="Manrope, sans-serif" font-size="10.5" fill="#8A8A86"><text x="54" y="330" text-anchor="middle">feria</text><text x="346" y="370" text-anchor="middle">bulevares</text><text x="297" y="551" text-anchor="middle">orilla del lago</text></g>
+<line x1="{{ hand.x1 }}" y1="{{ hand.y1 }}" x2="{{ hand.x2 }}" y2="{{ hand.y2 }}" stroke="#111" stroke-width="1.2" opacity="{{ hand.o }}" style="transition: opacity .3s"></line>
+<sc-for list="{{ dots }}" as="d" hint-placeholder-count="12">
+<g opacity="{{ d.o }}" style="transition: opacity .4s">
+<circle cx="{{ d.x }}" cy="{{ d.y }}" r="{{ d.rr }}" fill="#FFFFFF" stroke="{{ d.sc }}" stroke-width="1" stroke-dasharray="1.6 1.8"></circle>
+<circle cx="{{ d.x }}" cy="{{ d.y }}" r="{{ d.r }}" fill="{{ d.f }}" stroke="#111" stroke-width="{{ d.w }}"></circle>
+</g>
+</sc-for>
+<circle cx="190" cy="421" r="56" fill="#FFFFFF" stroke="#111" stroke-width="0.8"></circle>
+<circle cx="190" cy="421" r="47" fill="#111"></circle>
+<text x="190" y="{{ c.y }}" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="400" font-size="{{ c.fs }}" letter-spacing="-0.5" fill="#FFFFFF" style="animation: {{ anim }} .4s ease both">{{ c.n }}</text>
+<text x="190" y="443" text-anchor="middle" font-family="Manrope, sans-serif" font-size="7.5" fill="#EAFE9F">{{ c.l }}</text>
+</svg>
+<sc-for list="{{ dots }}" as="d" hint-placeholder-count="12">
+<button type="button" class="sv-b" aria-label="{{ d.aria }}" data-i="{{ d.i }}" onClick="{{ pickN }}" style="position: absolute; left: {{ d.bl }}; top: {{ d.bt }}; width: 32px; height: 32px; border-radius: 50%; pointer-events: {{ d.pe }}"></button>
+</sc-for>
+<button type="button" class="sv-b" aria-label="Volver al resumen" onClick="{{ reset }}" style="position: absolute; left: 140px; top: 371px; width: 100px; height: 100px; border-radius: 50%"></button>
+
+<div style="position: absolute; left: 20px; top: 617px; width: 353px; display: flex; justify-content: space-between">
+<sc-for list="{{ chips }}" as="k" hint-placeholder-count="4">
+<button type="button" class="sv-chip" aria-pressed="{{ k.on }}" data-k="{{ k.k }}" onClick="{{ pickC }}"><i style="background: {{ k.f }}; border: 1px solid #111"></i>{{ k.k }}</button>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 18px; top: 672px; width: 348px; box-sizing: border-box; padding: 14px 18px 12px; border-radius: 18px; background: #F3F3F1; opacity: {{ sumO }}; transition: opacity .3s; display: {{ sumD }}; animation: {{ anim }} .4s ease both">
+<sc-for list="{{ sum }}" as="r" hint-placeholder-count="4">
+<button type="button" class="sv-row" data-k="{{ r.k }}" onClick="{{ pickC }}"><b style="width: 42px; font-weight: 700">{{ r.n }}</b><span style="width: 72px">{{ r.t }}</span><span style="flex: 1; color: #8A8A86">{{ r.who }}</span><span>→</span></button>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 18px; top: 672px; width: 348px; box-sizing: border-box; padding: 12px 14px 8px; border-radius: 18px; background: #F3F3F1; display: {{ listD }}; animation: {{ anim }} .4s ease both">
+<div style="font-size: 10.5px; color: #8A8A86; margin-bottom: 4px">{{ cat }} · tocá una para leerla</div>
+<sc-for list="{{ list }}" as="r" hint-placeholder-count="5">
+<button type="button" class="sv-row" data-i="{{ r.i }}" onClick="{{ pickN }}"><b style="width: 44px; font-weight: 700">{{ r.h }}</b><span style="width: 72px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.who }}</span><span style="flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #8A8A86; padding-right: 8px">{{ r.txt }}</span><span>→</span></button>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 21px; top: 665px; width: 349px; box-sizing: border-box; padding: 16px 20px 14px; border: 1px solid #111; border-radius: 22px; background: #FFFFFF; display: {{ cardD }}; animation: {{ anim }} .4s ease both">
+<div style="display: flex; justify-content: space-between; font-size: 10.5px; color: #8A8A86"><span>{{ n.app }}</span><span>{{ n.h }} · {{ n.where }}</span></div>
+<div style="margin-top: 8px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 21px; line-height: 24px; letter-spacing: -0.03em">{{ n.who }}</div>
+<div style="font-size: 12px">“{{ n.txt }}”</div>
+<div style="display: flex; justify-content: space-between; margin-top: 18px; font-size: 10.5px; color: #8A8A86"><span>esperó {{ n.wait }} min, sin apuro</span><button type="button" class="sv-b" onClick="{{ abrir }}" style="font-size: 12px; text-decoration: underline; text-underline-offset: 3px">abrir →</button></div>
+</div>
+
+<a href="Sentiste.dc.html" style="position: absolute; left: 0; top: {{ fy1 }}; width: 393px; text-align: center; font-size: 16px; color: #111; text-decoration: none; transition: top .4s"><span style="border-bottom: 1px solid #111; padding-bottom: 3px">Siguiente</span></a>
+<button type="button" class="sv-b" onClick="{{ todas }}" style="position: absolute; left: 0; top: {{ fy2 }}; width: 393px; text-align: center; font-size: 16px; color: #8A8A86; text-decoration: underline; text-underline-offset: 5px; transition: top .4s">Verlas todas ahora</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { cat: null, sel: -1, n: 0 };
+  CX = 190; CY = 421;
+  CATS = { mensajes: { f: '#111111', who: 'Juli, “flia”, Trabajo' }, redes: { f: '#8A8A86', who: 'sofi, feria centenario, tomi' }, correo: { f: '#FFFFFF', who: 'Banco, Librería' }, otro: { f: '#D9D9D6', who: 'Clima, Calendario', t: 'otras' } };
+  N = [
+    { c: 'mensajes', x: 106, y: 318, h: '16:25', who: 'Juli', txt: '¿estás en el parque? paso en un rato', app: 'WhatsApp', where: 'en los bulevares', wait: 90 },
+    { c: 'mensajes', x: 314, y: 377, h: '16:49', who: '“flia”', txt: 'Papá mandó una foto', app: 'WhatsApp', where: 'en el lago', wait: 66 },
+    { c: 'mensajes', x: 84, y: 500, h: '17:03', who: 'Trabajo', txt: 'mañana a las 10 ¿te sirve?', app: 'WhatsApp', where: 'en el lago', wait: 52 },
+    { c: 'mensajes', x: 265, y: 530, h: '17:17', who: 'Juli', txt: 'avisame cuando salgas', app: 'WhatsApp', where: 'en la orilla', wait: 38 },
+    { c: 'mensajes', x: 149, y: 565, h: '17:45', who: '“flia”', txt: '¿venís a comer el domingo?', app: 'WhatsApp', where: 'en la feria', wait: 10, big: 1 },
+    { c: 'redes', x: 270, y: 343, h: '16:31', who: 'sofi', txt: 'te mencionó en una historia', app: 'Instagram', where: 'en los bulevares', wait: 84 },
+    { c: 'redes', x: 80, y: 444, h: '17:02', who: 'feria centenario', txt: 'subió fotos nuevas de libros', app: 'Instagram', where: 'en el lago', wait: 53 },
+    { c: 'redes', x: 220, y: 529, h: '17:40', who: 'tomi', txt: 'le gustó tu publicación', app: 'Instagram', where: 'en la feria', wait: 15 },
+    { c: 'correo', x: 281, y: 430, h: '16:58', who: 'Banco', txt: 'tu resumen ya está disponible', app: 'Mail', where: 'en el lago', wait: 57 },
+    { c: 'correo', x: 138, y: 497, h: '17:26', who: 'Librería', txt: 'llegó el libro que pediste', app: 'Mail', where: 'en la orilla', wait: 29 },
+    { c: 'otro', x: 169, y: 353, h: '16:44', who: 'Clima', txt: 'se viene una brisa fresca', app: 'Aviso', where: 'en el lago', wait: 71 },
+    { c: 'otro', x: 211, y: 353, h: '17:50', who: 'Calendario', txt: 'mañana: turno dentista 9 h', app: 'Aviso', where: 'en la feria', wait: 5 }
+  ];
+  pt(r, a) { const t = a * Math.PI / 180; return [this.CX + r * Math.sin(t), this.CY - r * Math.cos(t)]; }
+  arc(r, a0, a1) { const p = this.pt(r, a0), q = this.pt(r, a1); return 'M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + 'A' + r + ' ' + r + ' 0 ' + ((a1 - a0) > 180 ? 1 : 0) + ' 1 ' + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }
+  vib(p) { this.props.app && this.props.app.vib(p); }
+  pickC = (e) => { const k = e.currentTarget.getAttribute('data-k'); this.vib(5); this.setState({ cat: this.state.cat === k ? null : k, sel: -1, n: this.state.n + 1 }); };
+  pickN = (e) => { const i = +e.currentTarget.getAttribute('data-i'); this.vib(6); this.setState({ sel: i, cat: this.N[i].c, n: this.state.n + 1 }); };
+  reset = () => { if (this.state.sel >= 0) this.setState({ sel: -1, n: this.state.n + 1 }); else if (this.state.cat) this.setState({ cat: null, n: this.state.n + 1 }); };
+  abrir = () => this.props.app && this.props.app.toast('se abriría ' + this.N[this.state.sel].app);
+  todas = () => this.props.app && this.props.app.toast('tus avisos ya están en el celular');
+  renderVals() {
+    const st = this.state, f = (v) => v.toFixed(1), cat = st.cat, sel = st.sel;
+    const counts = { mensajes: 0, redes: 0, correo: 0, otro: 0 }; this.N.forEach((x) => counts[x.c]++);
+    const list = this.N.map((x, i) => ({ ...x, i: i })).filter((x) => x.c === cat);
+    const mode = sel >= 0 ? 'card' : cat ? 'list' : 'sum';
+    const n = sel >= 0 ? this.N[sel] : this.N[0];
+    let hand = { x1: 0, y1: 0, x2: 0, y2: 0, o: 0 };
+    if (sel >= 0) { const dx = n.x - this.CX, dy = n.y - this.CY, d = Math.hypot(dx, dy); hand = { x1: f(this.CX + dx / d * 56), y1: f(this.CY + dy / d * 56), x2: f(n.x - dx / d * 10), y2: f(n.y - dy / d * 10), o: 1 }; }
+    const listEnd = mode === 'sum' ? 830 : mode === 'list' ? 672 + 40 + list.length * 29 + 10 : 792;
+    return {
+      H: Math.max(1105, listEnd + 120) + 'px',
+      grey: this.arc(150, 25, 335), blackL: this.arc(150, 335, 352), blackR: this.arc(150, 8, 25),
+      limeO: cat ? 1 : 0, hand: hand,
+      dots: this.N.map((x, i) => {
+        const on = i === sel, inCat = !cat || x.c === cat, F = this.CATS[x.c].f;
+        return { i: i, x: x.x, y: x.y, r: on ? 7 : x.big ? 7.5 : 5, rr: on ? 12 : x.big ? 12.5 : 9.5, f: on ? '#FFFFFF' : F, w: on ? 1.5 : (F === '#FFFFFF' ? 1 : 0), sc: '#111', o: inCat ? 1 : 0.25, pe: 'auto', bl: (x.x - 16) + 'px', bt: (x.y - 16) + 'px', aria: x.h + ' · ' + x.who + ': ' + x.txt };
+      }),
+      c: sel >= 0 ? { n: n.h, l: n.where, fs: 22, y: 429 } : cat ? { n: String(counts[cat]), l: cat, fs: 40, y: 434 } : { n: '12', l: 'notificaciones', fs: 40, y: 434 },
+      chips: Object.keys(this.CATS).map((k) => ({ k: k, on: String(cat === k), f: this.CATS[k].f })),
+      sum: Object.keys(this.CATS).map((k) => ({ k: k, n: counts[k], t: this.CATS[k].t || k, who: this.CATS[k].who })),
+      list: list.map((x) => ({ i: x.i, h: x.h, who: x.who, txt: x.txt })), cat: cat || '',
+      sumD: mode === 'sum' ? 'block' : 'none', sumO: 1, listD: mode === 'list' ? 'block' : 'none', cardD: mode === 'card' ? 'block' : 'none',
+      n: n, fy1: (listEnd + 34) + 'px', fy2: (listEnd + 70) + 'px', anim: st.n % 2 ? 'svFadeA' : 'svFadeB',
+      pickC: this.pickC, pickN: this.pickN, reset: this.reset, abrir: this.abrir, todas: this.todas
+    };
+  }
+}
+</script>
+</body>
+</html>

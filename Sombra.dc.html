@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Sombra — tocable</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#111}a:hover{color: #8A8A86}
+@keyframes fdcDrift{from{transform:translate(-1.2px,-0.8px)}to{transform:translate(1.2px,1.4px)}}
+@keyframes fdcBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 934px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Mapa</div>
+<a href="Mapa.dc.html" aria-current="false" style="position: absolute; left: 20px; top: 120px; width: 76px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">calma</a>
+<span aria-current="page" style="position: absolute; left: 108px; top: 120px; width: 82px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #EAFE9F; color: #111; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">sombra</span>
+<a href="Recorrido.dc.html" aria-current="false" style="position: absolute; left: 200px; top: 120px; width: 92px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">recorridos</a>
+<a href="Animo.dc.html" aria-current="false" style="position: absolute; left: 300px; top: 120px; width: 75px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">animo</a>
+<div style="position: absolute; left: 0; top: 161px; width: 393px; height: 1px; background: #111; opacity: .35"></div>
+
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 852px; pointer-events: none; transform: translateY(70px)">
+<svg width="393" height="852" viewBox="0 0 393 852" style="position: absolute; left: 0; top: 0" role="img" aria-label="El sol recorre el cielo de 8 a 20 h sobre el parque visto como una isla. Al moverlo, las sombras de los árboles giran y los vecinos, cada uno un puntito, se acomodan: negros a la sombra, verdes al sol.">
+<defs>
+<filter id="sg" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="14"></feGaussianBlur></filter>
+<filter id="sb" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4"></feGaussianBlur></filter>
+<filter id="cone" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"></feGaussianBlur></filter>
+<pattern id="wt" width="7" height="3.6" patternUnits="userSpaceOnUse"><path d="M0 1.8q1.75 -1.2 3.5 0t3.5 0" fill="none" stroke="#111" stroke-width="0.5"></path></pattern>
+</defs>
+
+<polygon points="{{ cone }}" fill="#EAFE9F" opacity="0.5" filter="url(#cone)"></polygon>
+<path d="M56.5 300A140 140 0 0 1 336.5 300" fill="none" stroke="#111" stroke-width="0.7" stroke-dasharray="1.5 3"></path>
+<g fill="#FFFFFF" stroke="#111" stroke-width="0.8">
+<circle cx="56.5" cy="300" r="4"></circle><circle cx="75.3" cy="230" r="4"></circle><circle cx="126.5" cy="178.8" r="4"></circle><circle cx="196.5" cy="160" r="4"></circle><circle cx="266.5" cy="178.8" r="4"></circle><circle cx="317.7" cy="230" r="4"></circle><circle cx="336.5" cy="300" r="4"></circle>
+</g>
+<g font-family="Manrope, sans-serif" font-size="9.5" fill="#8A8A86" text-anchor="middle">
+<text x="38" y="304">8</text><text x="58" y="224">10</text><text x="114" y="170">12</text><text x="280" y="170">16</text><text x="336" y="224">18</text><text x="356" y="304">20</text>
+</g>
+<circle cx="{{ sun.x }}" cy="{{ sun.y }}" r="30" fill="#EAFE9F" filter="url(#sg)"></circle>
+<circle cx="{{ sun.x }}" cy="{{ sun.y }}" r="16" fill="none" stroke="#111" stroke-width="0.8" stroke-dasharray="2.5 2" style="transform-box: fill-box; transform-origin: center; animation: fdcBreathe 3.2s ease-in-out infinite"></circle>
+<circle cx="{{ sun.x }}" cy="{{ sun.y }}" r="10" fill="#111"></circle>
+<text x="{{ sun.x }}" y="{{ sun.ty }}" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="11" fill="#111">{{ time }}</text>
+
+<ellipse cx="200" cy="616" rx="186" ry="44" fill="#111" opacity="0.12" filter="url(#sb)"></ellipse>
+<g transform="translate(196.5 602) scale(1 0.5) rotate(-20) scale(1.1)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#E6E6E3" stroke="#111" stroke-width="1.3"></path>
+</g>
+<g transform="translate(196.5 590) scale(1 0.5) rotate(-20) scale(1.1)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#FFFFFF" stroke="#111" stroke-width="1.3"></path>
+<path d="M-62 -6C-58 -44 -14 -56 28 -46C68 -36 80 -6 62 20C44 46 -6 50 -34 38C-58 28 -64 12 -62 -6Z" fill="#FFFFFF" stroke="#111" stroke-width="1.1"></path>
+</g>
+
+<g fill="#BDBDB9" filter="url(#sb)">
+<g style="transform: translate({{ sh.hx }}px, {{ sh.hy }}px); transition: transform 0.5s ease">
+<ellipse cx="243.3" cy="521.3" rx="15" ry="6"></ellipse><ellipse cx="119.7" cy="532.7" rx="12" ry="5"></ellipse><ellipse cx="213.3" cy="541.1" rx="11" ry="4.5"></ellipse><ellipse cx="165.7" cy="541.8" rx="11" ry="4.5"></ellipse><ellipse cx="313.8" cy="554.3" rx="13" ry="5"></ellipse><ellipse cx="255.4" cy="556.6" rx="13" ry="5"></ellipse><ellipse cx="210.1" cy="558.4" rx="10" ry="4"></ellipse><ellipse cx="156.7" cy="559.4" rx="11" ry="4.5"></ellipse><ellipse cx="318" cy="576.2" rx="10" ry="4"></ellipse><ellipse cx="281.3" cy="582.4" rx="12" ry="5"></ellipse><ellipse cx="88.3" cy="590.7" rx="13" ry="5"></ellipse><ellipse cx="252.4" cy="607.5" rx="15" ry="6"></ellipse><ellipse cx="303.4" cy="608.8" rx="15" ry="6"></ellipse><ellipse cx="54" cy="615.2" rx="11" ry="4.5"></ellipse><ellipse cx="93.2" cy="621.6" rx="12" ry="5"></ellipse><ellipse cx="202.5" cy="626.4" rx="15" ry="6"></ellipse><ellipse cx="274.5" cy="636.9" rx="13" ry="5"></ellipse><ellipse cx="237.7" cy="637.5" rx="11" ry="4.5"></ellipse><ellipse cx="109.1" cy="641.2" rx="13" ry="5"></ellipse><ellipse cx="167.2" cy="642.1" rx="13" ry="5"></ellipse>
+</g>
+<g style="transform: translate({{ sh.x }}px, {{ sh.y }}px); transition: transform 0.5s ease">
+<ellipse cx="243.3" cy="521.3" rx="15" ry="6"></ellipse><ellipse cx="119.7" cy="532.7" rx="12" ry="5"></ellipse><ellipse cx="213.3" cy="541.1" rx="11" ry="4.5"></ellipse><ellipse cx="165.7" cy="541.8" rx="11" ry="4.5"></ellipse><ellipse cx="313.8" cy="554.3" rx="13" ry="5"></ellipse><ellipse cx="255.4" cy="556.6" rx="13" ry="5"></ellipse><ellipse cx="210.1" cy="558.4" rx="10" ry="4"></ellipse><ellipse cx="156.7" cy="559.4" rx="11" ry="4.5"></ellipse><ellipse cx="318" cy="576.2" rx="10" ry="4"></ellipse><ellipse cx="281.3" cy="582.4" rx="12" ry="5"></ellipse><ellipse cx="88.3" cy="590.7" rx="13" ry="5"></ellipse><ellipse cx="252.4" cy="607.5" rx="15" ry="6"></ellipse><ellipse cx="303.4" cy="608.8" rx="15" ry="6"></ellipse><ellipse cx="54" cy="615.2" rx="11" ry="4.5"></ellipse><ellipse cx="93.2" cy="621.6" rx="12" ry="5"></ellipse><ellipse cx="202.5" cy="626.4" rx="15" ry="6"></ellipse><ellipse cx="274.5" cy="636.9" rx="13" ry="5"></ellipse><ellipse cx="237.7" cy="637.5" rx="11" ry="4.5"></ellipse><ellipse cx="109.1" cy="641.2" rx="13" ry="5"></ellipse><ellipse cx="167.2" cy="642.1" rx="13" ry="5"></ellipse>
+</g>
+</g>
+
+<g stroke="#111" stroke-width="0.8" fill="#FFFFFF">
+<line x1="243.3" y1="519.3" x2="243.3" y2="499"></line><ellipse cx="243.3" cy="487" rx="16" ry="14.5"></ellipse>
+<line x1="119.7" y1="530.7" x2="119.7" y2="512"></line><ellipse cx="119.7" cy="502" rx="13" ry="12"></ellipse>
+<line x1="213.3" y1="539.1" x2="213.3" y2="521"></line><ellipse cx="213.3" cy="512" rx="12" ry="11"></ellipse>
+<line x1="165.7" y1="539.8" x2="165.7" y2="521"></line><ellipse cx="165.7" cy="512" rx="12" ry="11"></ellipse>
+<line x1="313.8" y1="552.3" x2="313.8" y2="533"></line><ellipse cx="313.8" cy="523" rx="14" ry="13"></ellipse>
+<line x1="255.4" y1="554.6" x2="255.4" y2="535"></line><ellipse cx="255.4" cy="525" rx="14" ry="13"></ellipse>
+<line x1="210.1" y1="556.4" x2="210.1" y2="539"></line><ellipse cx="210.1" cy="530" rx="11" ry="10"></ellipse>
+<line x1="156.7" y1="557.4" x2="156.7" y2="539"></line><ellipse cx="156.7" cy="529" rx="12" ry="11"></ellipse>
+<line x1="318" y1="574.2" x2="318" y2="557"></line><ellipse cx="318" cy="548" rx="11" ry="10"></ellipse>
+<line x1="281.3" y1="580.4" x2="281.3" y2="561"></line><ellipse cx="281.3" cy="551" rx="13" ry="12"></ellipse>
+<line x1="88.3" y1="588.7" x2="88.3" y2="569"></line><ellipse cx="88.3" cy="558" rx="14" ry="13"></ellipse>
+<line x1="252.4" y1="605.5" x2="252.4" y2="584"></line><ellipse cx="252.4" cy="572" rx="16" ry="14.5"></ellipse>
+<line x1="303.4" y1="606.8" x2="303.4" y2="585"></line><ellipse cx="303.4" cy="573" rx="16" ry="14.5"></ellipse>
+<line x1="54" y1="613.2" x2="54" y2="595"></line><ellipse cx="54" cy="586" rx="12" ry="11"></ellipse>
+<line x1="93.2" y1="619.6" x2="93.2" y2="600"></line><ellipse cx="93.2" cy="590" rx="13" ry="12"></ellipse>
+<line x1="202.5" y1="624.4" x2="202.5" y2="603"></line><ellipse cx="202.5" cy="591" rx="16" ry="14.5"></ellipse>
+<line x1="274.5" y1="634.9" x2="274.5" y2="615"></line><ellipse cx="274.5" cy="604" rx="14" ry="13"></ellipse>
+<line x1="237.7" y1="635.5" x2="237.7" y2="617"></line><ellipse cx="237.7" cy="608" rx="12" ry="11"></ellipse>
+<line x1="109.1" y1="639.2" x2="109.1" y2="620"></line><ellipse cx="109.1" cy="609" rx="14" ry="13"></ellipse>
+<line x1="167.2" y1="640.1" x2="167.2" y2="621"></line><ellipse cx="167.2" cy="610" rx="14" ry="13"></ellipse>
+</g>
+</svg>
+
+<div style="position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none">
+<sc-for list="{{ dots }}" as="p" hint-placeholder-count="0">
+<span style="position: absolute; left: 0; top: 0; width: 0; height: 0; transform: {{ p.t }}; opacity: {{ p.o }}; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) {{ p.d }}, opacity 0.4s ease"><span style="display: block; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; box-sizing: border-box; background: {{ p.bg }}; border: {{ p.bd }}; animation: fdcDrift {{ p.dur }} ease-in-out {{ p.del }} infinite alternate"></span></span>
+</sc-for>
+</div>
+
+<button type="button" aria-label="Mover el sol por el cielo para cambiar la hora" onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position: absolute; left: 30px; top: 126px; width: 333px; height: 190px; border: 0; padding: 0; background: transparent; cursor: grab; touch-action: none"></button>
+
+<div style="position: absolute; left: 22px; top: 326px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 58px; line-height: 58px; letter-spacing: -0.08em">{{ tsun }}</div>
+<div style="position: absolute; left: 24px; top: 390px; font-size: 13px; line-height: 16px; color: #8A8A86">al sol - {{ tsombra }}<br>a la sombra</div>
+<div style="position: absolute; right: 22px; top: 326px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 58px; line-height: 58px; letter-spacing: -0.08em">{{ pct }}%</div>
+<div style="position: absolute; right: 24px; top: 390px; text-align: right; font-size: 13px; line-height: 16px; color: #8A8A86">{{ verbo }} la<br>sombra</div>
+
+</div>
+<div style="position: absolute; left: 22px; top: 776px; width: 350px; display: flex; justify-content: space-between; font-size: 13px">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; background: #D2D2CF"></span>sombra</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; border: 1px solid #111; background: #EAFE9F"></span>vecinos sol</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; background: #111"></span>vecinos en sombra</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; border: 1px solid #111; background: #FFF"></span>arbol</span>
+</div>
+<p style="position: absolute; left: 20px; top: 812px; width: 330px; margin: 0; font-size: 14px; line-height: 18px">Tocá el sol para moverlo por el cielo: las sombras de los árboles giran con él, y con ellas la gente</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { i: 6 };
+  V = [4, 7, 11, 14, 12, 9, 13, 19, 26, 34, 29, 17, 8];
+  T = [17, 18, 20, 22, 24, 26, 27, 27, 26, 24, 22, 20, 19];
+  TREES = [[243.3, 519.3], [119.7, 530.7], [213.3, 539.1], [165.7, 539.8], [313.8, 552.3], [255.4, 554.6], [210.1, 556.4], [156.7, 557.4], [318, 574.2], [281.3, 580.4], [88.3, 588.7], [252.4, 605.5], [303.4, 606.8], [54, 613.2], [93.2, 619.6], [202.5, 624.4], [274.5, 634.9], [237.7, 635.5], [109.1, 639.2], [167.2, 640.1]];
+  OPEN = [[118, 606], [286, 628], [72, 640], [337, 596], [187, 668], [60, 596], [228, 672], [150, 662], [300, 540], [132, 548], [262, 668], [330, 630], [46, 570], [245, 655]];
+  U = Array.from({ length: 36 }, (_, k) => { const x = Math.sin(k * 12.9898 + 4.1) * 43758.5453; return x - Math.floor(x); });
+  W = Array.from({ length: 36 }, (_, k) => { const x = Math.sin(k * 78.233 + 1.3) * 24634.6345; return x - Math.floor(x); });
+
+  pick = (e) => {
+    const el = e.currentTarget || e.target;
+    const r = el.getBoundingClientRect();
+    const x = 30 + (e.clientX - r.left) / r.width * 333;
+    const y = 126 + (e.clientY - r.top) / r.height * 190;
+    let a = Math.atan2(300 - y, x - 196.5);
+    if (a < 0) a = x < 196.5 ? Math.PI : 0;
+    const i = Math.max(0, Math.min(12, Math.round((1 - a / Math.PI) * 12)));
+    if (i !== this.state.i) {
+      this.setState({ i: i });
+      try { if (navigator.vibrate) navigator.vibrate(5); } catch (err) {}
+    }
+  };
+  down = (e) => {
+    this.dragging = true;
+    try { (e.currentTarget || e.target).setPointerCapture(e.pointerId); } catch (err) {}
+    this.pick(e);
+  };
+  move = (e) => { if (this.dragging) this.pick(e); };
+  up = () => { this.dragging = false; };
+
+  renderVals() {
+    const i = this.state.i, hour = 8 + i, n = this.V[i], T = this.T[i];
+    const a = Math.PI * (1 - i / 12);
+    const sx = 196.5 + 140 * Math.cos(a), sy = 300 - 140 * Math.sin(a);
+    const dx = -36 * Math.cos(a), dy = 3 + 5 * (1 - Math.sin(a));
+    const pct = Math.round(20 + (T - 17) * 5.1);
+    const diff = Math.max(1, Math.round((T - 17) / 2));
+    const nShade = Math.round(n * pct / 100);
+    const future = hour > 17;
+    const dots = [];
+    for (let k = 0; k < 36; k++) {
+      const on = k < n, shade = k < nShade;
+      let x = 196.5, y = 590;
+      if (on && shade) {
+        const t = this.TREES[(k * 7) % 20];
+        x = t[0] + dx * 0.8 + (this.U[k] - 0.5) * 16;
+        y = t[1] + 3 + dy * 0.8 + (this.W[k] - 0.5) * 5;
+      } else if (on) {
+        const o = this.OPEN[(k - nShade) % this.OPEN.length];
+        x = o[0] + (this.U[k] - 0.5) * 8;
+        y = o[1] + (this.W[k] - 0.5) * 4;
+      }
+      dots.push({
+        t: 'translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px)',
+        o: on ? 1 : 0,
+        d: (k * 8) + 'ms',
+        bg: future ? '#FFFFFF' : shade ? '#111111' : '#EAFE9F',
+        bd: future || !shade ? '1px solid #111111' : '0 solid #111111',
+        dur: (2.6 + (k % 5) * 0.5) + 's',
+        del: (-(k % 7) * 0.4) + 's'
+      });
+    }
+    return {
+      sun: { x: sx.toFixed(1), y: sy.toFixed(1), ty: (sy - 24).toFixed(1) },
+      cone: sx.toFixed(1) + ',' + (sy + 10).toFixed(1) + ' 105,528 288,528',
+      sh: { x: dx.toFixed(1), y: dy.toFixed(1), hx: (dx / 2).toFixed(1), hy: (dy / 2).toFixed(1) },
+      time: hour + ':00',
+      tsun: T + '°',
+      tsombra: (T - diff) + '°',
+      pct: String(pct),
+      verbo: future ? 'elegiría' : 'eligió',
+      vecinos: String(n),
+      dots: dots,
+      down: this.down, move: this.move, up: this.up
+    };
+  }
+}
+</script>
+</body>
+</html>

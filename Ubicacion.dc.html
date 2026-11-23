@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ubicación</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+.ub-in{animation:ubIn .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes ubIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes ubSpin{to{transform:rotate(360deg)}}
+@keyframes ubPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+.ub-a{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+<a href="back" aria-label="Volver" style="position: absolute; left: 14px; top: 74px; width: 50px; height: 40px; display: flex; align-items: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 86px; font-size: 12px">Paso 1 de 2</div>
+
+<h1 class="ub-in" style="position: absolute; left: 64px; top: 156px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 35px; line-height: 34px; letter-spacing: -0.08em">¿te avisamos<br>cuando llegues<br>al parque?</h1>
+<div class="ub-in" style="position: absolute; left: 70px; top: 310px; display: flex; gap: 10px; align-items: flex-start; font-size: 11.5px; line-height: 16px; animation-delay: .1s">
+<svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true"><path d="M9 19s7-6.2 7-11.2A7 7 0 0 0 2 7.8C2 12.8 9 19 9 19z" fill="none" stroke="#111" stroke-width="1.2"></path><circle cx="9" cy="8" r="2.6" fill="none" stroke="#111" stroke-width="1.2"></circle></svg>
+<span>Solo detectamos si estás dentro<br>del parque y en qué zonas</span>
+</div>
+
+<div style="position: absolute; left: 58px; top: 418px; font-size: 13px">Las rejas</div>
+<svg width="393" height="852" viewBox="0 0 393 852" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="Tu punto da vueltas alrededor de las rejas del parque. Cuando permitís la ubicación, entra al círculo.">
+<defs><radialGradient id="ubG"><stop offset="0" stop-color="#EAFE9F" stop-opacity=".9"></stop><stop offset="1" stop-color="#EAFE9F" stop-opacity="0"></stop></radialGradient></defs>
+<circle cx="196.5" cy="531" r="94" fill="#EAFE9F"></circle>
+<g opacity="{{ pulse }}" style="transition: opacity .4s"><circle cx="196.5" cy="531" r="94" fill="none" stroke="#EAFE9F" stroke-width="10" style="transform-origin: 196.5px 531px; animation: ubPulse 1.4s ease-out infinite"></circle></g>
+<circle cx="196.5" cy="531" r="113" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="3 3" style="transform-origin: 196.5px 531px; animation: ubSpin 36s linear infinite"></circle>
+<circle cx="196.5" cy="531" r="54" fill="#111"></circle>
+<circle cx="{{ v.x }}" cy="{{ v.y }}" r="9" fill="#111" stroke="#fff" stroke-width="1.5"></circle>
+<text x="{{ v.tx }}" y="{{ v.ty }}" font-family="Manrope, sans-serif" font-size="13" fill="#111" opacity="{{ vosO }}" style="transition: opacity .4s">Vos</text>
+</svg>
+<div style="position: absolute; left: 0; top: 553px; width: 393px; text-align: center; font-size: 11px; color: #EAFE9F; opacity: {{ inO }}; transition: opacity .5s .6s">adentro</div>
+
+<button type="button" class="ub-a" onClick="{{ allow }}" style="position: absolute; left: 102px; top: 700px; width: 190px; height: 36px; font-size: 16px; color: #111"><span style="border-bottom: 1px solid #111; padding-bottom: 3px">{{ allowT }}</span></button>
+<button type="button" class="ub-a" onClick="{{ later }}" style="position: absolute; left: 130px; top: 742px; width: 134px; height: 34px; font-size: 15px; color: #8A8A86"><span style="border-bottom: 1px solid #8A8A86; padding-bottom: 2px">Ahora no</span></button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { a: -20, r: 113, on: false };
+  componentDidMount() {
+    const t0 = performance.now();
+    const loop = (t) => {
+      if (!this.state.on) this.setState({ a: -20 + ((t - t0) / 1000) * 12 });
+      else { const k = Math.min(1, (t - this.t1) / 1100), e = 1 - Math.pow(1 - k, 3); this.setState({ r: 113 * (1 - e), a: this.a1 + 40 * e }); if (k >= 1) return; }
+      this.raf = requestAnimationFrame(loop);
+    };
+    this.raf = requestAnimationFrame(loop);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); clearTimeout(this.t); }
+  allow = () => {
+    if (this.state.on) return;
+    const app = this.props.app;
+    const ok = () => { app.S.location = true; app.save('location'); };
+    try { if (navigator.geolocation) navigator.geolocation.getCurrentPosition(ok, () => {}, { timeout: 8000 }); } catch (e) {}
+    app.vib([20, 50, 20]); this.t1 = performance.now(); this.a1 = this.state.a;
+    this.setState({ on: true });
+    this.t = setTimeout(() => app.go('avisos', 'push'), 1700);
+  };
+  later = () => this.props.app.go('avisos', 'push');
+  renderVals() {
+    const on = this.state.on;
+    return {
+      v: (() => { const t = this.state.a * Math.PI / 180, x = 196.5 + this.state.r * Math.cos(t), y = 531 + this.state.r * Math.sin(t); return { x: x.toFixed(1), y: y.toFixed(1), tx: (x + 12).toFixed(1), ty: (y + 4).toFixed(1) }; })(),
+      vosO: on ? 0 : 1, pulse: on ? 1 : 0, inO: on ? 1 : 0,
+      allowT: on ? 'Ubicación activada' : 'Permitir ubicación',
+      allow: this.allow, later: this.later
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tus desconexiones — sobre el parque</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+.dsc-tab[aria-pressed="false"]{background:#111;color:#fff}
+.dsc-tab[aria-pressed="true"]{background:#EAFE9F;color:#111}
+
+body{margin:0}
+a{color:#111}
+@keyframes fdcBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@keyframes fdcFlashA{0%{transform:scale(0.2);opacity:1}35%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:0.8}}
+@keyframes fdcFlashB{0%{transform:scale(0.2);opacity:1}35%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:0.8}}
+@keyframes fdcCardA{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fdcCardB{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fdc-m{transition:height 0.7s cubic-bezier(0.3,0.9,0.25,1),top 0.7s cubic-bezier(0.3,0.9,0.25,1),width 0.4s ease,opacity 0.4s ease,background 0.3s ease,margin 0.4s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Desconexiones</div>
+<h1 style="position: absolute; left: 22px; top: 168px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 44px; letter-spacing: -0.08em; white-space: nowrap">tus desconexiones</h1>
+<div style="position: absolute; left: 18px; top: 244px; width: 357px; display: flex; justify-content: space-between">
+<sc-for list="{{ layers }}" as="c" hint-placeholder-count="4">
+<button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" class="dsc-tab" style="flex: 0 0 auto; height: 26px; border-radius: 13px; border: 1px solid #111; font-family: Manrope, sans-serif; font-size: 15px; cursor: pointer; padding: 0 13px">{{ c.t }}</button>
+</sc-for>
+</div>
+<div style="position: absolute; left: 0; top: 287px; width: 393px; height: 1px; background: #111; opacity: .45"></div>
+<div style="position: absolute; left: 18px; top: 302px; width: 357px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #8A8A86">
+<span style="white-space: nowrap"><b style="font-weight: 700">{{ sum.n }} visitas</b> | {{ sum.t }}</span>
+<span style="margin-left: auto; display: flex; gap: 6px">
+<sc-for list="{{ periods }}" as="c" hint-placeholder-count="3">
+<button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.on }}" class="dsc-tab" style="height: 25px; border-radius: 9px; border: 1px solid #111; padding: 0 7px; font-family: Manrope, sans-serif; font-size: 14px; cursor: pointer; white-space: nowrap">{{ c.t }}</button>
+</sc-for></span>
+</div>
+
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 560px; pointer-events: none; transform: translateY(68px)">
+<svg width="393" height="560" viewBox="0 0 393 560" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="{{ aria }}">
+<defs>
+<filter id="fdcBlur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter>
+<pattern id="fdcWaveB" width="7" height="3.6" patternUnits="userSpaceOnUse"><path d="M0 1.8q1.75 -1.2 3.5 0t3.5 0" fill="none" stroke="#111" stroke-width="0.5"></path></pattern>
+</defs>
+<ellipse cx="200" cy="428" rx="182" ry="50" fill="#111" opacity="0.12" filter="url(#fdcBlur)"></ellipse>
+<g transform="translate(196.5 412) scale(1 0.55) rotate(-25) scale(1.05)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#E6E6E3" stroke="#111" stroke-width="1.4"></path>
+</g>
+<g transform="translate(196.5 400) scale(1 0.55) rotate(-25) scale(1.05)">
+<path d="M-160 -10C-158 -95 -85 -162 8 -158C100 -154 165 -90 160 2C155 92 92 160 -2 158C-95 156 -162 82 -160 -10Z" fill="#FFFFFF" stroke="#111" stroke-width="1.4"></path>
+<g fill="none" stroke="#B5B5B1" stroke-width="1.1" stroke-dasharray="3 3">
+<path d="M-136 -8C-134 -82 -72 -138 8 -134C86 -130 140 -76 136 2C132 78 78 136 -2 134C-80 132 -138 70 -136 -8Z"></path>
+<path d="M-110 -6C-108 -66 -58 -112 6 -108C70 -104 112 -60 110 2C108 62 62 110 -2 108C-64 106 -112 56 -110 -6Z"></path>
+<path d="M-86 -6C-84 -52 -44 -86 6 -84C54 -82 88 -46 86 2C84 48 48 84 -2 84C-50 82 -88 42 -86 -6Z"></path>
+</g>
+<path d="M-62 -6C-58 -44 -14 -56 28 -46C68 -36 80 -6 62 20C44 46 -6 50 -34 38C-58 28 -64 12 -62 -6Z" fill="#FFFFFF" stroke="#111" stroke-width="1.2"></path>
+</g>
+</svg>
+
+<div style="position: absolute; left: {{ glow.x }}; top: {{ glow.y }}; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; background: radial-gradient(circle, #EAFE9F 0%, #EAFE9F 28%, rgba(234, 254, 159, 0) 70%); pointer-events: none; transition: left 0.6s ease, top 0.6s ease; animation: {{ glow.anim }} 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both"></div>
+
+<sc-for list="{{ posts }}" as="p" hint-placeholder-count="11">
+<div style="position: absolute; left: {{ p.x }}; top: {{ p.y }}; width: 0; height: 0; z-index: {{ p.z }}; opacity: {{ p.op }}; transition: opacity 0.4s ease">
+<span style="position: absolute; left: -5px; top: -2px; width: 10px; height: 4px; border-radius: 50%; background: #111; opacity: 0.28"></span>
+<span class="fdc-m" style="position: absolute; left: -0.6px; top: {{ p.nh }}; width: 1.2px; height: {{ p.h }}; background: #111; opacity: {{ p.stem }}"></span>
+<span style="position: absolute; left: 0; transform: translateX(-50%); top: {{ p.lt }}; font-size: 10px; font-weight: 700; white-space: nowrap; opacity: {{ p.lop }}; pointer-events: none; background: #FFFFFF; padding: 1px 4px; border-radius: 6px">{{ p.lab }}</span>
+<sc-for list="{{ p.stack }}" as="d" hint-placeholder-count="0">
+<span class="fdc-m" style="position: absolute; left: -2px; top: {{ d.t }}; width: 4px; height: 4px; border-radius: 50%; background: {{ d.f }}"></span>
+</sc-for>
+<button type="button" class="fdc-m" aria-label="{{ p.aria }}" onClick="{{ p.pick }}" style="position: absolute; left: 0; transform: translateX(-50%); top: {{ p.tt }}; width: {{ p.w }}; min-width: {{ p.s }}; height: {{ p.hh }}; box-sizing: border-box; border-radius: {{ p.r }}; border: {{ p.b }}; background: {{ p.f }}; padding: {{ p.pad }}; cursor: pointer; font-family: Manrope, sans-serif; font-size: 8.5px; line-height: 1; font-weight: 700; color: {{ p.tc }}; white-space: nowrap">{{ p.txt }}
+<span style="position: absolute; left: 50%; top: 50%; width: 1.2px; height: {{ p.hand }}; margin-left: -0.6px; background: #111; transform-origin: 50% 0; transform: rotate({{ p.ha }}); opacity: {{ p.clock }}"></span>
+<span style="position: absolute; left: -7px; top: -7px; right: -7px; bottom: -7px; border-radius: 999px; border: 1px dashed #111; opacity: {{ p.rop }}; animation: fdcBreathe 3.2s ease-in-out infinite; pointer-events: none"></span>
+</button>
+</div>
+</sc-for>
+
+<p style="position: absolute; left: 0; top: 548px; width: 393px; margin: 0; text-align: center; font-size: 12px; letter-spacing: -0.01em; white-space: nowrap; color: #8A8A86">{{ legend }}</p>
+</div>
+<p style="position: absolute; left: 20px; top: 660px; width: 300px; margin: 0; font-size: 14px; line-height: 18px">{{ insight }}</p>
+
+<sc-for list="{{ card }}" as="c" hint-placeholder-count="1">
+<a href="Recorrido.dc.html" style="position: absolute; left: 20px; top: 712px; width: 349px; height: 82px; box-sizing: border-box; padding: 14px 20px; border: 1px solid #111; border-radius: 24px; text-decoration: none; color: #111; animation: {{ c.anim }} 0.4s ease both">
+<div style="display: flex; justify-content: space-between; font-size: 13px; color: #8A8A86; white-space: nowrap"><span>{{ c.date }}</span><span>{{ c.feel }} · {{ c.notis }} avisos</span></div>
+<div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Poppins, sans-serif; font-weight: 400; font-size: {{ c.ts }}; letter-spacing: -0.08em; white-space: nowrap">{{ c.title }}</span><span style="flex: none; margin-left: 10px; font-size: 13px; text-decoration: underline; white-space: nowrap">ver visita →</span></div>
+</a>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { period: 1, layer: 0, sel: 0, flip: 0 };
+  CX = 196.5; CY = 400;
+  PERIODS = [[7, '7 días'], [30, '30 días'], [90, '3 meses']];
+  LAYERS = ['tiempo', 'animo', 'notificaciones', 'hora'];
+  LEG = ['cada tubo se llena con el tiempo que te quedaste · lleno = 2 h', 'la palabra al salir | blanco calma, gris neutra, negro inquieta', 'cada puntito del poste es un aviso que esperó afuera', 'cada reloj marca la hora en que entraste'];
+  ZN = ['el borde', 'los bulevares', 'actividades', 'el lago'];
+  FEEL = [['tranquila', 'liviana', 'presente', 'en paz'], ['normal', 'cansada', 'distraída'], ['apurada', 'ansiosa', 'aburrida']];
+  DIAS = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+  MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  V = (() => {
+    let x = 11; const rnd = () => { x = (x * 16807) % 2147483647; return x / 2147483647; };
+    const v = [{ ago: 0, start: 16 + 5 / 60, dur: 108, zone: 3, g: 0, w: 'tranquila', n: 12 }];
+    [2, 5, 6, 9, 12, 14, 18, 21, 25, 29, 33, 37, 40, 45, 48, 53, 57, 61, 66, 70, 74, 79, 83, 88].forEach((d) => {
+      const start = 9 + Math.round(rnd() * 34) / 4;
+      const dur = Math.min(Math.round((20 + rnd() * 100) / 5) * 5, Math.round((20 - start) * 60));
+      const zr = rnd(), zone = zr < 0.4 ? 3 : zr < 0.6 ? 2 : zr < 0.85 ? 1 : 0;
+      const gr = rnd(), g = gr < (dur > 70 ? 0.8 : 0.45) ? 0 : gr < 0.88 ? 1 : 2;
+      const w = this.FEEL[g][Math.floor(rnd() * this.FEEL[g].length)];
+      v.push({ ago: d, start: start, dur: dur, zone: zone, g: g, w: w, n: Math.round(3 + rnd() * 14) });
+    });
+    return v;
+  })();
+  // isla: coordenadas del parque → pantalla (misma proyección que mi recorrido)
+  proj(x, y) { const s = 1.05; return [this.CX + s * (x * 0.9063 + y * 0.4226), this.CY + 0.55 * s * (-x * 0.4226 + y * 0.9063)]; }
+  SPOT = (() => {
+    const cnt = [0, 0, 0, 0], R = [147, 123, 98];
+    return this.V.map((v) => {
+      const j = cnt[v.zone]++;
+      if (v.zone === 3) { const ring = Math.floor(j / 5), r = [44, 22, 32][ring % 3], a = (j * 72 + ring * 36 + 15) * Math.PI / 180; return [6 + r * 1.3 * Math.cos(a), -4 + r * 0.85 * Math.sin(a)]; }
+      const a = ((v.zone * 83 + j * 67) % 360) * Math.PI / 180, r = R[v.zone] + (j % 2 ? 6 : -6);
+      return [r * Math.cos(a), r * Math.sin(a)];
+    });
+  })();
+  f(n) { return n.toFixed(1); }
+  date(ago) { const d = new Date(2026, 10, 12 - ago); return ago === 0 ? 'hoy' : this.DIAS[d.getDay()] + ' ' + d.getDate() + ' ' + this.MES[d.getMonth()]; }
+  hm(h) { const m = Math.round(h * 60); return Math.floor(m / 60) + ':' + String(m % 60).padStart(2, '0'); }
+  dur(m) { return (m >= 60 ? Math.floor(m / 60) + ' h ' + (m % 60 ? (m % 60) + ' min' : '') : m + ' min').trim(); }
+  select(i) { if (i === this.state.sel) return; this.setState({ sel: i, flip: 1 - this.state.flip }); try { if (navigator.vibrate) navigator.vibrate(5); } catch (err) {} }
+  setPeriod(i) { const keep = this.V[this.state.sel].ago < this.PERIODS[i][0]; this.setState({ period: i, sel: keep ? this.state.sel : 0, flip: 1 - this.state.flip }); }
+  setLayer(i) { if (i !== this.state.layer) this.setState({ layer: i, flip: 1 - this.state.flip }); }
+  renderVals() {
+    const st = this.state, L = st.layer, k = st.flip ? 'B' : 'A', P = this.PERIODS[st.period][0];
+    const list = this.V.map((v, i) => Object.assign({ i: i }, v)).filter((v) => v.ago < P);
+    const total = list.reduce((s, v) => s + v.dur, 0);
+    let selTop = [this.CX, this.CY];
+    const many = list.length > 12;
+    const H1 = this.V.map((v, i) => 12 + (i % 3) * 15);
+    if (L === 1) {
+      const placed = [];
+      this.V.map((v, i) => i).filter((i) => this.V[i].ago < P && (!many || i === st.sel)).sort((a, b) => this.proj(this.SPOT[b][0], this.SPOT[b][1])[1] - this.proj(this.SPOT[a][0], this.SPOT[a][1])[1]).forEach((i) => {
+        const b = this.proj(this.SPOT[i][0], this.SPOT[i][1]), w = this.V[i].w.length * 5.4 + 16;
+        let tries = 0;
+        const box = () => [b[0] - w / 2, b[1] - H1[i] - 16, w, 16];
+        const hit = (q) => placed.some((o) => q[0] < o[0] + o[2] + 3 && o[0] < q[0] + q[2] + 3 && q[1] < o[1] + o[3] + 3 && o[1] < q[1] + q[3] + 3);
+        while (hit(box()) && tries < 12) { H1[i] += 9; tries++; }
+        placed.push(box());
+      });
+    }
+    const posts = this.V.map((v, i) => {
+      const inP = v.ago < P, on = i === st.sel, b = this.proj(this.SPOT[i][0], this.SPOT[i][1]);
+      let h, s, f = '#FFFFFF', bd = '1.2px solid #111111', stack = [], stem = 1, clock = 0;
+      let w = null, hh = null, r = '50%', pad = '0', txt = '', tc = '#111111', lab = '', tt = null;
+      if (L === 0) {
+        const T = 46, fill = Math.round(Math.min(v.dur, 120) / 120 * 100);
+        h = 4; s = 7; w = '7px'; hh = T + 'px'; r = '4px'; tt = -h - T;
+        const c = on ? '#EAFE9F' : '#8A8A86';
+        f = 'linear-gradient(to top, ' + c + ' ' + fill + '%, #FFFFFF ' + fill + '%)';
+        lab = this.dur(v.dur);
+      } else if (L === 1) {
+        h = H1[i];
+        f = ['#FFFFFF', '#DADAD6', '#111111'][v.g]; tc = v.g === 2 ? '#FFFFFF' : '#111111'; if (v.g === 1) bd = '1.2px solid #B5B5B1';
+        if (many && !on) { s = 10; }
+        else { s = 0; w = 'auto'; hh = '16px'; r = '8px'; pad = '0 6px'; txt = v.w; tt = -h - 16; }
+      }
+      else if (L === 2) { h = v.n * 4.5 + 4; s = 7; f = '#111111'; stem = 0; for (let j = 0; j < v.n; j++) stack.push({ t: this.f(-(j + 1) * 4.5 - 2) + 'px', f: on ? '#111111' : '#8A8A86' }); lab = v.n + ' avisos'; }
+      else { h = 20; s = 16; clock = 1; lab = this.hm(v.start); }
+      if (!inP) h = 0;
+      if (on) { if (L !== 0) f = '#EAFE9F'; bd = '1.4px solid #111111'; if (L === 1) tc = '#111111'; else if (L !== 0) s += 3; }
+      if (w === null) { w = s + 'px'; hh = s + 'px'; tt = -h - s / 2; }
+      const topY = tt;
+      if (on) selTop = [b[0], b[1] + topY + 6];
+      return {
+        x: this.f(b[0]) + 'px', y: this.f(b[1]) + 'px', z: Math.round(b[1]) + (on ? 500 : 0), op: inP ? 1 : 0,
+        h: h + 'px', nh: -h + 'px', stem: stem, stack: stack,
+        tt: topY + 'px', w: w, hh: hh, r: r, pad: pad, txt: txt, tc: tc, s: s + 'px', f: f, b: bd, rop: on ? 1 : 0,
+        lab: lab, lop: on && lab ? 1 : 0, lt: (topY - 36) + 'px',
+        clock: clock, hand: (s / 2 - 2.5) + 'px', ha: (180 + (v.start % 12) / 12 * 360) + 'deg',
+        aria: this.date(v.ago) + ', ' + this.dur(v.dur) + ' en ' + this.ZN[v.zone], pick: () => this.select(i)
+      };
+    });
+    const zt = [0, 0, 0, 0]; list.forEach((v) => { zt[v.zone] += v.dur; });
+    const pc = (z) => Math.round(zt[z] / (total || 1) * 100) + '%';
+    const lp = (x, y, z) => { const p = this.proj(x, y); return { x: this.f(p[0]), y: this.f(p[1]), p: pc(z) }; };
+    let insight;
+    if (L === 0) { const top = zt.indexOf(Math.max.apply(null, zt)); const lng = list.filter((v) => v.dur >= 90).length; insight = 'El ' + pc(top) + ' de tu tiempo fue en ' + this.ZN[top] + '. ' + lng + (lng === 1 ? ' visita llenó' : ' visitas llenaron') + ' el tubo casi entero.'; }
+    else if (L === 1) { const c = list.filter((v) => v.g === 0).length; const lc = list.filter((v) => v.zone === 3), lcc = lc.filter((v) => v.g === 0).length; insight = Math.round(c / list.length * 100) + '% de tus visitas terminaron en calma. En el lago, ' + lcc + ' de ' + lc.length + '.'; }
+    else if (L === 2) { const n = list.reduce((s, v) => s + v.n, 0); insight = n + ' avisos esperaron afuera: ' + Math.round(n / list.length) + ' por visita. Los vecinos reciben 9.'; }
+    else { const af = list.filter((v) => v.start >= 15).length; insight = af + ' de ' + list.length + ' visitas empezaron después de las 15 h. El parque te encuentra a la tarde.'; }
+    const sel = this.V[st.sel];
+    return {
+      sum: { n: String(list.length), t: this.dur(total) },
+      periods: this.PERIODS.map((p, i) => ({ t: p[1], on: String(st.period === i), bc: st.period === i ? '#111111' : 'transparent', c: st.period === i ? '#111111' : '#8A8A86', fw: st.period === i ? 700 : 500, pick: () => this.setPeriod(i) })),
+      layers: this.LAYERS.map((t, i) => ({ t: t, on: String(L === i), bg: L === i ? '#EAFE9F' : '#FFFFFF', fw: L === i ? 700 : 500, pick: () => this.setLayer(i) })),
+      posts: posts, legend: this.LEG[L], insight: insight,
+      zl: { b: lp(-40, -150, 0), u: lp(-118, 30, 1), a: lp(70, 72, 2), l: lp(6, 14, 3) },
+      aria: 'El parque visto como isla con tus visitas como postes, capa ' + this.LAYERS[L] + '. ' + insight,
+      glow: { x: this.f(selTop[0]) + 'px', y: this.f(selTop[1]) + 'px', anim: 'fdcFlash' + k },
+      card: [{ date: this.date(sel.ago) + ' · ' + this.hm(sel.start) + ' a ' + this.hm(sel.start + sel.dur / 60), feel: sel.w, notis: String(sel.n), title: this.dur(sel.dur) + ' en ' + this.ZN[sel.zone], ts: (() => { const L = (this.dur(sel.dur) + ' en ' + this.ZN[sel.zone]).length; return (L <= 20 ? 24 : L <= 24 ? 21 : 19) + 'px'; })(), anim: 'fdcCard' + k }]
+    };
+  }
+}
+</script>
+</body>
+</html>

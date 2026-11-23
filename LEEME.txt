@@ -1,0 +1,20 @@
+Fuera de campo — prototipo web
+
+Cómo publicarlo
+- Netlify: entrá a app.netlify.com/drop y arrastrá esta carpeta entera. Te da un link al toque.
+- Vercel: en vercel.com, "Add New → Project", subí la carpeta (o conectá un repo de GitHub con estos archivos). Framework: "Other", sin comando de build, carpeta de salida: la raíz.
+
+Qué hay
+- index.html  → la página (el celular con la app adentro)
+- app.js      → navegación entre pantallas y gestos
+- fx.js       → transiciones y efectos al tocar
+- app.css     → estilos y animaciones
+- dc.js + morphdom.min.js → motor que dibuja cada pantalla
+- s/          → una pantalla por archivo (Home, Mapa, Retos…)
+- img/        → imágenes
+
+Trucos
+- Agregá #reiniciar al final del link para empezar de cero (onboarding).
+- Tocá 3 veces la hora de arriba para reiniciar.
+- ?s=mapa (o home, retos, historial…) abre directo en esa pantalla.
+- Tiene que abrirse desde un servidor (Netlify/Vercel), no con doble clic en index.html.

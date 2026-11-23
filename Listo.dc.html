@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Listo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes liIcon{0%{transform:scale(.2);opacity:0}60%{transform:scale(1.06);opacity:1}100%{transform:scale(1)}}
+@keyframes liIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes liSpin{to{transform:rotate(360deg)}}
+@keyframes liBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.li-a{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif;color:#111}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+<svg width="393" height="460" viewBox="0 0 393 460" style="position: absolute; left: 0; top: 0" aria-hidden="true">
+<g style="transform-origin: 196.5px 292px; animation: liIcon 1s cubic-bezier(.2,.8,.2,1) both">
+<g style="transform-origin: 196.5px 292px; animation: liBreathe 5s ease-in-out 1s infinite">
+<circle cx="196.5" cy="292" r="126" fill="none" stroke="#111" stroke-dasharray="3.2 3.2" style="transform-origin: 196.5px 292px; animation: liSpin 40s linear infinite"></circle>
+<circle cx="196.5" cy="292" r="108" fill="#EAFE9F"></circle>
+<circle cx="196.5" cy="292" r="61" fill="#111"></circle>
+</g>
+</g>
+</svg>
+<div style="position: absolute; left: 22px; top: 500px; font-family: Poppins, sans-serif; font-size: 40px; line-height: 40px; animation: liIn .7s ease .35s both">*</div>
+<div style="position: absolute; left: 62px; top: 478px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 74px; line-height: 74px; letter-spacing: -0.08em; animation: liIn .8s cubic-bezier(.2,.8,.2,1) .3s both">listo</div>
+<div style="position: absolute; left: 66px; top: 572px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 19px; line-height: 19px; letter-spacing: -0.06em; animation: liIn .8s ease .5s both">{{ hi }}<br>de las rejas</div>
+<div style="position: absolute; left: 66px; top: 630px; font-size: 12px; line-height: 17px; animation: liIn .8s ease .65s both">Cuando entres al parque te<br>avisaremos una sola vez.</div>
+<button type="button" class="li-a" onClick="{{ go }}" style="position: absolute; left: 136px; top: 718px; width: 122px; height: 34px; font-size: 16px; animation: liIn .8s ease .8s both"><span style="border-bottom: 1px solid #111; padding-bottom: 3px">Ir al inicio</span></button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = {};
+  go = () => { try { localStorage.setItem('fdc2.onboarded', 'true'); } catch (e) {} this.props.app.vib(10); this.props.app.go('home', 'reveal', {}, false); };
+  renderVals() {
+    const n = (this.props.app && this.props.app.S.name) || '';
+    return { hi: n ? n + ', nos vemos del otro lado' : 'Nos vemos del otro lado', go: this.go };
+  }
+}
+</script>
+</body>
+</html>

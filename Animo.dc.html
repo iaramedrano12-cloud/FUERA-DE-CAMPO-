@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ánimo — tocable</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#111}a:hover{color: #8A8A86}
+@keyframes fdcDrift{from{transform:translate(-0.8px,-0.5px)}to{transform:translate(0.8px,0.8px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="position: relative; width: 393px; height: 1010px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+
+<a href="back" aria-label="Volver" style="position: absolute; left: 12px; top: 68px; width: 52px; height: 40px; display: flex; align-items: center; justify-content: center"><svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M33 7H2M8 1L2 7l6 6" fill="none" stroke="#111" stroke-width="1.3"></path></svg></a>
+<div style="position: absolute; right: 22px; top: 76px; display: flex; align-items: center; gap: 7px; font-size: 13px"><svg width="15" height="15" viewBox="0 0 15 15" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6.75" fill="#EAFE9F" stroke="#111" stroke-width=".5"></circle></svg>Mapa</div>
+<a href="Mapa.dc.html" aria-current="false" style="position: absolute; left: 20px; top: 120px; width: 76px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">calma</a>
+<a href="Sombra.dc.html" aria-current="false" style="position: absolute; left: 108px; top: 120px; width: 82px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">sombra</a>
+<a href="Recorrido.dc.html" aria-current="false" style="position: absolute; left: 200px; top: 120px; width: 92px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #111; color: #FFFFFF; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">recorridos</a>
+<span aria-current="page" style="position: absolute; left: 300px; top: 120px; width: 75px; height: 24px; box-sizing: border-box; border-radius: 12px; background: #EAFE9F; color: #111; border: 1px solid #111; font-size: 12.5px; display: flex; align-items: center; justify-content: center; text-decoration: none">animo</span>
+<div style="position: absolute; left: 0; top: 161px; width: 393px; height: 1px; background: #111; opacity: .35"></div>
+
+<h1 style="position: absolute; left: 22px; top: 184px; width: 300px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 36px; letter-spacing: -0.08em">¿cómo nos sentimos sin celular?</h1>
+<div style="position: absolute; left: 30px; top: 310px; display: flex; gap: 22px; font-size: 15px">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #111; background: #EAFE9F"></span>calma</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #111; background: #6B6B67"></span>neutra</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; background: #111"></span>inquieta</span>
+</div>
+
+
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 760px; pointer-events: none; transform: translateY(92px)">
+<div style="position: absolute; left: 0; top: 265px; width: 49px; height: 402px; border-radius: 14px; background: #F3F3F1; opacity: 1; transform: {{ glow }}; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)"></div>
+
+<div role="img" aria-label="Siete columnas de círculos, una por día de la semana. Cada círculo son 5 vecinos: abajo en verde los que se sintieron en calma, en el medio en gris los neutros y arriba en negro los inquietos." style="position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none">
+<sc-for list="{{ balls }}" as="b" hint-placeholder-count="0">
+<span style="position: absolute; left: 0; top: 0; width: 0; height: 0; transform: {{ b.t }}; opacity: {{ b.o }}; transition: {{ b.tr }}"><span style="display: block; width: 10px; height: 10px; margin: -5px 0 0 -5px; box-sizing: border-box; border-radius: 50%; border: 1px solid #111; background: {{ b.bg }}; animation: fdcDrift {{ b.dur }} ease-in-out {{ b.del }} infinite alternate"></span></span>
+</sc-for>
+</div>
+
+<sc-for list="{{ days }}" as="d" hint-placeholder-count="0">
+<button type="button" aria-label="{{ d.aria }}" onClick="{{ d.pick }}" style="position: absolute; left: {{ d.left }}; top: 262px; width: 49px; height: 392px; border: 0; padding: 0; background: transparent; cursor: pointer; font-family: Manrope, sans-serif; color: #111">
+<span style="position: absolute; left: 0; width: 49px; top: 17px; text-align: center; font-size: 10px; line-height: 12px; color: #8A8A86">{{ d.t }}</span>
+<span style="position: absolute; left: 0; width: 49px; top: {{ d.ty }}; text-align: center; font-size: 9.5px; line-height: 12px; color: #8A8A86">{{ d.total }}</span>
+<span style="position: absolute; left: 0; width: 49px; bottom: 0px; text-align: center; font-size: 11px; line-height: 12px; font-weight: 700; color: #111">{{ d.d }}</span>
+</button>
+</sc-for>
+
+</div>
+<div style="position: absolute; left: 20px; top: 806px; width: 353px; height: 154px; box-sizing: border-box; padding: 18px 20px; border: 1px solid #111; border-radius: 24px; background: #FFF">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Poppins, sans-serif; font-weight: 400; font-size: 22px; letter-spacing: -0.07em">{{ cardDay }}</span><span style="font-size: 13px; color: #8A8A86">{{ cardW }}</span></div>
+<div style="display: flex; gap: 20px; margin-top: 16px; font-size: 15px">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #111; background: #EAFE9F"></span>calma <span style="color: #8A8A86">{{ nc }}</span></span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #111; background: #6B6B67"></span>neutra <span style="color: #8A8A86">{{ nn }}</span></span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 50%; background: #111"></span>inquieta <span style="color: #8A8A86">{{ nq }}</span></span>
+</div>
+<div style="margin-top: 14px; width: 230px; font-size: 14px; line-height: 18px">Escribiste “{{ word }}” como {{ wn }} vecinos mas ese día</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { sel: 6, ready: true, drop: -1, phase: 1 };
+  first = true;
+  CX = [46.9, 96.8, 146.6, 196.5, 246.3, 296.2, 346.1];
+  DAYS = [
+    { d: 'lun', word: 'presente', wn: 12, full: 'lunes', w: 'nublado · 22°', t: '22°', c: 8, n: 4, q: 2, qn: 10, quote: 'caminé sin rumbo y estuvo bien', meta: 'vecino · lunes 18:10 · por los bulevares' },
+    { d: 'mar', word: 'cansada', wn: 9, full: 'martes', w: 'nublado · 19°', t: '19°', c: 4, n: 6, q: 2, qn: 9, quote: 'escuché a los loros por primera vez', meta: 'vecina · martes 9:20 · cerca del borde' },
+    { d: 'mié', word: 'liviana', wn: 15, full: 'miércoles', w: 'soleado · 24°', t: '24°', c: 9, n: 4, q: 2, qn: 11, quote: 'me senté al sol sin hacer nada', meta: 'vecino · miércoles 15:05 · en el anfiteatro' },
+    { d: 'jue', word: 'inquieta', wn: 4, full: 'jueves', w: 'lluvia · 17°', t: 'lluvia', c: 1, n: 1, q: 3, qn: 4, quote: 'me costó no mirar si seguía lloviendo', meta: 'vecina · jueves 11:30 · bajo los árboles' },
+    { d: 'vie', word: 'normal', wn: 11, full: 'viernes', w: 'nublado · 20°', t: '20°', c: 6, n: 4, q: 2, qn: 9, quote: 'charlé con alguien que no conocía', meta: 'vecino · viernes 17:15 · en la feria' },
+    { d: 'sáb', word: 'en paz', wn: 22, full: 'sábado', w: 'soleado · 25°', t: '25°', c: 12, n: 6, q: 4, qn: 16, quote: 'volví a dibujar después de años', meta: 'vecina · sábado 16:40 · frente al lago' },
+    { d: 'dom', word: 'tranquila', wn: 60, full: 'domingo', w: 'soleado · 24°', t: '24°', c: 13, n: 7, q: 4, qn: 18, quote: 'me olvidé de mirar la hora', meta: 'vecina · domingo 17:40 · cerca del lago' }
+  ];
+  BG = ['#EAFE9F', '#8A8A86', '#111111'];
+
+  componentDidMount() {}
+  componentWillUnmount() { clearTimeout(this.t1); clearTimeout(this.t2); }
+
+  select = (i) => {
+    this.first = false;
+    this.setState({ sel: i, drop: i, phase: 0 });
+    try { if (navigator.vibrate) navigator.vibrate(5); } catch (err) {}
+    clearTimeout(this.t2);
+    this.t2 = setTimeout(() => this.setState({ phase: 1 }), 70);
+  };
+
+  renderVals() {
+    const st = this.state, D = this.DAYS[st.sel];
+    const balls = [];
+    for (let i = 0; i < 7; i++) {
+      const day = this.DAYS[i], total = day.c + day.n + day.q;
+      const atTop = !st.ready || (st.drop === i && st.phase === 0);
+      for (let k = 0; k < total; k++) {
+        const type = k < day.c ? 0 : k < day.c + day.n ? 1 : 2;
+        const y = atTop ? 276 : 625 - 12.4 * k;
+        const delay = ((this.first ? i * 90 : 0) + k * 30) + 'ms';
+        balls.push({
+          bg: this.BG[type],
+          t: 'translate(' + this.CX[i] + 'px, ' + y.toFixed(1) + 'px)',
+          o: atTop ? 0 : 1,
+          tr: atTop ? 'none' : 'transform 0.5s cubic-bezier(0.3, 1.2, 0.5, 1) ' + delay + ', opacity 0.2s ease ' + delay,
+          dur: (2.8 + ((i + k) % 5) * 0.5) + 's',
+          del: (-((i * 3 + k) % 7) * 0.4) + 's'
+        });
+      }
+    }
+    const days = this.DAYS.map((day, i) => {
+      const on = i === st.sel, total = day.c + day.n + day.q;
+      return {
+        left: (this.CX[i] - 24.5).toFixed(1) + 'px',
+        ty: (625 - 12.4 * (total - 1) - 21 - 262).toFixed(1) + 'px',
+        total: String(total * 5),
+        tw: on ? 700 : 400, tc: on ? '#111111' : '#8A8A86',
+        d: day.d, t: day.t,
+        lbg: on ? '#111111' : 'transparent', lc: on ? '#FFFFFF' : '#111111',
+        aria: 'Ver el ' + day.full,
+        pick: () => this.select(i)
+      };
+    });
+    return {
+      glow: 'translateX(' + (this.CX[st.sel] - 24.5).toFixed(1) + 'px)',
+      balls: balls,
+      days: days,
+      cardDay: D.full, cardW: D.w.replace(' · ', ' - ') + ' - ' + ((D.c + D.n + D.q) * 5) + ' vecinos',
+      nc: String(D.c * 5), nn: String(D.n * 5), nq: String(D.q * 5), word: D.word, wn: String(D.wn),
+      cardNum: ((D.c + D.n + D.q) * 5) + ' vecinos',
+      cardR1: (D.c * 5) + ' en calma',
+      cardR2: (D.n * 5) + ' neutros · ' + (D.q * 5) + ' inquietos',
+      qn: '1 / ' + D.qn,
+      quote: D.quote,
+      qmeta: D.meta
+    };
+  }
+}
+</script>
+</body>
+</html>

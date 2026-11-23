@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Onboarding — fuera de campo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+.ob-spin{transform-box:fill-box;transform-origin:center;animation:obSpin 40s linear infinite}
+.ob-breathe{animation:obBreathe 5s ease-in-out infinite}
+@keyframes obSpin{to{transform:rotate(360deg)}}
+@keyframes obBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes obDrop{0%{transform:translate(0,-118px) scale(1);opacity:0}15%{opacity:1}55%{transform:translate(0,-4px) scale(.9);opacity:1}75%{transform:translate(0,0) scale(.15);opacity:0}100%{transform:translate(0,0) scale(.15);opacity:0}}
+@keyframes obBuzz{0%,100%{transform:translate(0,0)}25%{transform:translate(-1.5px,0)}75%{transform:translate(1.5px,0)}}
+@keyframes obRipple{0%{transform:scale(.55);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+@keyframes obOrbit{to{transform:rotate(360deg)}}
+@keyframes obFound{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
+@keyframes obIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.ob-btn{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif;color:#111}
+.ob-btn:focus-visible{outline:2px solid #111;outline-offset:4px;border-radius:6px}
+</style>
+</helmet>
+<div onPointerDown="{{ down }}" onPointerMove="{{ move }}" onPointerUp="{{ up }}" onPointerCancel="{{ up }}" style="position: relative; width: 393px; height: 852px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif; touch-action: pan-y; user-select: none">
+
+<!-- encabezado de los pasos -->
+<svg width="80" height="20" viewBox="0 0 80 20" style="position: absolute; left: 16px; top: 84px; opacity: {{ head }}; transition: opacity .6s ease .35s" aria-hidden="true">
+<line x1="10" y1="10" x2="46" y2="10" stroke="#CFCFCB" stroke-width="1"></line>
+<line x1="10" y1="10" x2="{{ progX }}" y2="10" stroke="#111" stroke-width="1" style="transition: all .4s ease"></line>
+<sc-for list="{{ prog }}" as="p" hint-placeholder-count="3"><circle cx="{{ p.x }}" cy="10" r="{{ p.r }}" fill="{{ p.f }}" stroke="{{ p.st }}" stroke-width="1" style="transition: fill .35s, stroke .35s"></circle></sc-for>
+</svg>
+<button type="button" class="ob-btn" onClick="{{ skip }}" style="position: absolute; right: 18px; top: 78px; height: 32px; padding: 0 4px; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; opacity: {{ head }}; pointer-events: {{ headPe }}; transition: opacity .6s ease .35s">Saltar</button>
+
+<!-- el ícono: en la intro grande, en los pasos sube y cuenta cada idea -->
+<svg width="393" height="852" viewBox="0 0 393 852" style="position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible" aria-hidden="true">
+<defs>
+<radialGradient id="obGlow"><stop offset="0" stop-color="#EAFE9F" stop-opacity=".9"></stop><stop offset=".5" stop-color="#EAFE9F" stop-opacity=".3"></stop><stop offset="1" stop-color="#EAFE9F" stop-opacity="0"></stop></radialGradient>
+</defs>
+<g style="transform: {{ icon }}; opacity: {{ intro }}; transition: transform .9s cubic-bezier(.7,0,.2,1), opacity .6s ease .2s">
+<g class="ob-breathe" style="transform-origin: 196.5px 310px">
+<!-- paso 2: el agua del lago -->
+<g opacity="{{ s2 }}" style="transition: opacity .5s">
+<circle cx="196.5" cy="310" r="120" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="2 4" style="transform-origin: 196.5px 310px; animation: obRipple 3.6s ease-out infinite"></circle>
+<circle cx="196.5" cy="310" r="120" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="2 4" style="transform-origin: 196.5px 310px; animation: obRipple 3.6s ease-out 1.2s infinite"></circle>
+<circle cx="196.5" cy="310" r="120" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="2 4" style="transform-origin: 196.5px 310px; animation: obRipple 3.6s ease-out 2.4s infinite"></circle>
+</g>
+<circle cx="196.5" cy="310" r="126" fill="none" stroke="#111" stroke-width="1" stroke-dasharray="3.2 3.2" class="ob-spin"></circle>
+<circle cx="196.5" cy="310" r="109" fill="#EAFE9F"></circle>
+<circle cx="196.5" cy="310" r="60" fill="#111"></circle>
+<!-- paso 3: vecinos buscando, uno encuentra -->
+<g opacity="{{ s3 }}" style="transition: opacity .5s">
+<g style="transform-origin: 196.5px 310px; animation: obOrbit 14s linear infinite">
+<circle cx="196.5" cy="146" r="7" fill="#fff" stroke="#111" stroke-width="1.4"></circle>
+<circle cx="338" cy="392" r="7" fill="#fff" stroke="#111" stroke-width="1.4"></circle>
+<circle cx="55" cy="392" r="7" fill="#fff" stroke="#111" stroke-width="1.4"></circle>
+</g>
+<g style="transform-origin: 196.5px 310px; animation: obOrbit 22s linear reverse infinite">
+<circle cx="318" cy="200" r="9" fill="#EAFE9F" stroke="#111" stroke-width="1.6" style="transform-box: fill-box; transform-origin: center; animation: obFound 1.6s ease-in-out infinite"></circle>
+<circle cx="80" cy="190" r="5" fill="#111"></circle>
+</g>
+</g>
+</g>
+<!-- paso 1: el celular entra al círculo y desaparece -->
+<g opacity="{{ s1 }}" style="transition: opacity .5s">
+<g style="animation: obDrop 3s cubic-bezier(.6,0,.3,1) infinite; transform-origin: 196.5px 310px">
+<rect x="176" y="276" width="41" height="72" rx="9" fill="#fff" stroke="#111" stroke-width="2"></rect>
+<rect x="190" y="282" width="13" height="3" rx="1.5" fill="#111"></rect>
+<circle cx="211" cy="290" r="4" fill="#EAFE9F" stroke="#111" stroke-width="1" style="animation: obBuzz .2s linear infinite"></circle>
+</g>
+</g>
+</g>
+</svg>
+
+<!-- intro -->
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 852px; opacity: {{ intro }}; transform: translateY({{ introY }}); transition: opacity .55s ease, transform .9s cubic-bezier(.7,0,.2,1); pointer-events: none">
+<div style="position: absolute; left: 18px; top: 488px; font-family: Poppins, sans-serif; font-size: 40px; line-height: 40px">*</div>
+<div style="position: absolute; left: 56px; top: 466px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 74px; line-height: 64px; letter-spacing: -0.08em; animation: obIn .9s cubic-bezier(.2,.8,.2,1) .25s both">fuera de<br>campo</div>
+<div style="position: absolute; left: 66px; top: 640px; font-size: 12px; line-height: 17px; animation: obIn .9s cubic-bezier(.2,.8,.2,1) .5s both">Lo que pasa en el parque<br>cuando no mirás la pantalla</div>
+</div>
+
+<!-- los tres pasos, como un carrusel que sigue el dedo -->
+<sc-for list="{{ steps }}" as="p" hint-placeholder-count="3">
+<div style="position: absolute; left: 0; top: 0; width: 393px; height: 852px; pointer-events: none; transform: translateX({{ p.x }}); opacity: {{ p.o }}; transition: {{ p.tr }}; pointer-events: none">
+<div style="position: absolute; left: 16px; top: 482px; width: 30px; height: 34px; display: flex; align-items: center; justify-content: center; font-family: Manrope, sans-serif; font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: 0; transform: rotate(-90deg); transform-origin: 50% 50%">{{ p.n }}</div>
+<div style="position: absolute; left: 62px; top: 466px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 74px; line-height: 74px; letter-spacing: -0.08em">{{ p.w }}</div>
+<div style="position: absolute; left: 66px; top: 572px; width: 262px; font-size: 14px; line-height: 18px">{{ p.t }}</div>
+</div>
+</sc-for>
+
+<button type="button" class="ob-btn" aria-label="{{ nextLabel }}" onClick="{{ next }}" style="position: absolute; left: 50px; top: 724px; width: 300px; height: 62px; opacity: {{ head }}; pointer-events: {{ headPe }}; transition: opacity .6s ease .5s">
+<svg width="300" height="62" viewBox="0 0 300 62" aria-hidden="true" style="display: block; overflow: visible"><g style="transform: translateX({{ arrowX }}); transition: transform .35s cubic-bezier(.2,.8,.2,1)"><line x1="16" y1="31" x2="279" y2="31" stroke="#111" stroke-width="2"></line><path d="M271 25l8 6-8 6" fill="none" stroke="#111" stroke-width="2"></path></g></svg>
+</button>
+
+
+<button type="button" class="ob-btn" aria-label="Empezar" onClick="{{ start }}" style="position: absolute; inset: 0; pointer-events: {{ introPe }}"></button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { st: 0, dx: 0, drag: false };
+  W = [
+    ['01', 'guardá', 'Cuando cruzás las rejas del Parque Centenario guardá tu celular, la app silencia tus notificaciones y las guarda hasta que salgas.'],
+    ['02', 'mirá', 'Mientras no mirás la pantalla, el parque sigue: baja el sol sobre el lago, empieza una batucada, alguien elige un libro en la feria.'],
+    ['03', 'buscá', 'Tenemos retos para que busques cosas. Contá los patos del lago, elegí un libro por la tapa o seguí la sombra de un árbol.']
+  ];
+  componentDidMount() { this.t = setTimeout(() => { if (this.state.st === 0) this.start(); }, 2600); }
+  componentWillUnmount() { clearTimeout(this.t); }
+  start = () => { if (this.state.st) return; clearTimeout(this.t); this.props.app.vib(8); this.setState({ st: 1 }); };
+  next = () => { const s = this.state.st; if (s >= 3) return this.done(); this.props.app.vib(5); this.setState({ st: s + 1, dx: 0 }); };
+  prev = () => { const s = this.state.st; if (s > 1) this.setState({ st: s - 1, dx: 0 }); };
+  skip = () => this.done();
+  done = () => this.props.app.go('cuenta', 'push');
+  down = (e) => { if (this.state.st < 1) return; this.x0 = e.clientX; this.k = (e.currentTarget.getBoundingClientRect().width / 393) || 1; this.moved = false; };
+  move = (e) => {
+    if (this.x0 == null) return;
+    const dx = (e.clientX - this.x0) / this.k;
+    if (Math.abs(dx) > 6) { this.moved = true; this.setState({ dx: dx, drag: true }); }
+  };
+  up = () => {
+    if (this.x0 == null) return;
+    const dx = this.state.dx; this.x0 = null;
+    if (dx < -70) { if (this.state.st >= 3) { this.setState({ dx: 0, drag: false }); this.done(); return; } this.setState({ st: this.state.st + 1, dx: 0, drag: false }); this.props.app.vib(5); }
+    else if (dx > 70 && this.state.st > 1) this.setState({ st: this.state.st - 1, dx: 0, drag: false });
+    else this.setState({ dx: 0, drag: false });
+  };
+  renderVals() {
+    const s = this.state.st, dx = this.state.dx, drag = this.state.drag;
+    // ícono: grande en la intro; en los pasos sube y se achica
+    const ic = s === 0 ? 'translate(0px,0px) scale(1)' : 'translate(196.5px,-60px) scale(0)';
+    return {
+      icon: ic, intro: s === 0 ? 1 : 0, introY: s === 0 ? '0px' : '-40px', introPe: s === 0 ? 'auto' : 'none',
+      head: s === 0 ? 0 : 1, headPe: s === 0 ? 'none' : 'auto',
+      s1: s === 1 ? 1 : 0, s2: s === 2 ? 1 : 0, s3: s === 3 ? 1 : 0,
+      steps: this.W.map((w, i) => {
+        const off = (i + 1 - Math.max(1, s)) * 393 + (s ? dx : 0);
+        return { n: w[0], w: w[1], t: w[2], x: (s === 0 ? 60 : off) + 'px', o: s === 0 ? 0 : (i + 1 === s ? 1 : 0.0001 + Math.max(0, 1 - Math.abs(off) / 393)),
+          tr: drag ? 'none' : 'transform .55s cubic-bezier(.2,.8,.2,1), opacity .5s ease ' + (s === 1 && !drag ? '.35s' : '0s') };
+      }),
+      prog: [1, 2, 3].map((i) => ({ x: 10 + (i - 1) * 18, r: i === s ? 5 : 4, f: i === s ? '#EAFE9F' : i < s ? '#111111' : '#FFFFFF', st: i <= s ? '#111111' : '#B5B5B1' })),
+      progX: 10 + Math.max(0, s - 1) * 18,
+      arrowX: (drag ? Math.min(0, dx) * 0.2 : 0) + 'px', nextLabel: s >= 3 ? 'Crear cuenta' : 'Siguiente',
+      down: this.down, move: this.move, up: this.up, next: this.next, skip: this.skip, start: this.start
+    };
+  }
+}
+</script>
+</body>
+</html>

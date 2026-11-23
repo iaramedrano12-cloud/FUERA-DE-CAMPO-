@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mientras no mirabas</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes svBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+@keyframes svIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes svPop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes svDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes svFadeA{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes svFadeB{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sv-breathe{animation:svBreathe 3.2s ease-in-out infinite}
+.sv-in{animation:svIn .7s cubic-bezier(.2,.8,.2,1) both}
+.sv-b{border:0;background:transparent;padding:0;cursor:pointer;font-family:Manrope,sans-serif;color:#111}
+.sv-chip{height:22px;padding:0 11px;border-radius:11px;border:1px solid #111;background:#fff;font:400 12px Manrope,sans-serif;color:#111;display:flex;align-items:center;gap:5px;cursor:pointer;transition:background .25s}
+.sv-chip[aria-pressed="true"]{background:#EAFE9F}
+.sv-chip i{width:8px;height:8px;border-radius:50%;display:inline-block;box-sizing:border-box}
+.sv-row{display:flex;align-items:center;height:29px;font-size:12px;cursor:pointer;border:0;background:transparent;width:100%;padding:0;font-family:Manrope,sans-serif;color:#111;text-align:left;border-radius:8px;transition:background .2s}
+.sv-row:hover{background:rgba(0,0,0,.035)}
+.sv-f{position:absolute;border:0;border-bottom:1px solid #111;background:transparent;font:400 15px Manrope,sans-serif;color:#111;outline:none;padding:0 0 6px;border-radius:0}
+.sv-f::placeholder{color:#8A8A86}
+</style>
+</helmet>
+<div style="position: relative; margin-top: 52px; width: 393px; height: 872px; overflow: hidden; background: #FFFFFF; color: #111111; font-family: Manrope, sans-serif">
+<svg width="140" height="20" viewBox="0 0 140 20" style="position: absolute; left: -38px; top: 30.5px" aria-hidden="true"><line x1="60" y1="10" x2="116" y2="10" stroke="#B5B5B1" stroke-width="1"></line><line x1="60" y1="10" x2="60" y2="10" stroke="#111" stroke-width="1"></line><circle cx="60" cy="10" r="4.6" fill="#EAFE9F" stroke="#111" stroke-width="1"></circle><circle cx="78" cy="10" r="4.6" fill="#FFFFFF" stroke="#B5B5B1" stroke-width="1"></circle><circle cx="96.5" cy="10" r="4.6" fill="#FFFFFF" stroke="#B5B5B1" stroke-width="1"></circle><circle cx="116" cy="10" r="4.6" fill="#FFFFFF" stroke="#B5B5B1" stroke-width="1"></circle></svg>
+<a href="Home.dc.html" data-tr="back" style="position: absolute; right: 22px; top: 30px; font-size: 13px; color: #111; text-decoration: underline; text-underline-offset: 4px; padding: 4px 0">Saltar</a>
+<h1 class="sv-in" style="position: absolute; left: 18px; top: 112px; margin: 0; font-family: Poppins, sans-serif; font-weight: 400; font-size: 40px; line-height: 35px; letter-spacing: -0.08em">mientras<br>no mirabas</h1>
+
+<div style="position: absolute; left: {{ glow.x }}; top: {{ glow.y }}; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; background: radial-gradient(circle, rgba(234,254,159,.95) 0%, rgba(234,254,159,.4) 40%, rgba(234,254,159,0) 70%); transition: left .7s cubic-bezier(.2,.8,.2,1), top .7s cubic-bezier(.2,.8,.2,1); pointer-events: none"></div>
+<svg width="393" height="620" viewBox="0 0 393 620" style="position: absolute; left: 0; top: 0; pointer-events: none" role="img" aria-label="El reloj de tu visita: cada punto es algo que pasó en el parque mientras no mirabas.">
+<path d="{{ grey }}" fill="none" stroke="#DADAD6" stroke-width="7" stroke-linecap="round"></path>
+<path d="{{ blackL }}" fill="none" stroke="#111" stroke-width="1"></path>
+<path d="{{ blackR }}" fill="none" stroke="#111" stroke-width="1"></path>
+<g stroke="#111" stroke-width="1"><sc-for list="{{ ticks }}" as="t" hint-placeholder-count="8"><line x1="{{ t.x1 }}" y1="{{ t.y1 }}" x2="{{ t.x2 }}" y2="{{ t.y2 }}"></line></sc-for></g>
+<g fill="none" stroke="#111" stroke-width="0.6" stroke-dasharray="1.5 3"><circle cx="190" cy="393" r="125"></circle><circle cx="190" cy="393" r="105"></circle><circle cx="190" cy="393" r="83"></circle></g>
+<circle cx="{{ sal.x }}" cy="{{ sal.y }}" r="3.8" fill="#111"></circle>
+<circle cx="{{ ent.x }}" cy="{{ ent.y }}" r="3.8" fill="#FFFFFF" stroke="#111" stroke-width="1"></circle>
+<text x="{{ salT.x }}" y="{{ salT.y }}" text-anchor="end" font-family="Manrope, sans-serif" font-weight="700" font-size="9">17:55 saliste</text>
+<text x="{{ entT.x }}" y="{{ entT.y }}" font-family="Manrope, sans-serif" font-size="9">16:05 entraste</text>
+<g font-family="Manrope, sans-serif" font-size="10.5" fill="#8A8A86"><text x="54" y="309" text-anchor="middle">feria</text><text x="345" y="349" text-anchor="middle">bulevares</text><text x="297" y="536" text-anchor="middle">orilla del lago</text></g>
+<text x="190" y="580" text-anchor="middle" font-family="Manrope, sans-serif" font-size="9.5" fill="#111">17:00</text>
+<line x1="{{ hand.x1 }}" y1="{{ hand.y1 }}" x2="{{ hand.x2 }}" y2="{{ hand.y2 }}" stroke="#111" stroke-width="1.4" style="transition: all .6s cubic-bezier(.2,.8,.2,1)"></line>
+<sc-for list="{{ evs }}" as="e" hint-placeholder-count="4">
+<circle cx="{{ e.x }}" cy="{{ e.y }}" r="{{ e.rr }}" fill="#FFFFFF" stroke="#111" stroke-width="1" stroke-dasharray="1.6 1.8" class="{{ e.cls }}" style="transform-box: fill-box; transform-origin: center; transition: r .3s"></circle>
+<circle cx="{{ e.x }}" cy="{{ e.y }}" r="{{ e.r }}" fill="{{ e.f }}" stroke="#111" stroke-width="{{ e.w }}" style="transition: r .3s, fill .3s"></circle>
+</sc-for>
+<circle cx="190" cy="393" r="56" fill="#FFFFFF" stroke="#111" stroke-width="0.8"></circle>
+<circle cx="190" cy="393" r="47" fill="#111"></circle>
+<text x="190" y="401" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="400" font-size="22" letter-spacing="-0.5" fill="#FFFFFF" style="animation: {{ anim }} .45s ease both">{{ ev.t }}</text>
+<text x="190" y="415" text-anchor="middle" font-family="Manrope, sans-serif" font-size="7" fill="#EAFE9F">{{ ev.d }}</text>
+</svg>
+<sc-for list="{{ evs }}" as="e" hint-placeholder-count="4">
+<button type="button" class="sv-b" aria-label="{{ e.aria }}" data-i="{{ e.i }}" onClick="{{ pick }}" style="position: absolute; left: {{ e.bl }}; top: {{ e.bt }}; width: 40px; height: 40px; border-radius: 50%"></button>
+</sc-for>
+<div style="position: absolute; left: 20px; top: 607px; width: 360px; animation: {{ anim }} .45s ease both">
+<div style="font-size: 12.5px; color: #8A8A86">{{ ev.t }} · {{ ev.d }}</div>
+<div style="margin-top: 3px; font-family: Poppins, sans-serif; font-weight: 400; font-size: 20.5px; line-height: 24px; letter-spacing: -0.06em; white-space: nowrap">{{ ev.s }}</div>
+</div>
+<a href="Esperado.dc.html" style="position: absolute; left: 20px; top: 663px; width: 349px; height: 68px; box-sizing: border-box; border: 1px solid #111; border-radius: 34px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: #111">
+<span><span style="display: block; font-size: 10.5px; color: #8A8A86">te esperaban afuera</span><span style="display: block; font-family: Poppins, sans-serif; font-weight: 400; font-size: 20px; line-height: 24px; letter-spacing: -0.07em">12 notificaciones</span></span>
+<svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 6h15M10 1l5 5-5 5" fill="none" stroke="#111" stroke-width="1.2"></path></svg>
+</a>
+<a href="Esperado.dc.html" style="position: absolute; left: 0; top: 763px; width: 393px; text-align: center; font-size: 16px; color: #111; text-decoration: none"><span style="border-bottom: 1px solid #111; padding-bottom: 3px">Siguiente</span></a>
+<a href="Recorrido.dc.html" style="position: absolute; left: 0; top: 802px; width: 393px; text-align: center; font-size: 16px; color: #8A8A86; text-decoration: none"><span style="border-bottom: 1px solid #8A8A86; padding-bottom: 3px">Ir directo a tu visita</span></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":393,"height":852}}'>
+class Component extends DCLogic {
+  state = { e: 0, n: 0 };
+  CX = 190; CY = 393;
+  E = [
+    { t: '16:52', d: 'el anfiteatro', s: 'una batucada arrancó en el anfiteatro', a: 158, r: 133 },
+    { t: '16:20', d: 'la feria', s: 'alguien dejó un libro en un banco', a: 302, r: 119 },
+    { t: '16:40', d: 'los bulevares', s: 'florecieron las tipas del bulevar', a: 58, r: 119 },
+    { t: '17:31', d: 'la orilla', s: 'el sol bajó justo sobre el lago', a: 209, r: 132 }
+  ];
+  pt(r, a) { const t = a * Math.PI / 180; return [this.CX + r * Math.sin(t), this.CY - r * Math.cos(t)]; }
+  arc(r, a0, a1) { const p = this.pt(r, a0), q = this.pt(r, a1); return 'M' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + 'A' + r + ' ' + r + ' 0 ' + ((a1 - a0) > 180 ? 1 : 0) + ' 1 ' + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }
+  pick = (e) => { const i = +e.currentTarget.getAttribute('data-i'); if (i === this.state.e) return; this.props.app && this.props.app.vib(6); this.setState({ e: i, n: this.state.n + 1 }); };
+  renderVals() {
+    const s = this.state.e, ev = this.E[s], f = (v) => v.toFixed(1);
+    const sp = this.pt(148, ev.a), h0 = this.pt(56, ev.a), h1 = this.pt(ev.r - 11, ev.a);
+    const sal = this.pt(148, -8), ent = this.pt(148, 8);
+    const ticks = [];
+    for (let a = 45; a < 330; a += 36) { const p = this.pt(144, a), q = this.pt(152, a); ticks.push({ x1: f(p[0]), y1: f(p[1]), x2: f(q[0]), y2: f(q[1]) }); }
+    const gp = this.pt(ev.r, ev.a);
+    return {
+      grey: this.arc(148, 25, 335), blackL: this.arc(148, 335, 352), blackR: this.arc(148, 8, 25), ticks: ticks,
+      sal: { x: f(sal[0]), y: f(sal[1]) }, ent: { x: f(ent[0]), y: f(ent[1]) },
+      salT: { x: f(sal[0] - 6), y: f(sal[1] - 8) }, entT: { x: f(ent[0] + 6), y: f(ent[1] - 8) },
+      hand: { x1: f(h0[0]), y1: f(h0[1]), x2: f(h1[0]), y2: f(h1[1]) },
+      glow: { x: f(gp[0]) + 'px', y: f(gp[1]) + 'px' },
+      evs: this.E.map((e, i) => { const p = this.pt(e.r, e.a), on = i === s; return { i: i, x: f(p[0]), y: f(p[1]), r: on ? 9 : 4.6, f: on ? '#FFFFFF' : '#111', w: on ? 1.5 : 0, rr: on ? 14 : 10.5, cls: on ? 'sv-breathe' : '', bl: f(p[0] - 20) + 'px', bt: f(p[1] - 20) + 'px', aria: e.t + ', ' + e.s }; }),
+      ev: ev, anim: this.state.n % 2 ? 'svFadeA' : 'svFadeB', pick: this.pick
+    };
+  }
+}
+</script>
+</body>
+</html>
